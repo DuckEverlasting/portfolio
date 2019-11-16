@@ -61,8 +61,8 @@ class Particle {
 
   // Set the speed for the particle
   speed = {
-    x: -0.5 + Math.random() * 1,
-    y: -0.5 + Math.random() * 1
+    x: -1 + Math.random() * 2,
+    y: -1 + Math.random() * 2
   };
 
   // Size the particle
@@ -79,7 +79,6 @@ class Particle {
 
   // Function to draw particle on canvas (and update location based on speed)
   draw = canvas => {
-    console.log("YO");
     const p = this;
     const ctx = canvas.getContext("2d");
 
@@ -122,8 +121,6 @@ class Particle {
 
       let moveDistX = ((p.currentX - mpX) * avoidSpeed) / mouseDistance;
       let moveDistY = ((p.currentY - mpY) * avoidSpeed) / mouseDistance;
-
-      if (state.animFrame % 100) console.log("X", moveDistX, "Y", moveDistY);
 
       p.currentX += moveDistX;
       p.currentY += moveDistY;
