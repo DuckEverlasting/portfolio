@@ -1,87 +1,15 @@
 import React, {useState, useEffect, useRef} from "react";
-import "./App.css";
+import "./styles/App.scss";
 import Starfield from "./Starfield";
-import styled from "styled-components";
 
-const AppSC = styled.div`
-  height: 100%;
-  overflow: ${props => props.scroll ? "auto" : "hidden"};
-  background: #333333;
-  scroll-behavior: smooth;
-`;
-
-const TopContainerSC = styled.div`
-  position: relative;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-`;
-
-const ScrollBox = styled.div`
-  position: relative;
-  height: 1000vh;
-  margin: 0;
-  padding: 0;
-`;
-
-const FixedContainerSC = styled.div`
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-`;
-
-const NavBarSC = styled.div`
-  display: flex;
-  position: fixed;
-  padding: 0 20% 0 20%;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  width: 60%;
-  background: #000000;
-  z-index: 5;
-`;
-
-const NavLinkSC = styled.p`
-  color: white;
-  padding: 10px 20px;
-  border: 1px solid white;
-  border-radius: 20px;
-
-  :hover {
-    cursor: pointer;
-  }
-`
-
-const GradientSC = styled.div`
-  position: relative;
-  width: 100%;
-  height: 60px;
-  background: rgb(0,0,0);
-  background: linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(255,255,255,0) 90%);
-  z-index: 10;
-`
-
-const AboutPageSC = styled.div`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  padding: 60px 0 0;
-  flex-direction: column;
-`
-
-const TitleSC = styled.h1`
-  margin: 0;
-  padding: 10vh 0 0;
-  text-align: center;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 4rem;
-  transform: ${props => props.transform};
-`
-
+const scrollData = {
+  title: [
+    {scrollNum: 18, deltaY: -55, opacity: 0},
+    {scrollNum: 25, deltaY: 0, opacity: 1},
+    {scrollNum: 30, deltaY: 0, opacity: 1},
+    {scrollNum: 32, deltaY: 55, opacity: 0}
+  ]
+}
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
@@ -106,10 +34,10 @@ function App() {
     let current = 0;
     let scrollNum, deltaX, deltaY, scale, opacity, rotate;
 
-    const output = () => (
-      `translate(${deltaX}%, ${deltaY}%) scale(${scale}) rotate(${rotate});
-      opacity: ${opacity};`
-    )
+    const output = () => ({
+      transform: `translate(${deltaX}%, ${deltaY}%) scale(${scale}) rotate(${rotate})`,
+      opacity: opacity
+    })
 
     while (current < keyframes.length) {
       ({scrollNum, deltaX = 0, deltaY = 0, scale = 1, opacity = 1, rotate = 0} = keyframes[current])
@@ -169,30 +97,32 @@ function App() {
   }
 
   return (
-    <AppSC ref={appRef} scroll={hasStarted}>
-      <NavBarSC>
-        <NavLinkSC onClick={ev => scrollButtonHandler(ev, 0)}>RESET</NavLinkSC>
-        <NavLinkSC onClick={ev => scrollButtonHandler(ev, 2500)}>ABOUT</NavLinkSC>
-        <NavLinkSC onClick={ev => scrollButtonHandler(ev, 5000)}>WORK</NavLinkSC>
-        <NavLinkSC onClick={ev => scrollButtonHandler(ev, 9000)}>CONTACT</NavLinkSC>
-      </NavBarSC>
-      <TopContainerSC>
+    <div className={"app"} ref={appRef} scroll={hasStarted}>
+    {/* overflow: props.scroll ? "auto" : "hidden" */}
+      <div className={"nav-bar"}>
+        <p className={"nav-link"} onClick={ev => scrollButtonHandler(ev, 0)}>RESET</p>
+        <p className={"nav-link"} onClick={ev => scrollButtonHandler(ev, 2500)}>ABOUT</p>
+        <p className={"nav-link"} onClick={ev => scrollButtonHandler(ev, 5000)}>WORK</p>
+        <p className={"nav-link"} onClick={ev => scrollButtonHandler(ev, 9000)}>CONTACT</p>
+      </div>
+      <div className={"top-container"}>
         <Starfield startButtonHandler = {startButtonHandler}/>
-      </TopContainerSC>
+      </div>
       {
         hasStarted &&
         <>
-          <GradientSC />
-          <ScrollBox ref={scrollTarget}>
-            <FixedContainerSC>
-              <AboutPageSC>
-                <TitleSC transform={programScroll([{scrollNum: 18, deltaY: -55, opacity: 0}, {scrollNum: 25, deltaY: 0, opacity: 1}, {scrollNum: 30, deltaY: 0, opacity: 1}, {scrollNum: 32, deltaY: 55, opacity: 0}])}>About</TitleSC>
-              </AboutPageSC>
-            </FixedContainerSC>
-          </ScrollBox>
+          <div className={"gradient"} />
+          <div className={"scroll-box"} ref={scrollTarget}>
+            <div className={"fixed-container"}>
+              <div className={"about-page"}>
+                <h1 className={"title"} style={programScroll(scrollData.title)}>About</h1>
+                {/* transform: ${props => props.transform}; */}
+              </div>
+            </div>
+          </div>
         </>
       }
-    </AppSC>
+    </div>
   );
 }
 
