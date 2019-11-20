@@ -1,27 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
+import About from "./views/About"
 import programScroll from "./utils/programScroll";
 
-import { useSpring, animated } from "react-spring";
+import gear from "./assets/gear.png";
 
 const scrollData = {
   title: [
-    { scrollNum: 18, deltaY: -55, opacity: 0 },
-    { scrollNum: 25, deltaY: 0, opacity: 1 },
-    { scrollNum: 30, deltaY: 0, opacity: 1 },
-    { scrollNum: 32, deltaY: 55, opacity: 0 }
+    { scrollNum: 10, deltaY: -55, opacity: 0 },
+    { scrollNum: 16, deltaY: 0, opacity: 1 },
+    { scrollNum: 21, deltaY: 0, opacity: 1 },
+    { scrollNum: 23, deltaY: 55, opacity: 0 }
   ]
 };
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [skipSections, setSkipSections] = useState([])
   const appRef = useRef(null);
-
-  const aboutTitle = useSpring({
-    transform: 19 < scrollPosition && scrollPosition < 33 ? "translate(20%, 0)" : "translate(-20%, 0)",
-  });
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
@@ -38,57 +36,81 @@ function App() {
     setScrollPosition(scrollPct);
   };
 
-  const scrollButtonHandler = (ev, target) => {
+  const scrollButtonHandler = async (ev, target, reset=false) => {
     ev.preventDefault();
+    const scrollNum = (target / 100) * (appRef.current.getBoundingClientRect().height - window.innerHeight);
+    
+    // check for sections to skip
+    let toSkip = []
+    if (target === 0) {
+      if (scrollPosition >= 38) toSkip.push("about")
+      if (scrollPosition >= 68) toSkip.push("work")
+
+    } else if (target === 33) {
+      if (scrollPosition >= 68) toSkip.push("work")
+
+    } else if (target === 66) {
+      if (scrollPosition <= 22) toSkip.push("about")
+
+    } else if (target === 100) {
+      if (scrollPosition <= 22) toSkip.push("about")
+      if (scrollPosition <= 62) toSkip.push("work")
+    }
+    await setSkipSections(toSkip)
+
+
+    let pauseNum = scrollPosition * 12 + 500
     window.scrollTo({
-      top: target,
+      top: scrollNum,
       behavior: "smooth"
     });
+    if (reset) {
+      setTimeout(() => setHasStarted(false), pauseNum);
+    };
   };
 
   const startButtonHandler = async ev => {
-    await setHasStarted(true);
-    scrollButtonHandler(ev, 2500);
+    if (!hasStarted) {
+      await setHasStarted(true);
+      setTimeout(() => scrollButtonHandler(ev, 33), 1100);
+    } else {
+      scrollButtonHandler(ev, 33)
+    }
+    
   };
 
   return (
     <div
       className="app"
       ref={appRef}
-      style={{ height: hasStarted ? "10000px" : "100%" }}
+      style={{ height: hasStarted ? "6000px" : "100%", overflow: hasStarted ? "auto" : "hidden"}}
     >
       <div className="nav-bar">
-        <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 0)}>
-          RESET
-        </p>
-        <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 2500)}>
-          ABOUT
-        </p>
-        <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 5000)}>
-          WORK
-        </p>
-        <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 9000)}>
-          CONTACT
-        </p>
+        <p className="page-title">Matt Klein</p>
+        <div className="inner-nav-bar">
+          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 0, true)}>
+            RESET
+          </p>
+          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 33)}>
+            ABOUT
+          </p>
+          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 66)}>
+            WORK
+          </p>
+          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 100)}>
+            CONTACT
+          </p>
+        </div>
       </div>
       <div className="top-container">
-        <Starfield startButtonHandler={startButtonHandler} />
+        <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
       </div>
       {hasStarted && (
         <>
           <div className="gradient" />
           <div className="fixed-container">
-            <div className="about-page">
-              <h1
-                className="title"
-                style={programScroll(scrollData.title, scrollPosition)}
-              >
-                About
-              </h1>
-              <animated.p style={aboutTitle}>
-                HEY THERE
-              </animated.p>
-            </div>
+            <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
+            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")} />
           </div>
         </>
       )}

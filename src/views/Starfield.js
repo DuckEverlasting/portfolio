@@ -1,5 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import screenBorder from "../assets/Screen-Border.png";
+
+const BorderScreenSC = styled.img`
+  position: absolute;
+  z-index: 8;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  opacity: ${props => props.toggle ? 1 : 0};
+  transform: scale(${props => props.toggle ? 1 : 1.3});
+  transition: opacity 1s, transform 1s;
+`
 
 const CanvasSC = styled.canvas`
   position: absolute;
@@ -7,7 +19,9 @@ const CanvasSC = styled.canvas`
   height: 100%;
   left: 0%;
   top: 0%;
-  background: black;
+  background: rgb(105,0,74);
+  background: linear-gradient(90deg, rgba(65,0,40,1) 0%, rgba(55,0,13,1) 50%, rgba(40,0,60,1) 100%);
+  transition: background 3s;
 `;
 
 const CanvasBoxSC = styled.div`
@@ -15,16 +29,18 @@ const CanvasBoxSC = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 6;
   width: 100%;
   height: 100%;
-  z-index: 6;
+  transform: scale(${props => props.toggle ? 1 : 1.1});
+  transition: transform 1s;
 `;
 
 const StartButtonSC = styled.button`
   background: rgba(0, 0, 0, 0);
   padding: 20px;
   margin-bottom: 10vh;
-  border: 1px solid white;
+  border: 2px solid rgb(207, 207, 207);
   border-radius: 20px;
   color: white;
   z-index: 7;
@@ -32,12 +48,12 @@ const StartButtonSC = styled.button`
   transition: background 0.3s;
 
   :hover {
-    background: rgba(50, 50, 50, 20);
+    background: rgba(0, 0, 0, .4);
     cursor: pointer;
   }
 
   :active {
-    background: rgba(30, 30, 30, 20);
+    background: rgba(255, 255, 255, .4);
   }
 
   :focus {
@@ -50,6 +66,11 @@ let state = {
   animFrame: 0,
   mousePosition: { x: 0, y: 0 }
 };
+
+function parseAnimFrame() {
+  console.log(state.animFrame % 5000)
+  return state.animFrame % 5000
+}
 
 class Particle {
   constructor(x, y, hue) {
@@ -210,14 +231,17 @@ export default function Starfield(props) {
   }
 
   return (
-    <CanvasBoxSC>
-      <StartButtonSC onClick={props.startButtonHandler}>PRESS ME</StartButtonSC>
-      <CanvasSC
-        width={dimensions.width * 4}
-        height={dimensions.height * 4}
-        onMouseMove={setMousePosition}
-        ref={canvasRef}
-      />
-    </CanvasBoxSC>
+    <>
+      <BorderScreenSC src={screenBorder} toggle={props.toggle} />
+      <CanvasBoxSC toggle={props.toggle}>
+        <StartButtonSC onClick={props.startButtonHandler}>BEGIN</StartButtonSC>
+        <CanvasSC
+          width={dimensions.width * 4}
+          height={dimensions.height * 4}
+          onMouseMove={setMousePosition}
+          ref={canvasRef}
+        />
+      </CanvasBoxSC>
+    </>
   );
 }
