@@ -81,12 +81,22 @@ function About({scrollPosition}) {
         </animated.h1>
       </div>
       <div className="telescope-A">
-        <animated.img className="telescope-3A" style={telescope3Spr} src={telescope3} alt=""/>
+        <animated.div className="telescope-A-end" style={telescope3Spr} >
+          <div className="text-box-A">
+            <p>HELLO</p>
+          </div>
+          <img className="telescope-3A" src={telescope3} alt=""/>
+        </animated.div>
       	<animated.img className="telescope-2A" style={telescope2Spr} src={telescope2} alt=""/>
         <animated.img className="telescope-1A" style={telescope1Spr} src={telescope1} alt=""/>
       </div>
       <div className="telescope-B">
-        <animated.img className="telescope-3B" style={telescope3bSpr} src={telescope3} alt=""/>
+        <animated.div className="telescope-B-end" style={telescope3bSpr} >
+          <div className="text-box-B">
+            <p>HELLO</p>
+          </div>
+          <img className="telescope-3B" src={telescope3} alt=""/>
+        </animated.div>
       	<animated.img className="telescope-2B" style={telescope2bSpr} src={telescope2} alt=""/>
         <animated.img className="telescope-1B" style={telescope1bSpr} src={telescope1} alt=""/>
       </div>

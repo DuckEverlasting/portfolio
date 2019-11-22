@@ -211,7 +211,7 @@ export default function Starfield(props) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (ctx.globalAlpha < 1) {
-        ctx.globalAlpha += .002
+        ctx.globalAlpha += .006
       }
 
       // Draw all of our particles in their new location
