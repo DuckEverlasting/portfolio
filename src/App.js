@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
 import About from "./views/About"
+import Work from "./views/Work"
 import programScroll from "./utils/programScroll";
 
 import gear from "./assets/gear.png";
@@ -58,15 +59,15 @@ function App() {
     }
     await setSkipSections(toSkip)
 
-
     let pauseNum = scrollPosition * 12 + 500
-    window.scrollTo({
+    await window.scrollTo({
       top: scrollNum,
       behavior: "smooth"
     });
     if (reset) {
       setTimeout(() => setHasStarted(false), pauseNum);
     };
+    setTimeout(() => setSkipSections([]), 1500);
   };
 
   const startButtonHandler = async ev => {
@@ -83,7 +84,7 @@ function App() {
     <div
       className="app"
       ref={appRef}
-      style={{ height: hasStarted ? "6000px" : "100%", overflow: hasStarted ? "auto" : "hidden"}}
+      style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "auto" : "hidden"}}
     >
       <div className="nav-bar">
         <p className="page-title">Matt Klein</p>
@@ -110,7 +111,8 @@ function App() {
           <div className="gradient" />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
-            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")} />
+            {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
+            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition}/>}
           </div>
         </>
       )}
