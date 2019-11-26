@@ -1,9 +1,15 @@
 $break-mobile: 450px;
 $break-tablet: 900px;
 
+$black: rgb(20, 20, 24);
+$magenta: rgb(100, 0, 80);
+$bright-magenta: rgb(135, 0, 110);
+$violet: rgb(60, 0, 100);
+$red: rgb(70, 0, 20);
+
 .app {
   height: 100%;
-  background: rgb(117, 117, 117);
+  background: rgb(148, 161, 178);
   scroll-behavior: smooth;
 
   .nav-bar {
@@ -15,7 +21,7 @@ $break-tablet: 900px;
     align-items: center;
     height: 70px;
     width: 80%;
-    background: #000000;
+    background: $black;
     z-index: 5;
 
     @media screen and (max-width: $break-tablet) {
@@ -51,6 +57,12 @@ $break-tablet: 900px;
 
         &:hover {
           cursor: pointer;
+          background: $bright-magenta;
+          transition: background .3s;
+        }
+
+        &:active {
+          background: $magenta;
         }
 
         @media screen and (max-width: $break-mobile) {
@@ -73,10 +85,10 @@ $break-tablet: 900px;
     position: relative;
     width: 100%;
     height: 60px;
-    background: rgb(0, 0, 0);
+    background: $black;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 1) 10%,
+      rgba(22, 22, 26, 1) 10%,
       rgba(255, 255, 255, 0) 90%
     );
     z-index: 10;
@@ -150,9 +162,9 @@ $break-tablet: 900px;
           font-family: "Exo 2", sans-serif;
           font-size: 40px;
           padding: 15px 20px;
-          background: black;
+          background: $black;
           border-radius: 25px;
-          border: 3px solid black;
+          border: 3px solid $black;
           color: white;
           letter-spacing: 0.03em;
         }
@@ -179,7 +191,7 @@ $break-tablet: 900px;
           
         .text-box {
           border-radius: 25px;
-          background: black;
+          background: $black;
         }
       }
     }
@@ -228,7 +240,7 @@ $break-tablet: 900px;
             align-items: center;
             width: 70vw;
             height: 163px;
-            border: 3px solid black;
+            border: 3px solid $black;
             border-radius: 20px;
             margin-top: -40px;
             margin-left: 9.8vw;
@@ -243,7 +255,7 @@ $break-tablet: 900px;
               width: 100%;
               height: 159px;
               border-radius: 17px;
-              background: black;
+              background: $black;
               border: 2px solid rgb(185, 0, 154);
 
               p {
@@ -309,7 +321,7 @@ $break-tablet: 900px;
             align-items: center;
             width: 70vw;
             height: 113px;
-            background: black;
+            background: $black;
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
             border-top-right-radius: 50%;
@@ -389,7 +401,7 @@ $break-tablet: 900px;
             height: 99.6%;
             top: 0.2%;
             right: 0%;
-            background: black;
+            background: $black;
             z-index: 3;
             backface-visibility: hidden;
 

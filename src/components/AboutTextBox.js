@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated, config } from "react-spring";
 
 function AboutTextBox({ isOn }) {
   const textBoxHeightSpr = useSpring({
@@ -8,15 +8,21 @@ function AboutTextBox({ isOn }) {
       : "0%",
     delay: isOn
       ? 0
-      : 300,
+      : 220,
+    config: isOn
+      ? config.default
+      : config.stiff
   })
   const textBoxWidthSpr = useSpring({
     width: isOn
       ? "100%"
-      : "1%",
+      : "0.5%",
     delay: isOn
       ? 400
       : 0,
+    config: isOn
+      ? config.default
+      : config.stiff
   })
 
   return (

@@ -4,7 +4,6 @@ import Starfield from "./views/Starfield";
 import About from "./views/About";
 import Work from "./views/Work";
 import Contact from "./views/Contact";
-import programScroll from "./utils/programScroll";
 
 import gear from "./assets/gear.png";
 
@@ -19,6 +18,7 @@ const scrollData = {
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
+  const [reload, setReload] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState("down");
   const [skipSections, setSkipSections] = useState([])
@@ -71,12 +71,13 @@ function App() {
     }
     await setSkipSections(toSkip)
 
-    let pauseNum = scrollPosition * 12 + 500
+    let pauseNum = scrollPosition * 14 + 950
     await window.scrollTo({
       top: scrollNum,
       behavior: "smooth"
     });
     if (reset) {
+      setReload(true)
       setTimeout(() => setHasStarted(false), pauseNum);
     };
     setTimeout(() => setSkipSections([]), 1500);
@@ -84,12 +85,12 @@ function App() {
 
   const startButtonHandler = async ev => {
     if (!hasStarted) {
+      setReload(false)
       await setHasStarted(true);
       setTimeout(() => scrollButtonHandler(ev, 33), 1100);
     } else {
       scrollButtonHandler(ev, 33)
     }
-    
   };
 
   return (
@@ -117,7 +118,7 @@ function App() {
       </div>
       <div className="top-container">
         {
-          (!hasStarted || scrollPosition < 14) &&
+          (!hasStarted || scrollPosition < 14 || reload) &&
           <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
         }
       </div>
