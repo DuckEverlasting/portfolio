@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
-import About from "./views/About"
-import Work from "./views/Work"
+import About from "./views/About";
+import Work from "./views/Work";
+import Contact from "./views/Contact";
 import programScroll from "./utils/programScroll";
 
 import gear from "./assets/gear.png";
@@ -19,6 +20,7 @@ const scrollData = {
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState("down");
   const [skipSections, setSkipSections] = useState([])
   const appRef = useRef(null);
 
@@ -30,11 +32,21 @@ function App() {
   }, []);
 
   const handleScroll = () => {
+    let prev = scrollPosition;
+    let dir;
     const scrollPct =
-      (window.scrollY /
+      ((window.scrollY /
         (appRef.current.getBoundingClientRect().height - window.innerHeight)) *
-      100;
+      100);
+    if (scrollPct > prev) {
+      dir = "down"
+    } else {
+      dir = "up"
+    }
     setScrollPosition(scrollPct);
+    if (scrollDirection !== dir) {
+      setScrollDirection(dir);
+    }
   };
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
@@ -87,7 +99,7 @@ function App() {
       style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "auto" : "hidden"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt Klein</p>
+        <p className="page-title">Matt Klein {Math.floor(scrollPosition)}</p>
         <div className="inner-nav-bar">
           <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
@@ -104,15 +116,19 @@ function App() {
         </div>
       </div>
       <div className="top-container">
-        <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
+        {
+          (!hasStarted || scrollPosition < 14) &&
+          <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
+        }
       </div>
       {hasStarted && (
         <>
           <div className="gradient" />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
-            {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
+            {!skipSections.includes("about") && <About scrollPosition={scrollPosition} scrollDirection={scrollDirection}/>}
             {!skipSections.includes("work") && <Work scrollPosition={scrollPosition}/>}
+            {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
           </div>
         </>
       )}
