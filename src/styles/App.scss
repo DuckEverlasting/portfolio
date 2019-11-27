@@ -1,15 +1,9 @@
-$break-mobile: 450px;
-$break-tablet: 900px;
-
-$black: rgb(20, 20, 24);
-$magenta: rgb(100, 0, 80);
-$bright-magenta: rgb(135, 0, 110);
-$violet: rgb(60, 0, 100);
-$red: rgb(70, 0, 20);
+@import 'Colors.scss';
+@import 'Variables.scss';
 
 .app {
   height: 100%;
-  background: rgb(148, 161, 178);
+  background: $grey-blue;
   scroll-behavior: smooth;
 
   .nav-bar {
@@ -430,7 +424,7 @@ $red: rgb(70, 0, 20);
             height: 100%;
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
-            background: rgb(117, 117, 117);
+            background: $grey-blue;
             transform: rotateY(0.5turn);
             z-index: 2;
           }

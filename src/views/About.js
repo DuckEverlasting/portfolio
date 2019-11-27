@@ -3,7 +3,7 @@ import React from "react";
 import AboutSign from "../components/AboutSign.js";
 import AboutTextBox from "../components/AboutTextBox.js";
 
-export default function About({scrollPosition, scrollDirection}) {
+export default function About({ scrollPosition }) {
   return (
     <div className="about-page">
       <AboutSign isOn={22 < scrollPosition && scrollPosition < 38} />

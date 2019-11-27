@@ -1,0 +1,17 @@
+$black: rgb(20, 20, 24);
+$magenta: rgb(100, 0, 80);
+$bright-magenta: rgb(135, 0, 110);
+$violet: rgb(60, 0, 100);
+$red: rgb(70, 0, 20);
+$grey-blue: rgb(148, 161, 178);
+$dark-grey-blue: rgb(120, 125, 138);
+
+:export {
+  black: $black;
+  magenta: $magenta;
+  brightMagenta: $bright-magenta;
+  violet: $violet;
+  red: $red;
+  greyBlue: $grey-blue;
+  darkGreyBlue: $dark-grey-blue;
+}

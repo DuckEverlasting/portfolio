@@ -20,7 +20,6 @@ function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [reload, setReload] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState("down");
   const [skipSections, setSkipSections] = useState([])
   const appRef = useRef(null);
 
@@ -32,21 +31,11 @@ function App() {
   }, []);
 
   const handleScroll = () => {
-    let prev = scrollPosition;
-    let dir;
     const scrollPct =
       ((window.scrollY /
         (appRef.current.getBoundingClientRect().height - window.innerHeight)) *
       100);
-    if (scrollPct > prev) {
-      dir = "down"
-    } else {
-      dir = "up"
-    }
     setScrollPosition(scrollPct);
-    if (scrollDirection !== dir) {
-      setScrollDirection(dir);
-    }
   };
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
@@ -127,7 +116,7 @@ function App() {
           <div className="gradient" />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
-            {!skipSections.includes("about") && <About scrollPosition={scrollPosition} scrollDirection={scrollDirection}/>}
+            {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
             {!skipSections.includes("work") && <Work scrollPosition={scrollPosition}/>}
             {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
           </div>

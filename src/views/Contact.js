@@ -1,6 +1,8 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
+import colors from "../styles/Colors.scss"; 
+
 function Contact({ scrollPosition }) {
   const contactPanelSpr = useSpring({
     transform:
@@ -12,8 +14,8 @@ function Contact({ scrollPosition }) {
   const contactPanelBgSpr = useSpring({
     background:
       97 < scrollPosition
-        ? "rgb(77, 77, 77)"
-        : "rgb(117, 117, 117)",
+        ? colors.darkGreyBlue
+        : colors.greyBlue,
     config: { mass: 1, tension: 210, friction: 20 }
   });
   const pixelMaskSpr = useSpring({
