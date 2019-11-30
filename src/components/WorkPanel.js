@@ -5,8 +5,8 @@ function WorkPanel({ isOn, Content }) {
   const workPanelSpring = useSpring({
     transform:
       isOn
-        ? "perspective(2500px) rotateX(0)"
-        : "perspective(2500px) rotateX(0.5turn)",
+        ? "rotateX(0)"
+        : "rotateX(0.5turn)",
     config: 
       isOn
         ? { mass: 1, tension: Math.random() * 30 + 40, friction: 2 }

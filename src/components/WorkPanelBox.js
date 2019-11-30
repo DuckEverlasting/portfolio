@@ -7,8 +7,8 @@ function Work({ isOn }) {
   const workPanelBoxSpring = useSpring({
     transform:
       isOn
-        ? "perspective(2500px) rotateX(0)"
-        : "perspective(2500px) rotateX(-0.25turn)",
+        ? "rotateX(0)"
+        : "rotateX(-0.25turn)",
     config: 
       isOn
         ? { mass: 1, tension: 40, friction: 2 }
@@ -16,16 +16,20 @@ function Work({ isOn }) {
   });
 
   return (
-    <animated.div className="panel-box" style={workPanelBoxSpring}>
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-      <WorkPanel isOn={isOn} />
-    </animated.div>
+    <div className="perspective-box">
+      <div className="adjustment-box">
+        <animated.div className="panel-box" style={workPanelBoxSpring}>
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+          <WorkPanel isOn={isOn} />
+        </animated.div>
+      </div>
+    </div>
   );
 }
 
