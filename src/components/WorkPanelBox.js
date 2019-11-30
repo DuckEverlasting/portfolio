@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 
 import WorkPanel from "../components/WorkPanel.js";
 
-function Work({ isOn }) {
+function WorkPanelBox({ isOn }) {
   const workPanelBoxSpring = useSpring({
     transform:
       isOn
@@ -13,7 +13,10 @@ function Work({ isOn }) {
       isOn
         ? { mass: 1, tension: 40, friction: 2 }
         : { mass: 1, tension: 180, friction: 28 },
+    delay: isOn ? 1000 : 0
   });
+
+  // NOTE TO SELF: MAKE PANEL CONTENT VIDEOS THAT PLAY ON HOVER
 
   return (
     <div className="perspective-box">
@@ -33,4 +36,4 @@ function Work({ isOn }) {
   );
 }
 
-export default Work;
+export default React.memo(WorkPanelBox)

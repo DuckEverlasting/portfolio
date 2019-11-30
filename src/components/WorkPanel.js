@@ -13,7 +13,7 @@ function WorkPanel({ isOn, Content }) {
         : { mass: 1, tension: Math.random() * 40 + 180, friction: 32 },
     delay: 
       isOn
-        ? Math.random() * 200
+        ? Math.random() * 200 + 1000
         : Math.random() * 50
   });
 
