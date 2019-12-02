@@ -9,30 +9,34 @@ function WorkTelescope({ isOn }) {
   const telescope1Spr = useSpring({
     transform:
       isOn
-        ? "translate(20%, 0)"
-        : "translate(-70%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 }
+        ? "translate(50%, 0)"
+        : "translate(150%, 0)",
+      config: { mass: 5, tension: 400, friction: 120 },
+      delay: isOn ? 0 : 400
   });
   const telescope2Spr = useSpring({
     transform:
       isOn
-        ? "translate(70%, 0)"
-        : "translate(-70%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 }
+        ? "translate(0%, 0)"
+        : "translate(150%, 0)",
+      config: { mass: 5, tension: 400, friction: 120 },
+      delay: isOn ? 0 : 400
   });
   const telescope3Spr = useSpring({
     transform:
       isOn
-        ? "translate(120%, 0)"
-        : "translate(-70%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 }
+        ? "translate(-50%, 0)"
+        : "translate(150%, 0)",
+      config: { mass: 5, tension: 400, friction: 120 },
+      delay: isOn ? 0 : 400
   });
   const telescopeBarSpr = useSpring({
     transform:
       isOn
-        ? "translate(190%, 0)"
-        : "translate(-100%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 }
+        ? "translate(0, 0)"
+        : "translate(200%, 0)",
+      config: { mass: 1, tension: 250, friction: 50 },
+      delay: isOn ? 300 : 400
   });
 
   // NOTE: GAH ENOUGH OF THIS FLIP THE DARN PICTURES AND REDO THE POSITIONING
