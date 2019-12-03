@@ -1,6 +1,8 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
+import ContactSign from "../components/ContactSign.js";
+
 import colors from "../styles/Colors.scss"; 
 
 function Contact({ scrollPosition }) {
@@ -28,6 +30,7 @@ function Contact({ scrollPosition }) {
 
   return (
     <div className="contact-page">
+      <ContactSign isOn={85 < scrollPosition}/>
       <div className="flipbook">
         <animated.div className="flip-panel" style={contactPanelSpr}>
           <div className="frontside">

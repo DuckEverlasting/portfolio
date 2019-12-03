@@ -118,7 +118,7 @@ function App() {
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
             {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
             {!skipSections.includes("work") && <Work scrollPosition={scrollPosition}/>}
-            {/* {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>} */}
+            {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
           </div>
         </>
       )}

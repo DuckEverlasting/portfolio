@@ -42,8 +42,6 @@ function WorkTelescope({ isOn }) {
     delay: isOn ? 300 : 330
   });
 
-  // NOTE: GAH ENOUGH OF THIS FLIP THE DARN PICTURES AND REDO THE POSITIONING
-
   return (
     <>
       <div className="telescope-container">
