@@ -10,7 +10,7 @@ function WorkPanel({ isOn, Content }) {
     config: 
       isOn
         ? { mass: 1, tension: Math.random() * 30 + 40, friction: 2 }
-        : { mass: 1, tension: Math.random() * 40 + 180, friction: 32 },
+        : { mass: 1, tension: 480, friction: 38 },
     delay: 
       isOn
         ? Math.random() * 200 + 1000

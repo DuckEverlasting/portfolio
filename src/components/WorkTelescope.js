@@ -11,32 +11,35 @@ function WorkTelescope({ isOn }) {
       isOn
         ? "translate(50%, 0)"
         : "translate(150%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 },
-      delay: isOn ? 0 : 400
+    config: { mass: 5, tension: 400, friction: 120 },
+    delay: isOn ? 0 : 330
   });
   const telescope2Spr = useSpring({
     transform:
       isOn
         ? "translate(0%, 0)"
         : "translate(150%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 },
-      delay: isOn ? 0 : 400
+    config: { mass: 5, tension: 400, friction: 120 },
+    delay: isOn ? 0 : 330
   });
   const telescope3Spr = useSpring({
     transform:
       isOn
         ? "translate(-50%, 0)"
         : "translate(150%, 0)",
-      config: { mass: 5, tension: 400, friction: 120 },
-      delay: isOn ? 0 : 400
+    config: { mass: 5, tension: 400, friction: 120 },
+    delay: isOn ? 0 : 330
   });
   const telescopeBarSpr = useSpring({
     transform:
       isOn
         ? "translate(0, 0)"
         : "translate(200%, 0)",
-      config: { mass: 1, tension: 250, friction: 50 },
-      delay: isOn ? 300 : 400
+    config: 
+      isOn
+        ? { mass: 1, tension: 250, friction: 50 }
+        : { mass: 1, tension: 150, friction: 50 },
+    delay: isOn ? 300 : 330
   });
 
   // NOTE: GAH ENOUGH OF THIS FLIP THE DARN PICTURES AND REDO THE POSITIONING
@@ -44,7 +47,10 @@ function WorkTelescope({ isOn }) {
   return (
     <>
       <div className="telescope-container">
-          <animated.div className="telescope-bar" style={telescopeBarSpr} />
+          <animated.div className="telescope-bar" style={{...telescopeBarSpr, zIndex: isOn ? 0 : 1}}>
+            <div className="bar" style={{zIndex: isOn ? 0 : 1}}/>
+            <div className="ball"/>
+          </animated.div>
           <animated.img className="telescope-3" style={telescope3Spr} src={telescope3} alt=""/>
           <animated.img className="telescope-2" style={telescope2Spr} src={telescope2} alt=""/>
           <animated.img className="telescope-1" style={telescope1Spr} src={telescope1} alt=""/>

@@ -1,7 +1,9 @@
 $break-mobile: 450px;
 $break-tablet: 900px;
+$break-hd: 1300px;
 
 :export {
   breakMobile: $break-mobile;
   breakTablet: $break-tablet;
+  breakHD: $break-hd
 }

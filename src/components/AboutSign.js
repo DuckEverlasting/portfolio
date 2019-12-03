@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 
 import springImg from "../assets/spring.png";
 
-export default function AboutSign({ isOn }) {
+function AboutSign({ isOn }) {
   const aboutTitleSpr = useSpring({
     transform:
       isOn
@@ -31,3 +31,5 @@ export default function AboutSign({ isOn }) {
     </div>
   );
 }
+
+export default React.memo(AboutSign)

@@ -12,7 +12,7 @@ function WorkPanelBox({ isOn }) {
     config: 
       isOn
         ? { mass: 1, tension: 40, friction: 2 }
-        : { mass: 1, tension: 180, friction: 28 },
+        : { mass: 1, tension: 480, friction: 38 },
     delay: isOn ? 1000 : 0
   });
 
