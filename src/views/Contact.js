@@ -2,6 +2,7 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 
 import ContactSign from "../components/ContactSign.js";
+import ContactUnfold from "../components/ContactUnfold.js";
 
 import colors from "../styles/Colors.scss"; 
 
@@ -31,18 +32,7 @@ function Contact({ scrollPosition }) {
   return (
     <div className="contact-page">
       <ContactSign isOn={85 < scrollPosition}/>
-      <div className="flipbook">
-        <animated.div className="flip-panel" style={contactPanelSpr}>
-          <div className="frontside">
-            <h2 className="project-title">Title of Work</h2>
-            <div className="project-window">
-              
-            </div>
-          </div>
-          <animated.div className="backside" style={{...contactPanelBgSpr, ...pixelMaskSpr}}/>
-        </animated.div>
-        <div className="flipbook-back" />
-      </div>
+      <ContactUnfold isOn={90 < scrollPosition}/>
     </div>
   );
 }
