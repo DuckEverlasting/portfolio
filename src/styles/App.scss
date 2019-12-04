@@ -46,7 +46,7 @@
         color: white;
         padding: 10px 20px;
         border: 2px solid rgb(207, 207, 207);
-        border-radius: 15px;
+        border-radius: 5px;
         font-family: "Open Sans", sans-serif;
 
         &:hover {
@@ -148,6 +148,7 @@
       align-items: center;
       padding: 60px 0 0;
       z-index: 3;
+      pointer-events: none;
 
       .about-sign {
         position: absolute;
@@ -196,6 +197,7 @@
       top: 0;
       width: 100%;
       height: 100vh;
+      pointer-events: none;
 
       .work-sign-container {
         position: absolute;
@@ -423,6 +425,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      pointer-events: none;
 
       @media screen and (max-width: $break-tablet) {
         padding-top: 40px;
@@ -434,7 +437,7 @@
         .contact-sign-box {
           display: flex;
           width: 200px;
-          height: 25vh;
+          height: 30vh;
           flex-direction: column;
           align-items: center;
           justify-content: flex-end;
@@ -443,7 +446,7 @@
           .contact-title-stem {
             position: relative;
             margin-bottom: -80px;
-            height: 25vh;
+            height: 30vh;
             width: 10px;
             background: $black;
             z-index: 8;
@@ -468,7 +471,7 @@
         position: absolute;
         width: 60%;
         bottom: 0%;
-        margin-bottom: -14vh;
+        margin-bottom: -20vh;
         perspective: 1000px;
 
         .contact-unfold-box {
@@ -480,17 +483,34 @@
           transform-origin: top;
           transform-style: preserve-3d;
           width: 100%;
-          height: 14vh;
+          height: 15vh;
           bottom: 100%;
+          pointer-events: all;
 
           .contact-unfold-front {
             position: absolute;
             width: 100%;
-            height: 14vh;
+            height: 15.05vh;
             bottom: 100%;
-            background: $black;
             backface-visibility: hidden;
             transform-style: preserve-3d;
+            background: $black;
+            box-sizing: border-box;
+
+            &.first {
+              background: $near-black;
+            }
+            &.second {
+              
+            }
+            &.third {
+              background: $near-black;
+            }
+            &.fourth {
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
+            }
+            
           }
 
           .contact-unfold-back {
@@ -498,13 +518,22 @@
             transform: rotateY(0.5turn);
             transform-style: preserve-3d;
             transform: translateZ(-.05px);
-            width: 100%;
-            height: 14vh;
+            width: 99.8%;
+            height: 15.1vh;
             bottom: 100%;
             background: $dark-grey-blue;
+            border-right: 10px solid $magenta;
+            border-left: 10px solid $magenta;
+
+            &.fourth {
+              border-top: 10px solid $magenta;
+              height: 14.9vh;
+              border-top-left-radius: 20px;
+              border-top-right-radius: 20px;
+            }
           }
 
-          .fold-label {
+          .fold-content {
             position: relative;
             color: white;
             z-index: 3;
