@@ -52,13 +52,17 @@ function ContactUnfold({ isOn }) {
     delay: isOn ? 375 : 0
   })
 
+  const handleEmailButton = ev => {
+    ev.preventDefault();
+    ev.target.blur();
+  }
+
   return (
     <div className="contact-unfold-container">
       <animated.div className="contact-unfold-box first-box" style={unfoldSpr1}>
         <div className="contact-unfold-front first"/>
         <div className="contact-unfold-back first"/>
-        <div className="fold-content first">
-        </div>
+        <div className="fold-content first"/>
         <animated.div className="contact-unfold-box" style={unfoldSpr2}>
           <div className="contact-unfold-front second"/>
           <div className="contact-unfold-back second"/>
@@ -67,7 +71,7 @@ function ContactUnfold({ isOn }) {
             <div className="contact-unfold-front third"/>
             <div className="contact-unfold-back third"/>
             <div className="fold-content third">
-              <button>SEND ME AN EMAIL</button>
+              <button className="email-button" tabIndex={5} onClick={handleEmailButton}>SEND ME AN EMAIL</button>
             </div>
             <animated.div className="contact-unfold-box" style={unfoldSpr4}>
               <div className="contact-unfold-front fourth"/>

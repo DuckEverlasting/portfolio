@@ -59,6 +59,11 @@
           background: $magenta;
         }
 
+        &:focus {
+          outline: none;
+          background: $near-black;
+        }
+
         @media screen and (max-width: $break-mobile) {
           font-size: 14px;
           padding: 8px 10px;
@@ -539,6 +544,32 @@
             z-index: 3;
             transform-style: preserve-3d;
             bottom: 100%;
+
+            .email-button {
+              background: $black;
+              color: white;
+              padding: 10px 20px;
+              border: 2px solid $cyan;
+              border-radius: 5px;
+              font-family: "Open Sans", sans-serif;
+              font-size: 20px;
+      
+              &:hover {
+                cursor: pointer;
+                background: $bright-magenta;
+                border: 2px solid rgb(207, 207, 207);
+                transition: background .3s, border .3s;
+              }
+      
+              &:active {
+                background: $magenta;
+              }
+              
+              &:focus {
+                outline: none;
+                background: $near-black;
+              }
+            }
           }
         }
 

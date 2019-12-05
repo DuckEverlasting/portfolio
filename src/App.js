@@ -40,6 +40,9 @@ function App() {
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
     ev.preventDefault();
+    if (ev.target) {
+      ev.target.blur()
+    };
     const scrollNum = (target / 100) * (appRef.current.getBoundingClientRect().height - window.innerHeight);
     
     // check for sections to skip
@@ -91,16 +94,16 @@ function App() {
       <div className="nav-bar">
         <p className="page-title">Matt Klein {Math.floor(scrollPosition)}</p>
         <div className="inner-nav-bar">
-          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 0, true)}>
+          <p className="nav-link" tabIndex={1} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
           </p>
-          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 33)}>
+          <p className="nav-link" tabIndex={2} onClick={ev => scrollButtonHandler(ev, 33)}>
             ABOUT
           </p>
-          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 66)}>
+          <p className="nav-link" tabIndex={3} onClick={ev => scrollButtonHandler(ev, 66)}>
             WORK
           </p>
-          <p className="nav-link" onClick={ev => scrollButtonHandler(ev, 100)}>
+          <p className="nav-link" tabIndex={4} onClick={ev => scrollButtonHandler(ev, 100)}>
             CONTACT
           </p>
         </div>
