@@ -1,38 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 
-function WorkPanel({ isOn, Content }) {
+function WorkPanel({ isOn, content, triggerModal }) {
+  const [isAnimated, setIsAnimated] = useState(false);
+
   const workPanelSpring = useSpring({
-    transform:
-      isOn
-        ? "rotateX(0)"
-        : "rotateX(0.5turn)",
-    config: 
-      isOn
-        ? { mass: 1, tension: Math.random() * 30 + 40, friction: 2 }
-        : { mass: 1, tension: 480, friction: 38 },
-    delay: 
-      isOn
-        ? Math.random() * 200 + 1000
-        : Math.random() * 50
+    transform: isOn ? "rotateX(0)" : "rotateX(0.5turn)",
+    config: isOn
+      ? { mass: 1, tension: Math.random() * 30 + 40, friction: 2 }
+      : { mass: 1, tension: 480, friction: 38 },
+    delay: isOn ? Math.random() * 200 + 1000 : Math.random() * 50
   });
 
-  const bgColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`
-
   return (
-    <>
-      <div className="work-panel-container">
-        <animated.div className="work-panel" style={workPanelSpring}>
-          <div className="work-panel-front">
-            <div className="work-panel-content" style={{background: bgColor}}>
-              {Content}
-            </div>
+    <div className="work-panel-container">
+      <animated.div className="work-panel" style={workPanelSpring}>
+        <div className="work-panel-front">
+          <div
+            className="work-panel-content"
+            onMouseEnter={() => setIsAnimated(true)}
+            onMouseLeave={() => setIsAnimated(false)}
+            onClick={() => triggerModal(content.id)}
+          >
+            <img
+              className="work-panel-image"
+              src={isAnimated ? content.animated : content.static}
+              alt={content.name}
+            />
           </div>
-          <div className="work-panel-back"/>
-        </animated.div>
-      </div>
-    </>
+        </div>
+        <div className="work-panel-back" />
+      </animated.div>
+    </div>
   );
 }
 
-export default React.memo(WorkPanel)
+export default React.memo(WorkPanel);

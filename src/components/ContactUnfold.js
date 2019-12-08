@@ -36,15 +36,10 @@ function ContactUnfold({ isOn }) {
     delay: isOn ? 250 : 200
   })
   const unfoldSpr4 = useSpring({
-    // CHANGE HEIGHT HERE
     transform:
       isOn
         ? "rotateX(0turn)"
         : "rotateX(-0.5turn)",
-    // maxHeight:
-    //   isOn
-    //     ? "14vh"
-    //     : "8vh",
     config: 
       isOn
         ? { mass: 1, tension: 40, friction: 10 }

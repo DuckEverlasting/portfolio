@@ -1,5 +1,5 @@
-@import 'Colors.scss';
-@import 'Variables.scss';
+@import "Colors.scss";
+@import "Variables.scss";
 
 .app {
   height: 100%;
@@ -52,7 +52,7 @@
         &:hover {
           cursor: pointer;
           background: $bright-magenta;
-          transition: background .3s;
+          transition: background 0.3s;
         }
 
         &:active {
@@ -80,502 +80,623 @@
     padding: 0;
   }
 
-  .gradient {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    background: $black;
-    background: linear-gradient(
-      180deg,
-      rgba(22, 22, 26, 1) 10%,
-      rgba(255, 255, 255, 0) 90%
-    );
-    z-index: 10;
-  }
-
-  .scroll-box {
-    position: relative;
-    height: 7000px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .fixed-container {
+  .modal-container {
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
     height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    top: 0;
+    z-index: 10;
+    background: transparent;
+    pointer-events: none;
+    transition: background 0.5s;
 
-    .gear {
-      position: fixed;
-      top: 0;
-      width: 250px;
-      margin-left: -125px;
-      margin-top: -65px;
-      z-index: 4;
-
-      @media screen and (max-width: $break-tablet) {
-        width: 200px;
-        margin-left: -100px;
-        margin-top: 45px;
-      }
-
-      @media screen and (max-width: $break-mobile) {
-        width: 150px;
-        margin-left: -75px;
-        margin-top: 75px;
-      }
-    }
-
-    
-    .title {
-      width: 130px;
-      margin: 0 auto;
-      text-align: center;
-      font-family: "Exo 2", sans-serif;
-      font-size: 40px;
-      padding: 17px 22px;
-      background: $black;
-      border-radius: 25px;
-      color: white;
-      letter-spacing: 0.03em;
-      backface-visibility: hidden;
-    }
-
-    .about-page {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 100vh;
+    .work-modal {
+      position: absolute;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      padding: 60px 0 0;
-      z-index: 3;
-      pointer-events: none;
+      flex-direction: column;
+      width: 80%;
+      height: 80%;
+      background: $dark-magenta;
+      border-radius: 10px;
 
-      .about-sign {
+      .modal-off-button {
         position: absolute;
-        top: 5%;
-        width: 100%;
+        height: 24px;
+        width: 24px;
+        top: 1vw;
+        right: 1vw;
+        background: transparent;
+        border: 2px solid rgb(207, 207, 207);
+        font-size: 10px;
+        color: white;
+        border-radius: 3px;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        &:focus {
+          outline: none;
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      .modal-outer-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: space-between;
+        width: 90%;
+        height: 70%;
+        margin-top: 5%;
 
         @media screen and (max-width: $break-tablet) {
-          transform: scale(0.85);
-          top: 16%;
+          flex-direction: column;
+          align-items: center;
         }
+        
+        .modal-image {
+          height: 100%;
+          width: 45%;
+          background: black;
 
-        @media screen and (max-width: $break-mobile) {
-          transform: scale(0.7);
-          top: 19%;
+          @media screen and (max-width: $break-tablet) {
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+          }
         }
-
-        .spring-box {
-          position: absolute;
+        .modal-inner-box {
           display: flex;
-          justify-content: center;
-          width: 100%;
-          margin-top: -60px;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 45%;
 
-          img {
-            width: 90px;
+          .modal-title {
+            color: white;
+            font-size: 2.4rem;
+          }
+
+          .modal-description {
+            color: white;
+            font-size: 1.6rem;
           }
         }
       }
-      .text-box-wrapper {
+
+      .modal-link {
+        background: $black;
+        color: white;
+        padding: 10px 20px;
+        width: 50px;
+        margin: 5% 0;
+        border: 2px solid $cyan;
+        border-radius: 5px;
+        font-family: "Open Sans", sans-serif;
+        font-size: 20px;
+        text-decoration: none;
+
+        &:hover {
+          cursor: pointer;
+          background: $bright-magenta;
+          border: 2px solid rgb(207, 207, 207);
+          transition: background 0.3s, border 0.3s;
+        }
+
+        &:active {
+          background: $magenta;
+        }
+
+        &:focus {
+          outline: none;
+          background: $near-black;
+        }
+      }
+    }
+  }
+}
+
+.gradient {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background: $black;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 22, 26, 1) 10%,
+    rgba(255, 255, 255, 0) 90%
+  );
+  z-index: 10;
+}
+
+.scroll-box {
+  position: relative;
+  height: 7000px;
+  margin: 0;
+  padding: 0;
+}
+
+.fixed-container {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .gear {
+    position: fixed;
+    top: 0;
+    width: 250px;
+    margin-left: -125px;
+    margin-top: -65px;
+    z-index: 4;
+
+    @media screen and (max-width: $break-tablet) {
+      width: 200px;
+      margin-left: -100px;
+      margin-top: 45px;
+    }
+
+    @media screen and (max-width: $break-mobile) {
+      width: 150px;
+      margin-left: -75px;
+      margin-top: 75px;
+    }
+  }
+
+  .title {
+    width: 130px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-size: 40px;
+    padding: 17px 22px;
+    background: $black;
+    border-radius: 25px;
+    color: white;
+    letter-spacing: 0.03em;
+    backface-visibility: hidden;
+  }
+
+  .about-page {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0 0;
+    z-index: 3;
+    pointer-events: none;
+
+    .about-sign {
+      position: absolute;
+      top: 5%;
+      width: 100%;
+
+      @media screen and (max-width: $break-tablet) {
+        transform: scale(0.85);
+        top: 16%;
+      }
+
+      @media screen and (max-width: $break-mobile) {
+        transform: scale(0.7);
+        top: 19%;
+      }
+
+      .spring-box {
+        position: absolute;
         display: flex;
         justify-content: center;
-        align-items: center;
-        width: 80%;
-        height: 50vh;
-        margin-top: 14vh;
-          
-        .text-box {
-          border-radius: 25px;
+        width: 100%;
+        margin-top: -60px;
+
+        img {
+          width: 90px;
+        }
+      }
+    }
+    .text-box-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      height: 50vh;
+      margin-top: 14vh;
+
+      .text-box {
+        border-radius: 25px;
+        background: $black;
+      }
+    }
+  }
+
+  .work-page {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+
+    .work-sign-container {
+      position: absolute;
+      width: 100%;
+      margin-top: 14vh;
+
+      .work-sign-box {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 130px;
+        margin: 30px auto 0;
+        padding: 17px 22px;
+
+        .work-sign {
+          position: absolute;
+          width: 100%;
+          height: 80px;
+          z-index: 1;
+          backface-visibility: hidden;
+
+          .work-sign-front {
+            position: absolute;
+            width: 100%;
+            height: 80px;
+            background: $black;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            z-index: 2;
+          }
+
+          .work-sign-back {
+            position: absolute;
+            width: 100%;
+            height: 80px;
+            background: $dark-grey-blue;
+            border-radius: 20px;
+            transform: rotateX(0.5turn);
+            z-index: 1;
+          }
+        }
+      }
+    }
+
+    .perspective-box {
+      position: relative;
+      perspective: 1500px;
+      transform: translateZ(500px);
+      margin: 40px auto 0;
+
+      @media screen and (max-width: $break-hd) {
+        margin: 70px auto 0;
+      }
+
+      .adjustment-box {
+        position: relative;
+        transform: translateY(200px);
+        transform-style: preserve-3d;
+
+        @media screen and (max-width: $break-hd) {
+          transform: translateY(170px);
+        }
+
+        .panel-box {
+          position: relative;
+          display: flex;
+          flex-wrap: wrap;
+          width: 720px;
+          height: 360px;
+          margin: 0 auto;
+          border: 20px solid $black;
+          border-radius: 10px;
+          justify-content: center;
+          align-items: center;
+          align-content: flex-start;
+          transform-origin: top;
+          transform-style: preserve-3d;
+
+          @media screen and (max-width: $break-hd) {
+            width: 600px;
+            height: 300px;
+          }
+
+          .work-panel-container {
+            position: relative;
+            height: 180px;
+            width: 180px;
+            background: transparent;
+            transform-style: preserve-3d;
+
+            @media screen and (max-width: $break-hd) {
+              width: 150px;
+              height: 150px;
+            }
+
+            .work-panel {
+              position: relative;
+              height: 100%;
+              width: 100%;
+              backface-visibility: hidden;
+              transform-style: preserve-3d;
+              z-index: 3;
+
+              .work-panel-front {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                top: 0%;
+                right: 0%;
+                background: $black;
+                box-sizing: border-box;
+                overflow: hidden;
+                z-index: 4;
+                backface-visibility: hidden;
+                transform-style: preserve-3d;
+
+                .work-panel-content {
+                  position: absolute;
+                  width: 97%;
+                  height: 97%;
+                  transform-style: preserve-3d;
+                  z-index: 5;
+                  pointer-events: all;
+                  cursor: pointer;
+
+                  .work-panel-image {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+              }
+              .work-panel-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: $bright-magenta;
+                transform: rotateX(0.5turn);
+                transform-style: preserve-3d;
+                z-index: 3;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .telescope-container {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 30px;
+      top: 225px;
+
+      .telescope-1 {
+        position: absolute;
+        right: 0%;
+        height: 62px;
+        width: 7%;
+        min-width: 90px;
+        transform: translate(150%, 0);
+        z-index: 2;
+      }
+
+      .telescope-2 {
+        position: absolute;
+        right: 1%;
+        height: 32px;
+        width: 7%;
+        min-width: 90px;
+        transform: translate(150%, 0);
+        z-index: 2;
+      }
+
+      .telescope-3 {
+        position: absolute;
+        right: 2%;
+        height: 24px;
+        width: 7%;
+        min-width: 90px;
+        transform: translate(150%, 0);
+        z-index: 2;
+      }
+
+      .telescope-bar {
+        position: relative;
+        height: 8px;
+        left: 243px;
+        width: 1400px;
+        margin: 0 auto;
+        transform: translate(200%, 0);
+
+        @media screen and (max-width: $break-hd) {
+          width: 1300px;
+          left: 250px;
+        }
+
+        .bar {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: $black;
+          border-radius: 20px;
+          z-index: 3;
+        }
+
+        .ball {
+          position: absolute;
+          left: 0;
+          margin-top: -6px;
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
           background: $black;
         }
       }
     }
+  }
+  
+  .contact-page {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    pointer-events: none;
 
-    .work-page {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 100vh;
-      pointer-events: none;
+    @media screen and (max-width: $break-tablet) {
+      padding-top: 40px;
+    }
 
-      .work-sign-container {
-        position: absolute;
-        width: 100%;
-        margin-top: 14vh;
+    .contact-sign {
+      position: relative;
 
-        .work-sign-box {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          width: 130px;
-          margin: 30px auto 0;
-          padding: 17px 22px;
-
-          .work-sign {
-            position: absolute;
-            width: 100%;
-            height: 80px;
-            z-index: 1;
-            backface-visibility: hidden;
-
-            .work-sign-front {
-              position: absolute;
-              width: 100%;
-              height: 80px;
-              background: $black;
-              backface-visibility: hidden;
-              border-radius: 20px;
-              z-index: 2;
-            }
-    
-            .work-sign-back {
-              position: absolute;
-              width: 100%;
-              height: 80px;
-              background: $dark-grey-blue;
-              border-radius: 20px;
-              transform: rotateX(0.5turn);
-              z-index: 1;
-            }
-          }
-        }
-      }
-
-      .perspective-box {
-        position: relative;
-        perspective: 1500px;
-        transform: translateZ(500px);
-        margin: 40px auto 0;
-
-        @media screen and (max-width: $break-hd) {
-          margin: 70px auto 0;
-        }
-
-        .adjustment-box {
-          position: relative;
-          transform: translateY(200px);
-          transform-style: preserve-3d;
-
-          @media screen and (max-width: $break-hd) {
-            transform: translateY(170px);
-          }
-
-          .panel-box {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            width: 720px;
-            height: 360px;
-            margin: 0 auto;
-            border: 20px solid $black;
-            border-radius: 30px;
-            justify-content: center;
-            align-items: center;
-            align-content: flex-start;
-            transform-origin: top;
-            transform-style: preserve-3d;
-
-            @media screen and (max-width: $break-hd) {
-              width: 600px;
-              height: 300px;
-            }
-    
-            .work-panel-container {
-              position: relative;
-              height: 180px;
-              width: 180px;
-              background: transparent;
-              transform-style: preserve-3d;
-
-              @media screen and (max-width: $break-hd) {
-                width: 150px;
-                height: 150px;
-              }
-              
-              .work-panel {
-                position: relative;
-                height: 100%;
-                width: 100%;
-                backface-visibility: hidden;
-                transform-style: preserve-3d;
-                z-index: 3;
-    
-                .work-panel-front {
-                  position: absolute;
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  align-items: center;
-                  width: 100%;
-                  height: 100%;
-                  top: 0%;
-                  right: 0%;
-                  background: $black;
-                  box-sizing: border-box;
-                  overflow: hidden;
-                  z-index: 4;
-                  backface-visibility: hidden;
-                  transform-style: preserve-3d;
-    
-                  .work-panel-content {
-                    position: absolute;
-                    width: 97%;
-                    height: 97%;
-                    background: $grey-blue;
-                    transform-style: preserve-3d;
-                    z-index: 5;
-                  }
-                }
-                .work-panel-back {
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  background: $bright-magenta;
-                  transform: rotateX(0.5turn);
-                  transform-style: preserve-3d;
-                  z-index: 3;
-                }
-              }
-            }
-          }
-        }
-      }
-
-      .telescope-container {
-        position: absolute;
+      .contact-sign-box {
         display: flex;
-        justify-content: center;
+        width: 200px;
+        height: 30vh;
+        flex-direction: column;
         align-items: center;
-        width: 100%;
-        height: 30px;
-        top: 225px;
-      
-        .telescope-1 {
-          position: absolute;
-          right: 0%;
-          height: 62px;
-          width: 7%;
-          min-width: 90px;
-          transform: translate(150%, 0);
-          z-index: 2;
-        }
-      
-        .telescope-2 {
-          position: absolute;
-          right: 1%;
-          height: 32px;
-          width: 7%;
-          min-width: 90px;
-          transform: translate(150%, 0);
-          z-index: 2;
-        }
-      
-        .telescope-3 {
-          position: absolute;
-          right: 2%;
-          height: 24px;
-          width: 7%;
-          min-width: 90px;
-          transform: translate(150%, 0);
-          z-index: 2;
-        }
+        justify-content: flex-end;
+        transform-origin: top;
 
-        .telescope-bar {
+        .contact-title-stem {
           position: relative;
-          height: 8px;
-          left: 243px;  
-          width: 1400px;
-          margin: 0 auto;
-          transform: translate(200%, 0);
+          margin-bottom: -80px;
+          height: 30vh;
+          width: 10px;
+          background: $black;
+          z-index: 8;
+        }
+        .contact-text-box {
+          position: relative;
+          text-align: center;
+          width: 100%;
+          height: 80px;
+          border-radius: 20px;
+          background: $black;
+          z-index: 9;
 
-          @media screen and (max-width: $break-hd) {
-            width: 1300px;
-            left: 250px;
-          }
-
-          .bar {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: $black;
-            border-radius: 20px;
-            z-index: 3;
-          }
-
-          .ball {
-            position: absolute;
-            left: 0;
-            margin-top: -6px;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            background: $black;
+          .title {
+            width: auto;
           }
         }
       }
     }
 
-    .contact-page {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      pointer-events: none;
+    .contact-unfold-container {
+      position: absolute;
+      width: 60%;
+      bottom: 0%;
+      margin-bottom: -20vh;
+      perspective: 1000px;
 
-      @media screen and (max-width: $break-tablet) {
-        padding-top: 40px;
-      }
-
-      .contact-sign {
-        position: relative;
-
-        .contact-sign-box {
-          display: flex;
-          width: 200px;
-          height: 30vh;
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-end;
-          transform-origin: top;
-
-          .contact-title-stem {
-            position: relative;
-            margin-bottom: -80px;
-            height: 30vh;
-            width: 10px;
-            background: $black;
-            z-index: 8;
-          }
-          .contact-text-box {
-            position: relative;
-            text-align: center;
-            width: 100%;
-            height: 80px;
-            border-radius: 20px;
-            background: $black;
-            z-index: 9;
-
-            .title {
-              width: auto;
-            }
-          }
-        }
-      }
-
-      .contact-unfold-container {
+      .contact-unfold-box {
         position: absolute;
-        width: 60%;
-        bottom: 0%;
-        margin-bottom: -20vh;
-        perspective: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: rotateX(0.5turn);
+        transform-origin: top;
+        transform-style: preserve-3d;
+        width: 100%;
+        height: 15vh;
+        bottom: 100%;
+        pointer-events: all;
 
-        .contact-unfold-box {
+        .contact-unfold-front {
           position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transform: rotateX(0.5turn);
-          transform-origin: top;
-          transform-style: preserve-3d;
           width: 100%;
-          height: 15vh;
+          height: 15.05vh;
           bottom: 100%;
-          pointer-events: all;
+          backface-visibility: hidden;
+          transform-style: preserve-3d;
+          background: $black;
+          box-sizing: border-box;
 
-          .contact-unfold-front {
-            position: absolute;
-            width: 100%;
-            height: 15.05vh;
-            bottom: 100%;
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            background: $black;
-            box-sizing: border-box;
-
-            &.first {
-              background: $near-black;
-            }
-            &.second {
-              
-            }
-            &.third {
-              background: $near-black;
-            }
-            &.fourth {
-              border-top-left-radius: 10px;
-              border-top-right-radius: 10px;
-            }
-            
+          &.first {
+            background: $near-black;
           }
-
-          .contact-unfold-back {
-            position: absolute;
-            transform: rotateY(0.5turn);
-            transform-style: preserve-3d;
-            transform: translateZ(-.05px);
-            width: 99.8%;
-            height: 15.1vh;
-            bottom: 100%;
-            background: $dark-grey-blue;
-            border-right: 10px solid $magenta;
-            border-left: 10px solid $magenta;
-
-            &.fourth {
-              border-top: 10px solid $magenta;
-              height: 14.9vh;
-              border-top-left-radius: 20px;
-              border-top-right-radius: 20px;
-            }
+          &.third {
+            background: $near-black;
           }
-
-          .fold-content {
-            position: relative;
-            color: white;
-            z-index: 3;
-            transform-style: preserve-3d;
-            bottom: 100%;
-
-            .email-button {
-              background: $black;
-              color: white;
-              padding: 10px 20px;
-              border: 2px solid $cyan;
-              border-radius: 5px;
-              font-family: "Open Sans", sans-serif;
-              font-size: 20px;
-      
-              &:hover {
-                cursor: pointer;
-                background: $bright-magenta;
-                border: 2px solid rgb(207, 207, 207);
-                transition: background .3s, border .3s;
-              }
-      
-              &:active {
-                background: $magenta;
-              }
-              
-              &:focus {
-                outline: none;
-                background: $near-black;
-              }
-            }
+          &.fourth {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
           }
         }
 
-        .first-box {
-          transform-origin: bottom;
-        }   
+        .contact-unfold-back {
+          position: absolute;
+          transform-style: preserve-3d;
+          transform: rotateY(0.5turn);
+          backface-visibility: hidden;
+          width: 99.8%;
+          height: 15.1vh;
+          bottom: 100%;
+          background: $dark-grey-blue;
+          border-right: 10px solid $magenta;
+          border-left: 10px solid $magenta;
+
+          &.fourth {
+            border-top: 10px solid $magenta;
+            height: 14.9vh;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+          }
+        }
+
+        .fold-content {
+          position: relative;
+          color: white;
+          z-index: 3;
+          transform-style: preserve-3d;
+          bottom: 100%;
+
+          .email-button {
+            background: $black;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid $cyan;
+            border-radius: 5px;
+            font-family: "Open Sans", sans-serif;
+            font-size: 20px;
+
+            &:hover {
+              cursor: pointer;
+              background: $bright-magenta;
+              border: 2px solid rgb(207, 207, 207);
+              transition: background 0.3s, border 0.3s;
+            }
+
+            &:active {
+              background: $magenta;
+            }
+
+            &:focus {
+              outline: none;
+              background: $near-black;
+            }
+          }
+        }
+      }
+
+      .first-box {
+        transform-origin: bottom;
       }
     }
   }

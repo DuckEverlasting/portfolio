@@ -67,11 +67,6 @@ let state = {
   mousePosition: { x: 0, y: 0 }
 };
 
-function parseAnimFrame() {
-  console.log(state.animFrame % 5000)
-  return state.animFrame % 5000
-}
-
 class Particle {
   constructor(x, y, hue) {
     this.hue =

@@ -1,26 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
 import About from "./views/About";
 import Work from "./views/Work";
 import Contact from "./views/Contact";
+import WorkModal from "./components/WorkModal";
 
 import gear from "./assets/gear.png";
-
-const scrollData = {
-  title: [
-    { scrollNum: 10, deltaY: -55, opacity: 0 },
-    { scrollNum: 16, deltaY: 0, opacity: 1 },
-    { scrollNum: 21, deltaY: 0, opacity: 1 },
-    { scrollNum: 23, deltaY: 55, opacity: 0 }
-  ]
-};
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [reload, setReload] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
+  
+  const [modalState, setModalState] = useState(0)
+  const triggerModal = useCallback(id => {
+    console.log(id)
+    setModalState(id)
+  }, [])
+
   const appRef = useRef(null);
 
   useEffect(() => {
@@ -92,7 +91,7 @@ function App() {
       style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "auto" : "hidden"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt Klein {Math.floor(scrollPosition)}</p>
+        <p className="page-title">Matt Klein</p>
         <div className="inner-nav-bar">
           <p className="nav-link" tabIndex={1} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
@@ -110,17 +109,18 @@ function App() {
       </div>
       <div className="top-container">
         {
-          (!hasStarted || scrollPosition < 14 || reload) &&
+          (!hasStarted || window.scrollY - window.innerHeight < 200 || reload) &&
           <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
         }
       </div>
       {hasStarted && (
         <>
+          <WorkModal state={modalState} trigger={triggerModal} />
           <div className="gradient" />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
             {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
-            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition}/>}
+            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} triggerModal={triggerModal}/>}
             {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
           </div>
         </>
