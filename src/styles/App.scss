@@ -18,7 +18,7 @@
     background: $black;
     z-index: 5;
 
-    @media screen and (max-width: $break-tablet) {
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
       flex-direction: column;
       height: 150px;
       justify-content: space-evenly;
@@ -31,6 +31,11 @@
       font-family: "Open Sans", sans-serif;
       font-size: 3rem;
       letter-spacing: 0.03em;
+
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        font-size: 2rem;
+        visibility: hidden;
+      }
     }
 
     .inner-nav-bar {
@@ -38,7 +43,7 @@
       justify-content: space-between;
       width: 440px;
 
-      @media screen and (max-width: $break-mobile) {
+      @media screen and (max-width: $break-mobile) and (orientation: portrait) {
         width: 100%;
       }
 
@@ -64,7 +69,7 @@
           background: $near-black;
         }
 
-        @media screen and (max-width: $break-mobile) {
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
           font-size: 14px;
           padding: 8px 10px;
           border-radius: 12px;
@@ -135,17 +140,17 @@
         height: 70%;
         margin-top: 5%;
 
-        @media screen and (max-width: $break-tablet) {
+        @media screen and (max-width: $break-tablet) and (orientation: portrait) {
           flex-direction: column;
           align-items: center;
         }
-        
+
         .modal-image {
           height: 100%;
           width: 45%;
           background: black;
 
-          @media screen and (max-width: $break-tablet) {
+          @media screen and (max-width: $break-tablet) and (orientation: portrait) {
             flex-direction: column;
             align-items: center;
             width: 80%;
@@ -236,13 +241,13 @@
     margin-top: -65px;
     z-index: 4;
 
-    @media screen and (max-width: $break-tablet) {
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
       width: 200px;
       margin-left: -100px;
       margin-top: 45px;
     }
 
-    @media screen and (max-width: $break-mobile) {
+    @media screen and (max-width: $break-mobile) and (orientation: portrait) {
       width: 150px;
       margin-left: -75px;
       margin-top: 75px;
@@ -250,11 +255,11 @@
   }
 
   .title {
-    width: 130px;
+    width: 180px;
     margin: 0 auto;
     text-align: center;
     font-family: "Exo 2", sans-serif;
-    font-size: 40px;
+    font-size: 50px;
     padding: 17px 22px;
     background: $black;
     border-radius: 25px;
@@ -277,17 +282,21 @@
 
     .about-sign {
       position: absolute;
-      top: 5%;
+      top: 8%;
       width: 100%;
 
-      @media screen and (max-width: $break-tablet) {
+      @media screen and (max-width: $break-tablet) and (orientation: portrait) {
         transform: scale(0.85);
         top: 16%;
       }
 
-      @media screen and (max-width: $break-mobile) {
+      @media screen and (max-width: $break-mobile) and (orientation: portrait) {
         transform: scale(0.7);
         top: 19%;
+      }
+
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        display: none;
       }
 
       .spring-box {
@@ -298,7 +307,7 @@
         margin-top: -60px;
 
         img {
-          width: 90px;
+          width: 100px;
         }
       }
     }
@@ -322,19 +331,42 @@
     top: 0;
     width: 100%;
     height: 100vh;
+    padding: 60px 0 0;
     pointer-events: none;
+
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+      padding: 150px 0 0;
+    }
+
+    @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+      padding: 180px 0 0;
+    }
 
     .work-sign-container {
       position: absolute;
       width: 100%;
-      margin-top: 14vh;
+      top: 14%;
+
+      @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+        transform: scale(0.85);
+        top: 16%;
+      }
+
+      @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+        transform: scale(0.7);
+        top: 19%;
+      }
+
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        display: none;
+      }
 
       .work-sign-box {
         position: relative;
         display: flex;
         justify-content: center;
-        width: 130px;
-        margin: 30px auto 0;
+        width: 180px;
+        margin: 0 auto;
         padding: 17px 22px;
 
         .work-sign {
@@ -367,127 +399,123 @@
       }
     }
 
-    .perspective-box {
-      position: relative;
-      perspective: 1500px;
-      transform: translateZ(500px);
-      margin: 40px auto 0;
-
-      @media screen and (max-width: $break-hd) {
-        margin: 70px auto 0;
-      }
-
-      .adjustment-box {
-        position: relative;
-        transform: translateY(200px);
-        transform-style: preserve-3d;
-
-        @media screen and (max-width: $break-hd) {
-          transform: translateY(170px);
-        }
-
-        .panel-box {
-          position: relative;
-          display: flex;
-          flex-wrap: wrap;
-          width: 720px;
-          height: 360px;
-          margin: 0 auto;
-          border: 20px solid $black;
-          border-radius: 10px;
-          justify-content: center;
-          align-items: center;
-          align-content: flex-start;
-          transform-origin: top;
-          transform-style: preserve-3d;
-
-          @media screen and (max-width: $break-hd) {
-            width: 600px;
-            height: 300px;
-          }
-
-          .work-panel-container {
-            position: relative;
-            height: 180px;
-            width: 180px;
-            background: transparent;
-            transform-style: preserve-3d;
-
-            @media screen and (max-width: $break-hd) {
-              width: 150px;
-              height: 150px;
-            }
-
-            .work-panel {
-              position: relative;
-              height: 100%;
-              width: 100%;
-              backface-visibility: hidden;
-              transform-style: preserve-3d;
-              z-index: 3;
-
-              .work-panel-front {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 100%;
-                top: 0%;
-                right: 0%;
-                background: $black;
-                box-sizing: border-box;
-                overflow: hidden;
-                z-index: 4;
-                backface-visibility: hidden;
-                transform-style: preserve-3d;
-
-                .work-panel-content {
-                  position: absolute;
-                  width: 97%;
-                  height: 97%;
-                  transform-style: preserve-3d;
-                  z-index: 5;
-                  pointer-events: all;
-                  cursor: pointer;
-
-                  .work-panel-image {
-                    width: 100%;
-                    height: 100%;
-                  }
-                }
-              }
-              .work-panel-back {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: $bright-magenta;
-                transform: rotateX(0.5turn);
-                transform-style: preserve-3d;
-                z-index: 3;
-              }
-            }
-          }
-        }
-      }
-    }
-
     .telescope-container {
       position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
-      height: 30px;
-      top: 225px;
+      top: 30%;
+
+      .perspective-box {
+        position: absolute;
+        perspective: 1500px;
+        left: 50px;
+        transform: translateZ(500px) translateY(-14vw);
+        margin: 5px auto 0;
+        top: 0%;
+
+        .adjustment-box {
+          position: relative;
+          transform: translateY(14vw);
+          transform-style: preserve-3d;
+
+          .panel-box {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            width: 52vw;
+            height: 28vw;
+            margin: 0 auto;
+            border: 2vw solid $black;
+            border-radius: 1vw;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            align-content: flex-start;
+            transform-origin: top;
+            transform-style: preserve-3d;
+
+            @media screen and (orientation: portrait) {
+              width: 28vh;
+              height: 52vh;
+              border: 2vh solid $black;
+              border-radius: 1vh;
+            }
+
+            .work-panel-container {
+              position: relative;
+              height: 12vw;
+              width: 12vw;
+              background: transparent;
+              transform-style: preserve-3d;
+
+              @media screen and (orientation: portrait) {
+                width: 12vh;
+                height: 12vh;
+              }
+
+              .work-panel {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                backface-visibility: hidden;
+                transform-style: preserve-3d;
+                z-index: 3;
+
+                .work-panel-front {
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                  height: 100%;
+                  top: 0%;
+                  right: 0%;
+                  background: $black;
+                  box-sizing: border-box;
+                  overflow: hidden;
+                  z-index: 4;
+                  backface-visibility: hidden;
+                  transform-style: preserve-3d;
+
+                  .work-panel-content {
+                    position: absolute;
+                    width: 97%;
+                    height: 97%;
+                    transform-style: preserve-3d;
+                    z-index: 5;
+                    pointer-events: all;
+                    cursor: pointer;
+
+                    .work-panel-image {
+                      width: 100%;
+                      height: 100%;
+                    }
+                  }
+                }
+                .work-panel-back {
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  background: $bright-magenta;
+                  transform: rotateX(0.5turn);
+                  transform-style: preserve-3d;
+                  z-index: 3;
+                }
+              }
+            }
+          }
+        }
+      }
 
       .telescope-1 {
         position: absolute;
         right: 0%;
         height: 62px;
         width: 7%;
-        min-width: 90px;
+        min-width: 70px;
         transform: translate(150%, 0);
         z-index: 2;
       }
@@ -497,7 +525,7 @@
         right: 1%;
         height: 32px;
         width: 7%;
-        min-width: 90px;
+        min-width: 70px;
         transform: translate(150%, 0);
         z-index: 2;
       }
@@ -507,7 +535,7 @@
         right: 2%;
         height: 24px;
         width: 7%;
-        min-width: 90px;
+        min-width: 70px;
         transform: translate(150%, 0);
         z-index: 2;
       }
@@ -515,14 +543,13 @@
       .telescope-bar {
         position: relative;
         height: 8px;
-        left: 243px;
-        width: 1400px;
+        left: calc(24vw - 50px);
+        width: 200vw;
         margin: 0 auto;
         transform: translate(200%, 0);
 
-        @media screen and (max-width: $break-hd) {
-          width: 1300px;
-          left: 250px;
+        @media screen and (orientation: portrait) {
+          left: calc(50vw - 14vh - 50px);
         }
 
         .bar {
@@ -546,7 +573,7 @@
       }
     }
   }
-  
+
   .contact-page {
     position: fixed;
     top: 0;
@@ -558,12 +585,16 @@
     align-items: center;
     pointer-events: none;
 
-    @media screen and (max-width: $break-tablet) {
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
       padding-top: 40px;
     }
 
     .contact-sign {
       position: relative;
+
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        display: none;
+      }
 
       .contact-sign-box {
         display: flex;

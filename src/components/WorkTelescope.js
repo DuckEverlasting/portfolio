@@ -1,11 +1,13 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
+import WorkPanelBox from "../components/WorkPanelBox.js";
+
 import telescope1 from "../assets/telescope-1.png";
 import telescope2 from "../assets/telescope-2.png";
 import telescope3 from "../assets/telescope-3.png";
 
-function WorkTelescope({ isOn }) {
+function WorkTelescope({ isOn, triggerModal }) {
   const telescope1Spr = useSpring({
     transform:
       isOn
@@ -46,6 +48,7 @@ function WorkTelescope({ isOn }) {
     <>
       <div className="telescope-container">
           <animated.div className="telescope-bar" style={{...telescopeBarSpr, zIndex: isOn ? 0 : 1}}>
+            <WorkPanelBox isOn={isOn} triggerModal={triggerModal}/>
             <div className="bar" style={{zIndex: isOn ? 0 : 1}}/>
             <div className="ball"/>
           </animated.div>

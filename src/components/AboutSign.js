@@ -14,7 +14,7 @@ function AboutSign({ isOn }) {
   const aboutTitleSpringsSpr = useSpring({
     to: 
       isOn
-        ? {height: "150px", transform: "translate(0, 0)"}
+        ? {height: "170px", transform: "translate(0, 0)"}
         : {height: "0px", transform: "translate(0, -20%)"},
     config: { mass: 1, tension: 250, friction: 8 }
   });
