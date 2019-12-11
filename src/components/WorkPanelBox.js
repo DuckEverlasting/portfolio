@@ -21,6 +21,10 @@ import tetroVid from "../assets/Videos/Tetro-sample.mp4";
 import firstPersonVid from "../assets/Videos/First-Person-sample.mp4";
 import encounterVid from "../assets/Videos/5E-Encounter-sample.mp4";
 
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
 function WorkPanelBox({ isOn, triggerModal }) {
   const workPanelBoxSpring = useSpring({
     transform: isOn ? "rotateX(0)" : "rotateX(-0.25turn)",
@@ -111,6 +115,7 @@ function WorkPanelBox({ isOn, triggerModal }) {
                 isOn={isOn}
                 content={item}
                 triggerModal={triggerModal}
+                mobile={isMobileDevice()}
               />
             ))}
           </animated.div>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 
-function WorkPanel({ isOn, content, triggerModal }) {
+function WorkPanel({ isOn, content, triggerModal, mobile }) {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
   useEffect(() => {
+    if (mobile) return;
     content.ref.current.currentTime = content.start || 0;
-  }, [content.ref, content.start])
+  }, [content.ref, content.start, mobile])
 
   const workPanelSpring = useSpring({
     transform: isOn ? "rotateX(0)" : "rotateX(0.5turn)",
@@ -43,19 +44,21 @@ function WorkPanel({ isOn, content, triggerModal }) {
               alt={content.name}
               style={{opacity: videoIsPlaying ? 0 : 1}}
             />
-            <div className="work-panel-text">
-              <h3 className="work-panel-title">{content.name}</h3>
-              <p className="work-panel-slug">{content.slug}</p>
-            </div>
-            <video
-              className="work-panel-video"
-              ref={content.ref}
-              alt={content.name}
-              style={content.style}
-              muted
-              loop
-              src={content.video}
-            />
+            {!mobile && <>
+              <div className="work-panel-text">
+                <h3 className="work-panel-title">{content.name}</h3>
+                <p className="work-panel-slug">{content.slug}</p>
+              </div>
+              <video
+                className="work-panel-video"
+                ref={content.ref}
+                alt={content.name}
+                style={content.style}
+                muted
+                loop
+                src={content.video}
+              />
+            </>}
           </div>
         </div>
         <div className="work-panel-back" />
