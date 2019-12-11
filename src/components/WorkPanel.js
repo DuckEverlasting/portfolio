@@ -18,14 +18,18 @@ function WorkPanel({ isOn, content, triggerModal, mobile }) {
   });
 
   const handleVideoHover = () => {
-    setVideoIsPlaying(true);
-    content.ref.current.play();
+    if (!mobile) {
+      setVideoIsPlaying(true);
+      content.ref.current.play();
+    };
   }
 
   const handleVideoOff = () => {
-    setVideoIsPlaying(false);
-    content.ref.current.pause();
-    content.ref.current.currentTime = content.start || 0;
+    if (!mobile) {
+      setVideoIsPlaying(false);
+      content.ref.current.pause();
+      content.ref.current.currentTime = content.start || 0;
+    }
   }
 
   return (

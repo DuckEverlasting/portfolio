@@ -6,7 +6,7 @@ const BorderScreenSC = styled.img`
   position: absolute;
   z-index: 8;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   pointer-events: none;
   opacity: ${props => props.toggle ? 1 : 0};
   transform: scale(${props => props.toggle ? 1 : 1.3});
@@ -64,7 +64,7 @@ const StartButtonSC = styled.button`
 
 let state = {
   animFrame: 0,
-  mousePosition: { x: 0, y: 0 }
+  mousePosition: { x: -1000, y: -1000 }
 };
 
 class Particle {
@@ -225,6 +225,24 @@ export default function Starfield(props) {
     };
   }
 
+  function setTouchPosition(ev) {
+    const rect = ev.target.getBoundingClientRect();
+    const x = ev.nativeEvent.targetTouches[0].pageX - rect.left;
+    const y = ev.nativeEvent.targetTouches[0].pageY - rect.top;
+
+    state = {
+      ...state,
+      mousePosition: { x, y }
+    };
+  }
+
+  function setTouchEnd() {
+    state = {
+      ...state,
+      mousePosition: { x: -1000, y: -1000 }
+    };
+  }
+
   return (
     <>
       <BorderScreenSC src={screenBorder} toggle={props.toggle} />
@@ -234,6 +252,8 @@ export default function Starfield(props) {
           width={dimensions.width * 4}
           height={dimensions.height * 4}
           onMouseMove={setMousePosition}
+          onTouchMove = {setTouchPosition}
+          onTouchEnd = {setTouchEnd}
           ref={canvasRef}
         />
       </CanvasBoxSC>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
 import About from "./views/About";
@@ -8,12 +8,11 @@ import WorkModal from "./components/WorkModal";
 
 import gear from "./assets/gear.png";
 
-function MobileApp() {
+function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [reload, setReload] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
-  const [hold, setHold] = useState(false)
   
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
@@ -23,45 +22,27 @@ function MobileApp() {
 
   const appRef = useRef(null);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, true);
+    return () => {
+      window.removeEventListener("scroll");
+    };
+  }, []);
+
   const handleScroll = () => {
-    console.log("SCROLLING")
-  }
-
-  const fakeScroll = async target => {
-    if (scrollPosition === target) return;
-
-    const wait = ms => {
-      return new Promise((res, rej) => setTimeout(res, ms))
-    }
-    console.log(scrollPosition, target)
-    const halfTarget = target < scrollPosition ? scrollPosition - 15 : scrollPosition + 15
-    setHold(true)
-    await setScrollPosition(halfTarget)
-    await wait(500)
-    await setScrollPosition(target)
-    setHold(false)
-    
-    // if (scrollPosition < target) {
-    //   while (scrollPosition < target) {
-    //     await wait(250)
-    //     await setScrollPosition(scrollPosition + 5)
-    //   }
-    // } else if (scrollPosition > target) {
-    //   while (scrollPosition > target) {
-    //     await wait(250)
-    //     await setScrollPosition(scrollPosition - 5)
-    //   }
-    // }
-  }
+    const scrollPct =
+      ((window.scrollY /
+        (appRef.current.getBoundingClientRect().height - window.innerHeight)) *
+      100);
+    setScrollPosition(scrollPct);
+  };
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
     ev.preventDefault();
     if (ev.target) {
       ev.target.blur()
     };
-    if (hold) {
-      return
-    }
+    const scrollNum = (target / 100) * (appRef.current.getBoundingClientRect().height - window.innerHeight);
     
     // check for sections to skip
     let toSkip = []
@@ -82,7 +63,10 @@ function MobileApp() {
     await setSkipSections(toSkip)
 
     let pauseNum = scrollPosition * 14 + 950
-    await fakeScroll(target);
+    await window.scrollTo({
+      top: scrollNum,
+      behavior: "smooth"
+    });
     if (reset) {
       setReload(true)
       setTimeout(() => setHasStarted(false), pauseNum);
@@ -104,10 +88,10 @@ function MobileApp() {
     <div
       className="app"
       ref={appRef}
-      style={{ height: "100%"}}
+      style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "hidden" : "hidden"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt Klein {scrollPosition}</p>
+        <p className="page-title">Matt Klein</p>
         <div className="inner-nav-bar">
           <p className="nav-link" tabIndex={1} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
@@ -125,14 +109,15 @@ function MobileApp() {
       </div>
       <div className="top-container chrome-fix">
         {
-          !hasStarted &&
+          (!hasStarted || window.scrollY - window.innerHeight < 200 || reload) &&
           <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
         }
       </div>
       {hasStarted && (
         <>
           <WorkModal state={modalState} trigger={triggerModal} mobile/>
-          <div className="fixed-container chrome-fix" onWheel={handleScroll}>
+          <div className="gradient" />
+          <div className="fixed-container chrome-fix">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
             {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
             {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} triggerModal={triggerModal}/>}
@@ -144,4 +129,4 @@ function MobileApp() {
   );
 }
 
-export default MobileApp;
+export default App;
