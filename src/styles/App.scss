@@ -229,11 +229,12 @@
   position: fixed;
   height: 100vh;
   width: 100%;
+  top: 0;
   margin: 0;
   padding: 0;
 
   .gear {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 250px;
     margin-left: -125px;
@@ -274,10 +275,10 @@
   }
 
   .about-page {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -321,7 +322,7 @@
       justify-content: center;
       align-items: center;
       width: 80%;
-      height: 50vh;
+      height: 50%;
       margin-top: 14vh;
 
       @media screen and (max-width: $break-tablet) and (orientation: portrait) {
@@ -340,10 +341,10 @@
   }
 
   .work-page {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 60px 0 0;
     pointer-events: none;
 
@@ -358,16 +359,16 @@
     .work-sign-container {
       position: absolute;
       width: 100%;
-      top: 14%;
+      top: 10%;
 
       @media screen and (max-width: $break-tablet) and (orientation: portrait) {
         transform: scale(0.85);
-        top: 16%;
+        top: 12%;
       }
 
       @media screen and (max-width: $break-mobile) and (orientation: portrait) {
         transform: scale(0.7);
-        top: 19%;
+        top: 15%;
       }
 
       @media screen and (max-height: $break-mobile) and (orientation: landscape) {
@@ -418,7 +419,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      top: 30%;
+      top: 26%;
 
       .perspective-box {
         position: absolute;
@@ -497,16 +498,61 @@
 
                   .work-panel-content {
                     position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: space-between;
                     width: 97%;
                     height: 97%;
+                    background: $magenta;
                     transform-style: preserve-3d;
                     z-index: 5;
                     pointer-events: all;
                     cursor: pointer;
+                    overflow: hidden;
 
                     .work-panel-image {
+                      position: absolute;
                       width: 100%;
                       height: 100%;
+                      transition: opacity .5s;
+                      z-index: 2;
+                    }
+
+                    .work-panel-text {
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: space-around;
+                      margin: 0 0.5vw 0.5vw;
+                      flex-grow: 1;
+
+                      .work-panel-title {
+                        position: relative;
+                        width: 100%;
+                        color: white;
+                        font-family: "Exo 2", sans-serif;
+                        font-size: 1.6vw;
+                        z-index: 1;
+                      }
+
+                      .work-panel-slug {
+                        position: relative;
+                        width: 100%;
+                        color: white;
+                        font-family: "Open Sans", sans-serif;
+                        font-size: 0.8vw;
+                        z-index: 1;
+                      }
+                    }
+
+                    .work-panel-video {
+                      position: relative;
+                      width: 100%;
+                      z-index: 1;
+
+                      @media screen and (orientation: portrait) {
+                        transform: translateX(calc((100% - 12vh) / 2));
+                      }
                     }
                   }
                 }
@@ -603,10 +649,10 @@
   }
 
   .contact-page {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -619,6 +665,8 @@
 
     .contact-sign {
       position: relative;
+      height: 100%;
+      z-index: 2;
 
       @media screen and (max-height: $break-mobile) and (orientation: landscape) {
         display: none;
@@ -627,7 +675,7 @@
       .contact-sign-box {
         display: flex;
         width: 200px;
-        height: 30vh;
+        height: 30%;
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
@@ -636,7 +684,7 @@
         .contact-title-stem {
           position: relative;
           margin-bottom: -80px;
-          height: 30vh;
+          height: 100%;
           width: 10px;
           background: $black;
           z-index: 8;

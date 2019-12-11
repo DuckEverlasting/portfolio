@@ -12,16 +12,16 @@ const modalData = {
   2: {
     title: "Gazorkazork",
     techStack: "React, Django",
-    description: <p>Online MUD (Multi-User Dungeon) prototype built by a small team in one week.</p>,
+    description: <p>Online MUD (Multi-User Dungeon) prototype built by a small team in one week. My work on the project included a <a href="https://github.com/Gazorkazork/django_be/blob/master/util/room_layout.py">room generation algorithm</a> and a <a href="https://github.com/Gazorkazork/frontend/blob/master/src/utils/textParser.js">language parser</a>.</p>,
     image: "",
     link: "https://gazorkazork.netlify.com/"
   },
   3: {
-    title: "Tetro",
-    techStack: "Canvas API, Javascript",
-    description: "Solo project. Tetris clone built in vanilla Javascript to learn more about the Canvas API.",
+    title: "Photosmith",
+    techStack: "React, Redux",
+    description: "Solo project. Online drawing tool built to test interactions between React, Redux, and the Canvas API.",
     image: "",
-    link: "http://tetro.netlify.com/"
+    link: "https://photosmith.netlify.com/"
   },
   4: {
     title: "Hexsweeper",
@@ -31,18 +31,18 @@ const modalData = {
     link: "http://hexsweeper.netlify.com/"
   },
   5: {
-    title: "Photosmith",
-    techStack: "React, Redux",
-    description: "Solo project. Online drawing tool built to test interactions between React, Redux, and the Canvas API.",
-    image: "",
-    link: "https://photosmith.netlify.com/"
-  },
-  6: {
     title: "Rejeweler",
     techStack: "Canvas Api, Javascript",
     description: "Solo project. Bejewled clone built to practice particle effects",
     image: "",
     link: "https://rejeweler.netlify.com/"
+  },
+  6: {
+    title: "Tetro",
+    techStack: "Canvas API, Javascript",
+    description: "Solo project. Tetris clone built in vanilla Javascript to learn more about the Canvas API.",
+    image: "",
+    link: "http://tetro.netlify.com/"
   },
   7: {
     title: "First Person Prototype",

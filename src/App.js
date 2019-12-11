@@ -88,7 +88,7 @@ function App() {
     <div
       className="app"
       ref={appRef}
-      style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "auto" : "hidden"}}
+      style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "hidden" : "hidden"}}
     >
       <div className="nav-bar">
         <p className="page-title">Matt Klein</p>
