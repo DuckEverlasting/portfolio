@@ -58,8 +58,8 @@ function WorkPanel({ isOn, content, triggerModal, mobile }) {
                 ref={content.ref}
                 alt={content.name}
                 style={content.style}
-                muted
-                loop
+                muted={true}
+                loop={true}
                 src={content.video}
               />
             </>}
