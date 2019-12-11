@@ -9,8 +9,9 @@ import WorkModal from "./components/WorkModal";
 import gear from "./assets/gear.png";
 
 function MobileApp() {
-  const [hasStarted, setHasStarted] = useState(false);
-  const [reload, setReload] = useState(true)
+  const [topContainerIsUp, setTopContainerIsUp] = useState(false);
+  const [contentIsVisible, setContentIsVisible] = useState(false);
+  const [clearStarfield, setClearStarfield] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
   const [hold, setHold] = useState(false)
@@ -22,10 +23,6 @@ function MobileApp() {
   }, [])
 
   const appRef = useRef(null);
-
-  const handleScroll = () => {
-    console.log("SCROLLING")
-  }
 
   const fakeScroll = async target => {
     if (scrollPosition === target) return;
@@ -40,18 +37,6 @@ function MobileApp() {
     await wait(500)
     await setScrollPosition(target)
     setHold(false)
-    
-    // if (scrollPosition < target) {
-    //   while (scrollPosition < target) {
-    //     await wait(250)
-    //     await setScrollPosition(scrollPosition + 5)
-    //   }
-    // } else if (scrollPosition > target) {
-    //   while (scrollPosition > target) {
-    //     await wait(250)
-    //     await setScrollPosition(scrollPosition - 5)
-    //   }
-    // }
   }
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
@@ -81,23 +66,28 @@ function MobileApp() {
     }
     await setSkipSections(toSkip)
 
-    let pauseNum = scrollPosition * 14 + 950
     await fakeScroll(target);
+
     if (reset) {
-      setReload(true)
-      setTimeout(() => setHasStarted(false), pauseNum);
-    };
+      setTopContainerIsUp(false);
+      setClearStarfield(true);
+      setTimeout(() => {
+        if (topContainerIsUp) {
+          setClearStarfield(false);
+          setContentIsVisible(false);
+        }
+      }, 1000)
+    }
+
     setTimeout(() => setSkipSections([]), 1500);
   };
 
-  const startButtonHandler = async ev => {
-    if (!hasStarted) {
-      setReload(false)
-      await setHasStarted(true);
-      setTimeout(() => scrollButtonHandler(ev, 33), 1100);
-    } else {
-      scrollButtonHandler(ev, 33)
-    }
+  const startButtonHandler = ev => {
+    setContentIsVisible(true);
+    setTimeout(() => {
+      setTopContainerIsUp(true);
+      scrollButtonHandler(ev, 33);
+    }, 1000)
   };
 
   return (
@@ -107,7 +97,7 @@ function MobileApp() {
       style={{ height: "100%"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt Klein {scrollPosition}</p>
+        <p className="page-title">Matt Klein</p>
         <div className="inner-nav-bar">
           <p className="nav-link" tabIndex={1} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
@@ -123,16 +113,16 @@ function MobileApp() {
           </p>
         </div>
       </div>
-      <div className="top-container chrome-fix">
-        {
-          !hasStarted &&
-          <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
-        }
+      <div 
+        className={`top-container ${topContainerIsUp && "up"}`}
+        style={{height: "100%"}}
+      >
+        <Starfield toggle={contentIsVisible} startButtonHandler={startButtonHandler} />
       </div>
-      {hasStarted && (
+      {contentIsVisible && (
         <>
-          <WorkModal state={modalState} trigger={triggerModal} mobile/>
-          <div className="fixed-container chrome-fix" onWheel={handleScroll}>
+          <WorkModal state={modalState} trigger={triggerModal} />
+          <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
             {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
             {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} triggerModal={triggerModal}/>}

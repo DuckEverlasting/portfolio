@@ -60,7 +60,7 @@ const modalData = {
   }
 };
 
-function WorkModal({ state, trigger, mobile }) {
+function WorkModal({ state, trigger }) {
   const [modalContent, setModalContent] = useState({
     title: "",
     techStack: "",
@@ -95,7 +95,7 @@ function WorkModal({ state, trigger, mobile }) {
 
   return (
     <div
-      className= {mobile ? "modal-container chrome-fix" : "modal-container"}
+      className= "modal-container"
       style={{
         pointerEvents: state ? "all" : "none",
         background: state ? "rgba(0, 0, 0, .3)" : "transparent"

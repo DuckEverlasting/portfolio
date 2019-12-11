@@ -1,6 +1,19 @@
 @import "Colors.scss";
 @import "Variables.scss";
 
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 .app {
   height: 100%;
   background: $grey-blue;
@@ -87,9 +100,11 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    transition: transform 1s;
+    z-index: 7;
 
-    &.chrome-fix {
-      height: calc(100vh - 56px)
+    &.up {
+      transform: translateY(-150%)
     }
   }
 
@@ -99,16 +114,12 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     top: 0;
     z-index: 10;
     background: transparent;
     pointer-events: none;
     transition: background 0.5s;
-
-    &.chrome-fix {
-      height: calc(100vh - 56px)
-    }
 
     .work-modal {
       position: absolute;
@@ -231,24 +242,13 @@
   z-index: 10;
 }
 
-.scroll-box {
-  position: relative;
-  height: 7000px;
-  margin: 0;
-  padding: 0;
-}
-
 .fixed-container {
   position: fixed;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   top: 0;
   margin: 0;
   padding: 0;
-
-  &.chrome-fix {
-    height: calc(100vh - 56px)
-  }
 
   .gear {
     position: absolute;
@@ -790,6 +790,7 @@
           z-index: 3;
           transform-style: preserve-3d;
           bottom: 100%;
+          backface-visibility: hidden;
 
           .email-button {
             background: $black;

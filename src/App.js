@@ -9,6 +9,7 @@ import WorkModal from "./components/WorkModal";
 import gear from "./assets/gear.png";
 
 function App() {
+  const [clearStarfield, setClearStarfield] = useState(false)
   const [hasStarted, setHasStarted] = useState(false);
   const [reload, setReload] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -24,8 +25,8 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
-    return () => {
-      window.removeEventListener("scroll");
+    return () => { 
+      window.removeEventListener("scroll", handleScroll, true);
     };
   }, []);
 
@@ -68,8 +69,12 @@ function App() {
       behavior: "smooth"
     });
     if (reset) {
-      setReload(true)
-      setTimeout(() => setHasStarted(false), pauseNum);
+      setReload(true);
+      setClearStarfield(true);
+      setTimeout(() => {
+        setHasStarted(false)
+        setClearStarfield(false);
+      }, pauseNum);
     };
     setTimeout(() => setSkipSections([]), 1500);
   };
@@ -88,7 +93,7 @@ function App() {
     <div
       className="app"
       ref={appRef}
-      style={{ height: hasStarted ? "7000px" : "100%", overflow: hasStarted ? "hidden" : "hidden"}}
+      style={{ height: hasStarted ? "7000px" : "100%"}}
     >
       <div className="nav-bar">
         <p className="page-title">Matt Klein</p>
@@ -108,10 +113,7 @@ function App() {
         </div>
       </div>
       <div className="top-container">
-        {
-          (!hasStarted || window.scrollY - window.innerHeight < 200 || reload) &&
-          <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} />
-        }
+          <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} clear={clearStarfield}/>
       </div>
       {hasStarted && (
         <>

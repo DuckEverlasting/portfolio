@@ -175,16 +175,23 @@ export default function Starfield(props) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
       particles = [];
       ctx.globalAlpha = 0;
-      startAnimateParticles(canvas);
-    });
+      if (!props.toggle) {
+        startAnimateParticles(canvas);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
 
     ctx.globalAlpha = 0;
-    startAnimateParticles(canvas);
-    animateParticles();
+    
+    if (!props.toggle) {
+      startAnimateParticles(canvas);
+      animateParticles();
+    }
 
     function startAnimateParticles(canvas) {
       for (let j = 0; j < totalParticles; j++) {
@@ -215,8 +222,18 @@ export default function Starfield(props) {
       }
     }
 
-    return () => window.cancelAnimationFrame(state.animFrame)
-  }, []);
+    return () => {
+      window.cancelAnimationFrame(state.animFrame)
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [props.toggle]);
+
+  useEffect(() => {
+    if (props.clear) {
+      let ctx = canvasRef.current.getContext("2d");
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    }
+  }, [props.clear])
 
   function setMousePosition(ev) {
     state = {
