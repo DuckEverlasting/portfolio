@@ -42,7 +42,7 @@ const modalData = {
   5: {
     title: "Rejeweler",
     techStack: "Canvas Api, Javascript",
-    description: "Solo project. Bejewled clone built to practice particle effects",
+    description: "Solo project. Bejewled clone built to practice particle effects and advanced class interactions in JavaScript.",
     video: rejewelerVid,
     link: "https://rejeweler.netlify.com/"
   },
@@ -107,7 +107,7 @@ function WorkModal({ state, trigger }) {
       className= "modal-container"
       style={{
         pointerEvents: state ? "all" : "none",
-        background: state ? "rgba(0, 0, 0, .3)" : "transparent"
+        background: state ? "rgba(0, 0, 0, .6)" : "transparent"
       }}
       onClick={turnOff}
     >
@@ -123,12 +123,14 @@ function WorkModal({ state, trigger }) {
           <video
             className="modal-video"
             alt={modalContent.title}
+            autoPlay={true}
             muted={true}
             loop={true}
             src={modalContent.video}
           />
           <div className="modal-inner-box">
             <h2 className="modal-title">{modalContent.title}</h2>
+            <p className="modal-tech-stack">{modalContent.techStack}</p>
             <p className="modal-description">{modalContent.description}</p>
           </div>
         </div>

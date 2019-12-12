@@ -19,7 +19,13 @@ function AboutTextBox({ isOn }) {
 
   return (
     <div className="text-box-wrapper">
-      {<animated.div className="text-box" style={{...textBoxWidthSpr, ...textBoxHeightSpr}} />}
+      {
+        <animated.div className="text-box" style={{...textBoxWidthSpr, ...textBoxHeightSpr}}>
+          <p>
+            These are some words.
+          </p>
+        </animated.div>
+      }
     </div>
   );
 }

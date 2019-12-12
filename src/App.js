@@ -17,7 +17,11 @@ function App() {
   
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
-    console.log(id)
+    if (id !== 0) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
     setModalState(id)
   }, [])
 
@@ -30,7 +34,10 @@ function App() {
     };
   }, []);
 
-  const handleScroll = () => {
+  const handleScroll = ev => {
+    if (modalState) {
+      return ev.preventDefault();
+    }
     const scrollPct =
       ((window.scrollY /
         (appRef.current.getBoundingClientRect().height - window.innerHeight)) *
@@ -122,7 +129,7 @@ function App() {
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
             {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
-            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} triggerModal={triggerModal}/>}
+            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} modalState={modalState} triggerModal={triggerModal}/>}
             {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
           </div>
         </>

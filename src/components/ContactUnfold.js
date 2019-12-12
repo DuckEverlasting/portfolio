@@ -1,5 +1,7 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
+import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome'
+import { faLinkedin, faFacebookSquare, faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
 
 function ContactUnfold({ isOn }) {
   const unfoldSpr1 = useSpring({
@@ -57,11 +59,17 @@ function ContactUnfold({ isOn }) {
       <animated.div className="contact-unfold-box first-box" style={unfoldSpr1}>
         <div className="contact-unfold-front first"/>
         <div className="contact-unfold-back first"/>
-        <div className="fold-content first"/>
+        <div className="fold-content first">
+          © 2019 Matt Klein
+        </div>
         <animated.div className="contact-unfold-box" style={unfoldSpr2}>
           <div className="contact-unfold-front second"/>
           <div className="contact-unfold-back second"/>
-          <div className="fold-content second">(Social media icons here)</div>
+          <div className="fold-content second">
+            <FaIcon className="icon linked-in" icon={faLinkedin}/>
+            <FaIcon className="icon facebook" icon={faFacebookSquare}/>
+            <FaIcon className="icon twitter" icon={faTwitterSquare}/>
+          </div>
           <animated.div className="contact-unfold-box" style={unfoldSpr3}>
             <div className="contact-unfold-front third"/>
             <div className="contact-unfold-back third"/>
@@ -71,7 +79,9 @@ function ContactUnfold({ isOn }) {
             <animated.div className="contact-unfold-box" style={unfoldSpr4}>
               <div className="contact-unfold-front fourth"/>
               <div className="contact-unfold-back fourth"/>
-              <div className="fold-content fourth">Have questions or comments? I'd love to hear them!</div>
+              <div className="fold-content fourth">
+                Have questions or comments? I'd love to hear them!
+              </div>
             </animated.div>
           </animated.div>
         </animated.div>
