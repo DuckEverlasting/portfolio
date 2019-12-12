@@ -85,7 +85,7 @@ function WorkModal({ state, trigger }) {
   }, [state]);
 
   const workModalSpring = useSpring({
-    transform: state ? "translateX(0%)" : "translateX(-150%)",
+    transform: state ? "translateX(0%)" : "translateX(-200%)",
     config: { mass: 1, tension: 100, friction: 15 },
   });
 

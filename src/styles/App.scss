@@ -677,9 +677,6 @@ body {
     align-items: center;
     pointer-events: none;
 
-    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
-      padding-top: 40px;
-    }
 
     .contact-sign {
       position: relative;
@@ -690,9 +687,19 @@ body {
         display: none;
       }
 
+      @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+        transform: scale(0.85);
+        top: -6%;
+      }
+
+      @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+        transform: scale(0.7);
+        top: -3%;
+      }
+
       .contact-sign-box {
         display: flex;
-        width: 200px;
+        width: 250px;
         height: 30%;
         flex-direction: column;
         align-items: center;
@@ -726,6 +733,7 @@ body {
     .contact-unfold-container {
       position: absolute;
       width: 60%;
+      min-width: 280px;
       bottom: 0%;
       margin-bottom: -20vh;
       perspective: 1000px;
