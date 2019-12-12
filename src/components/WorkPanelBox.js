@@ -13,7 +13,7 @@ import firstPersonStill from "../assets/Stills/First-Person-still.png";
 import encounterStill from "../assets/Stills/5E-Encounter-still.png";
 
 import keyConsVid from "../assets/Videos/Key-Cons-sample.mp4";
-import gazorkazorkVid from "../assets/Videos/Key-Cons-sample.mp4"
+import gazorkazorkVid from "../assets/Videos/Gazorkazork-sample.mp4"
 import photosmithVid from "../assets/Videos/Photosmith-sample.mp4";
 import hexsweeperVid from "../assets/Videos/Hexsweeper-sample.mp4";
 import rejewelerVid from "../assets/Videos/Rejeweler-sample.mp4";
@@ -42,7 +42,7 @@ function WorkPanelBox({ isOn, triggerModal }) {
       slug: "Conservation outreach app",
       ref: useRef(null),
       video: keyConsVid,
-      static: keyConsStill
+      static: keyConsStill,
     },
     {
       id: 2,
@@ -50,7 +50,7 @@ function WorkPanelBox({ isOn, triggerModal }) {
       slug: "Online multiuser dungeon",
       ref: useRef(null),
       video: gazorkazorkVid,
-      static: gazorkazorkStill
+      static: gazorkazorkStill,
     },
     {
       id: 3,
@@ -59,7 +59,12 @@ function WorkPanelBox({ isOn, triggerModal }) {
       ref: useRef(null),
       video: photosmithVid,
       static: photosmithStill,
-      start: 4
+      style: {
+        width: "120%",
+        marginLeft: "-10%",
+        marginTop: "-6%"
+      },
+      start: 4,
     },
     {
       id: 4,
@@ -67,7 +72,12 @@ function WorkPanelBox({ isOn, triggerModal }) {
       slug: "Customizable puzzle game",
       ref: useRef(null),
       video: hexsweeperVid,
-      static: hexsweeperStill
+      static: hexsweeperStill,
+      style: {
+        width: "170%",
+        marginLeft: "-37%",
+        marginTop: "-28%"
+      },
     },
     {
       id: 5,
@@ -75,7 +85,8 @@ function WorkPanelBox({ isOn, triggerModal }) {
       slug: "Tile matching game",
       ref: useRef(null),
       video: rejewelerVid,
-      static: rejewelerStill
+      static: rejewelerStill,
+      style: {},
     },
     {
       id: 6,
@@ -83,7 +94,8 @@ function WorkPanelBox({ isOn, triggerModal }) {
       slug: "Falling tile game",
       ref: useRef(null),
       video: tetroVid,
-      static: tetroStill
+      static: tetroStill,
+      style: {},
     },
     {
       id: 7,
@@ -92,7 +104,8 @@ function WorkPanelBox({ isOn, triggerModal }) {
       ref: useRef(null),
       video: firstPersonVid,
       static: firstPersonStill,
-      start: 2
+      style: {},
+      start: 2,
     },
     {
       id: 8,
@@ -100,7 +113,8 @@ function WorkPanelBox({ isOn, triggerModal }) {
       slug: "Online D&D tool",
       ref: useRef(null),
       video: encounterVid,
-      static: encounterStill
+      static: encounterStill,
+      style: {},
     }
   ];
 

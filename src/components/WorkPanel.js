@@ -53,15 +53,17 @@ function WorkPanel({ isOn, content, triggerModal, mobile }) {
                 <h3 className="work-panel-title">{content.name}</h3>
                 <p className="work-panel-slug">{content.slug}</p>
               </div>
-              <video
-                className="work-panel-video"
-                ref={content.ref}
-                alt={content.name}
-                style={content.style}
-                muted={true}
-                loop={true}
-                src={content.video}
-              />
+              <div className="work-panel-video-box">
+                <video
+                  className="work-panel-video"
+                  ref={content.ref}
+                  alt={content.name}
+                  style={content.style}
+                  muted={true}
+                  loop={true}
+                  src={content.video}
+                />
+              </div>
             </>}
           </div>
         </div>

@@ -127,6 +127,7 @@ body {
       justify-content: space-between;
       align-items: center;
       flex-direction: column;
+      max-width: 1000px;
       width: 80%;
       height: 80%;
       background: $dark-magenta;
@@ -158,32 +159,24 @@ body {
       .modal-outer-box {
         display: flex;
         justify-content: space-between;
-        align-items: space-between;
+        flex-direction: column;
+        align-items: center;
         width: 90%;
         height: 70%;
         margin-top: 5%;
 
-        @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+        .modal-video {
+          height: 100%;
           flex-direction: column;
           align-items: center;
-        }
-
-        .modal-image {
-          height: 100%;
-          width: 45%;
+          max-width: 90%;
           background: black;
-
-          @media screen and (max-width: $break-tablet) and (orientation: portrait) {
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
-          }
         }
         .modal-inner-box {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          width: 45%;
+          width: 90%;
 
           .modal-title {
             color: white;
@@ -441,22 +434,22 @@ body {
       .perspective-box {
         position: absolute;
         perspective: 1500px;
+        perspective-origin: top;
         left: 50px;
-        transform: translateZ(500px) translateY(-14vw);
+        transform: translateZ(500px);
         margin: 5px auto 0;
         top: 0%;
 
         .adjustment-box {
           position: relative;
-          transform: translateY(14vw);
           transform-style: preserve-3d;
 
           .panel-box {
             position: relative;
             display: flex;
             flex-wrap: wrap;
-            width: 52vw;
-            height: 28vw;
+            width: 60vw;
+            height: 32vw;
             margin: 0 auto;
             border: 2vw solid $black;
             border-radius: 1vw;
@@ -468,22 +461,22 @@ body {
             transform-style: preserve-3d;
 
             @media screen and (orientation: portrait) {
-              width: 28vh;
-              height: 52vh;
+              width: 32vh;
+              height: 60vh;
               border: 2vh solid $black;
               border-radius: 1vh;
             }
 
             .work-panel-container {
               position: relative;
-              height: 12vw;
-              width: 12vw;
+              height: 14vw;
+              width: 14vw;
               background: transparent;
               transform-style: preserve-3d;
 
               @media screen and (orientation: portrait) {
-                width: 12vh;
-                height: 12vh;
+                width: 14vh;
+                height: 14vh;
               }
 
               .work-panel {
@@ -562,13 +555,21 @@ body {
                       }
                     }
 
-                    .work-panel-video {
+                    .work-panel-video-box {
                       position: relative;
                       width: 100%;
+                      height: 60%;
+                      overflow: hidden;
                       z-index: 1;
 
-                      @media screen and (orientation: portrait) {
-                        transform: translateX(calc((100% - 12vh) / 2));
+
+                      .work-panel-video {
+                        width: 110%;
+                        margin-left: -5%;
+
+                        @media screen and (orientation: portrait) {
+                          transform: translateX(calc((100% - 14vh) / 2));
+                        }
                       }
                     }
                   }
@@ -599,7 +600,7 @@ body {
         z-index: 2;
 
         @media screen and (max-width: $break-mobile) {
-          right: -5.5%;
+          right: -6%;
         }
       }
 
@@ -613,7 +614,7 @@ body {
         z-index: 2;
 
         @media screen and (max-width: $break-mobile) {
-          right: -7%;
+          right: -9.5%;
         }
       }
 
@@ -627,20 +628,20 @@ body {
         z-index: 2;
 
         @media screen and (max-width: $break-mobile) {
-          right: -8.5%;
+          right: -13%;
         }
       }
 
       .telescope-bar {
         position: relative;
         height: 8px;
-        left: calc(24vw - 50px);
+        left: calc(20vw - 50px);
         width: 200vw;
         margin: 0 auto;
         transform: translate(200%, 0);
 
         @media screen and (orientation: portrait) {
-          left: calc(50vw - 14vh - 50px);
+          left: calc(50vw - 16vh - 50px);
         }
 
         .bar {

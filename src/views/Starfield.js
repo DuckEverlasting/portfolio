@@ -269,8 +269,8 @@ export default function Starfield(props) {
           width={dimensions.width * 4}
           height={dimensions.height * 4}
           onMouseMove={setMousePosition}
-          onTouchMove = {setTouchPosition}
-          onTouchEnd = {setTouchEnd}
+          onTouchMove={setTouchPosition}
+          onTouchEnd={setTouchEnd}
           ref={canvasRef}
         />
       </CanvasBoxSC>

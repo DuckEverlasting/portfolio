@@ -14,7 +14,7 @@ function WorkTelescope({ isOn, triggerModal }) {
         ? "translate(50%, 0)"
         : "translate(150%, 0)",
     config: { mass: 5, tension: 400, friction: 120 },
-    delay: isOn ? 0 : 330
+    delay: isOn ? 0 : 300
   });
   const telescope2Spr = useSpring({
     transform:
@@ -22,7 +22,7 @@ function WorkTelescope({ isOn, triggerModal }) {
         ? "translate(0%, 0)"
         : "translate(150%, 0)",
     config: { mass: 5, tension: 400, friction: 120 },
-    delay: isOn ? 0 : 330
+    delay: isOn ? 0 : 300
   });
   const telescope3Spr = useSpring({
     transform:
@@ -30,7 +30,7 @@ function WorkTelescope({ isOn, triggerModal }) {
         ? "translate(-50%, 0)"
         : "translate(150%, 0)",
     config: { mass: 5, tension: 400, friction: 120 },
-    delay: isOn ? 0 : 330
+    delay: isOn ? 0 : 300
   });
   const telescopeBarSpr = useSpring({
     transform:
@@ -41,7 +41,7 @@ function WorkTelescope({ isOn, triggerModal }) {
       isOn
         ? { mass: 1, tension: 250, friction: 50 }
         : { mass: 1, tension: 150, friction: 50 },
-    delay: isOn ? 300 : 330
+    delay: isOn ? 300 : 300
   });
 
   return (
