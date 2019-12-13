@@ -94,7 +94,7 @@ function MobileApp() {
       style={{ height: "100%"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt Klein</p>
+        <p className="page-title">Matt{'\u00A0'}Klein</p>
         <div className="inner-nav-bar">
           <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET

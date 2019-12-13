@@ -610,6 +610,10 @@ body {
                       margin: 0 0.5vw 0.5vw;
                       flex-grow: 1;
 
+                      @media screen and (orientation: portrait) {
+                        margin: 0 0.5vh 0.5vh;
+                      }
+
                       .work-panel-title {
                         position: relative;
                         width: 100%;
@@ -617,6 +621,10 @@ body {
                         font-family: "Exo 2", sans-serif;
                         font-size: 1.6vw;
                         z-index: 1;
+
+                        @media screen and (orientation: portrait) {
+                          font-size: 1.6vh;
+                        }
                       }
 
                       .work-panel-slug {
@@ -626,6 +634,10 @@ body {
                         font-family: "Open Sans", sans-serif;
                         font-size: 0.8vw;
                         z-index: 1;
+
+                        @media screen and (orientation: portrait) {
+                          font-size: 0.8vh;
+                        }
                       }
                     }
 

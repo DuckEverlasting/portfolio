@@ -5,13 +5,13 @@ function isMobileDevice() {
   return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
-const mobileCheck = isMobileDevice();
+const mobile = isMobileDevice();
 
 function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
   useEffect(() => {
-    if (mobileCheck) return;
+    if (mobile) return;
     content.ref.current.currentTime = content.start || 0;
   }, [content.ref, content.start])
 
@@ -35,14 +35,14 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   }
 
   const handleVideoHover = () => {
-    if (!mobileCheck) {
+    if (!mobile) {
       setVideoIsPlaying(true);
       content.ref.current.play();
     };
   }
 
   const handleVideoOff = () => {
-    if (!mobileCheck) {
+    if (!mobile) {
       setVideoIsPlaying(false);
       content.ref.current.pause();
       content.ref.current.currentTime = content.start || 0;
@@ -67,7 +67,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
               alt={content.name}
               style={{opacity: videoIsPlaying ? 0 : 1}}
             />
-            {!mobileCheck && <>
+            {!mobile && <>
               <div className="work-panel-text">
                 <h3 className="work-panel-title">{content.name}</h3>
                 <p className="work-panel-slug">{content.slug}</p>

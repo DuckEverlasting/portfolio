@@ -100,7 +100,7 @@ function App() {
       style={{ height: hasStarted ? "7000px" : "100%"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt Klein</p>
+        <p className="page-title">Matt&nbspKlein</p>
         <div className="inner-nav-bar">
           <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
