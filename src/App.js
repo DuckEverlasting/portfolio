@@ -46,6 +46,9 @@ function App() {
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
     ev.preventDefault();
+    if (ev.target) {
+      ev.target.blur()
+    };
     const scrollNum = (target / 100) * (appRef.current.getBoundingClientRect().height - window.innerHeight);
     
     // check for sections to skip

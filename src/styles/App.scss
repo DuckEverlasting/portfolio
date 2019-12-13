@@ -143,7 +143,7 @@ body {
       max-width: 1000px;
       min-width: 300px;
       width: 80%;
-      height: 85%;
+      height: auto;
       border: 10px solid $magenta;
       background: $black;
       border-radius: 10px;
@@ -180,13 +180,14 @@ body {
         flex-direction: column;
         align-items: center;
         width: 90%;
-        height: 75%;
         margin-top: 5%;
 
         .modal-video {
           flex-direction: column;
           align-items: center;
-          width: 90%;
+          width: 80vh;
+          min-width: 70%;
+          max-width: 90%;
           height: auto;
           background: black;
         }
@@ -200,19 +201,45 @@ body {
             text-align: center;
             color: white;
             font-size: 2.4rem;
-            margin: 2% 0 0.5%;
+            margin: 4% 0 0.5%;
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: 2.2rem;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              font-size: 2.2rem;
+            }
           }
 
           .modal-tech-stack {
             text-align: center;
             color: $cyan;
             font-size: 1.4rem;
-            margin: 0 0 2%;
+            margin: 0 0 4%;
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: 1.2rem;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              font-size: 1.2rem;
+            }
           }
 
           .modal-description {
             color: white;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1.2;
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: 1rem;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              font-size: 1rem;
+            }
 
             a {
               color: $cyan;
