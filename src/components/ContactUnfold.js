@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 import { FontAwesomeIcon as FaIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin, faFacebookSquare, faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 function ContactUnfold({ isOn }) {
   const unfoldSpr1 = useSpring({
@@ -66,15 +66,15 @@ function ContactUnfold({ isOn }) {
           <div className="contact-unfold-front second"/>
           <div className="contact-unfold-back second"/>
           <div className="fold-content second">
-            <FaIcon className="icon linked-in" icon={faLinkedin}/>
-            <FaIcon className="icon facebook" icon={faFacebookSquare}/>
-            <FaIcon className="icon twitter" icon={faTwitterSquare}/>
+            <a className="icon-box" tabIndex={isOn ? 1 : -1} href="https://www.linkedin.com/in/matthew-s-klein/" target="_blank"><FaIcon className="icon linked-in" icon={faLinkedinIn}/></a>
+            <a className="icon-box" tabIndex={isOn ? 1 : -1} href="https://github.com/DuckEverlasting" target="_blank"><FaIcon className="icon github" icon={faGithub}/></a>
+            <a className="icon-box" tabIndex={isOn ? 1 : -1} href="https://twitter.com/DuckEverlasting" target="_blank"><FaIcon className="icon twitter" icon={faTwitter}/></a>
           </div>
           <animated.div className="contact-unfold-box" style={unfoldSpr3}>
             <div className="contact-unfold-front third"/>
             <div className="contact-unfold-back third"/>
             <div className="fold-content third">
-              <button className="email-button" tabIndex={5} onClick={handleEmailButton}>SEND ME AN EMAIL</button>
+              <button className="email-button" tabIndex={isOn ? 0 : -1} onClick={handleEmailButton}>SEND ME AN EMAIL</button>
             </div>
             <animated.div className="contact-unfold-box" style={unfoldSpr4}>
               <div className="contact-unfold-front fourth"/>

@@ -13,6 +13,7 @@ function MobileApp() {
   const [contentIsVisible, setContentIsVisible] = useState(false);
   const [clearStarfield, setClearStarfield] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [gearPosition, setGearPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
   const [hold, setHold] = useState(false)
   
@@ -34,6 +35,7 @@ function MobileApp() {
     const halfTarget = target < scrollPosition ? scrollPosition - 15 : scrollPosition + 15
     setHold(true)
     await setScrollPosition(halfTarget)
+    setGearPosition(target)
     await wait(500)
     await setScrollPosition(target)
     setHold(false)
@@ -41,9 +43,6 @@ function MobileApp() {
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
     ev.preventDefault();
-    if (ev.target) {
-      ev.target.blur()
-    };
     if (hold) {
       return
     }
@@ -99,31 +98,31 @@ function MobileApp() {
       <div className="nav-bar">
         <p className="page-title">Matt Klein</p>
         <div className="inner-nav-bar">
-          <p className="nav-link" tabIndex={1} onClick={ev => scrollButtonHandler(ev, 0, true)}>
+          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
-          </p>
-          <p className="nav-link" tabIndex={2} onClick={ev => scrollButtonHandler(ev, 33)}>
+          </button>
+          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
             ABOUT
-          </p>
-          <p className="nav-link" tabIndex={3} onClick={ev => scrollButtonHandler(ev, 66)}>
+          </button>
+          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
             WORK
-          </p>
-          <p className="nav-link" tabIndex={4} onClick={ev => scrollButtonHandler(ev, 100)}>
+          </button>
+          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
             CONTACT
-          </p>
+          </button>
         </div>
       </div>
       <div 
         className={`top-container ${topContainerIsUp && "up"}`}
         style={{height: "100%"}}
       >
-        <Starfield toggle={contentIsVisible} startButtonHandler={startButtonHandler} />
+        <Starfield toggle={contentIsVisible} startButtonHandler={startButtonHandler} clear={clearStarfield} />
       </div>
       {contentIsVisible && (
         <>
           <WorkModal state={modalState} trigger={triggerModal} />
           <div className="fixed-container">
-            <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
+            <img className="gear" src={gear} alt="" style={{transform: `rotate(${gearPosition * 5}deg)`, transition: "transform 1s"}}/>
             {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
             {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} triggerModal={triggerModal}/>}
             {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}

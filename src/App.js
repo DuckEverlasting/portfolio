@@ -11,7 +11,6 @@ import gear from "./assets/gear.png";
 function App() {
   const [clearStarfield, setClearStarfield] = useState(false)
   const [hasStarted, setHasStarted] = useState(false);
-  const [reload, setReload] = useState(true)
   const [scrollPosition, setScrollPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
   
@@ -47,9 +46,6 @@ function App() {
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
     ev.preventDefault();
-    if (ev.target) {
-      ev.target.blur()
-    };
     const scrollNum = (target / 100) * (appRef.current.getBoundingClientRect().height - window.innerHeight);
     
     // check for sections to skip
@@ -76,7 +72,6 @@ function App() {
       behavior: "smooth"
     });
     if (reset) {
-      setReload(true);
       setClearStarfield(true);
       setTimeout(() => {
         setHasStarted(false)
@@ -88,7 +83,6 @@ function App() {
 
   const startButtonHandler = async ev => {
     if (!hasStarted) {
-      setReload(false)
       await setHasStarted(true);
       setTimeout(() => scrollButtonHandler(ev, 33), 1100);
     } else {
@@ -105,18 +99,18 @@ function App() {
       <div className="nav-bar">
         <p className="page-title">Matt Klein</p>
         <div className="inner-nav-bar">
-          <p className="nav-link" tabIndex={1} onClick={ev => scrollButtonHandler(ev, 0, true)}>
+          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
-          </p>
-          <p className="nav-link" tabIndex={2} onClick={ev => scrollButtonHandler(ev, 33)}>
+          </button>
+          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
             ABOUT
-          </p>
-          <p className="nav-link" tabIndex={3} onClick={ev => scrollButtonHandler(ev, 66)}>
+          </button>
+          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
             WORK
-          </p>
-          <p className="nav-link" tabIndex={4} onClick={ev => scrollButtonHandler(ev, 100)}>
+          </button>
+          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
             CONTACT
-          </p>
+          </button>
         </div>
       </div>
       <div className="top-container">

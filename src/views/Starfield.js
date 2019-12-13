@@ -46,6 +46,7 @@ const StartButtonSC = styled.button`
   z-index: 7;
   user-select: none;
   transition: background 0.3s;
+  outline: none;
 
   :hover {
     background: rgba(0, 0, 0, .4);
@@ -57,7 +58,6 @@ const StartButtonSC = styled.button`
   }
 
   :focus {
-    outline: none;
     border: 1px solid #bbbbbb;
   }
 `;
@@ -264,7 +264,7 @@ export default function Starfield(props) {
     <>
       <BorderScreenSC src={screenBorder} toggle={props.toggle} />
       <CanvasBoxSC toggle={props.toggle}>
-        <StartButtonSC onClick={props.startButtonHandler}>BEGIN</StartButtonSC>
+        <StartButtonSC tabIndex={props.toggle ? -1 : 0} onClick={props.startButtonHandler}>BEGIN</StartButtonSC>
         <CanvasSC
           width={dimensions.width * 4}
           height={dimensions.height * 4}

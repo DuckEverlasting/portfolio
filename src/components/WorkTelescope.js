@@ -7,7 +7,7 @@ import telescope1 from "../assets/telescope-1.png";
 import telescope2 from "../assets/telescope-2.png";
 import telescope3 from "../assets/telescope-3.png";
 
-function WorkTelescope({ isOn, triggerModal }) {
+function WorkTelescope({ isOn, triggerModal, modalState }) {
   const telescope1Spr = useSpring({
     transform:
       isOn
@@ -48,7 +48,7 @@ function WorkTelescope({ isOn, triggerModal }) {
     <>
       <div className="telescope-container">
           <animated.div className="telescope-bar" style={{...telescopeBarSpr, zIndex: isOn ? 0 : 1}}>
-            <WorkPanelBox isOn={isOn} triggerModal={triggerModal}/>
+            <WorkPanelBox isOn={isOn} triggerModal={triggerModal} modalState={modalState}/>
             <div className="bar" style={{zIndex: isOn ? 0 : 1}}/>
             <div className="ball"/>
           </animated.div>

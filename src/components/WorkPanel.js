@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 
-function WorkPanel({ isOn, content, triggerModal, mobile }) {
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
+const mobileCheck = isMobileDevice();
+
+function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
   useEffect(() => {
-    if (mobile) return;
+    if (mobileCheck) return;
     content.ref.current.currentTime = content.start || 0;
-  }, [content.ref, content.start, mobile])
+  }, [content.ref, content.start])
 
   const workPanelSpring = useSpring({
     transform: isOn ? "rotateX(0)" : "rotateX(0.5turn)",
@@ -17,15 +23,26 @@ function WorkPanel({ isOn, content, triggerModal, mobile }) {
     delay: isOn ? Math.random() * 200 + 1000 : Math.random() * 50
   });
 
+  const handleClick = ev => {
+    ev.currentTarget.blur();
+    triggerModal(content.id);
+  }
+
+  const handleSubmit = ev => {
+    if (ev.key === "Enter") {
+      handleClick(ev)
+    }
+  }
+
   const handleVideoHover = () => {
-    if (!mobile) {
+    if (!mobileCheck) {
       setVideoIsPlaying(true);
       content.ref.current.play();
     };
   }
 
   const handleVideoOff = () => {
-    if (!mobile) {
+    if (!mobileCheck) {
       setVideoIsPlaying(false);
       content.ref.current.pause();
       content.ref.current.currentTime = content.start || 0;
@@ -38,9 +55,11 @@ function WorkPanel({ isOn, content, triggerModal, mobile }) {
         <div className="work-panel-front">
           <div
             className="work-panel-content"
+            tabIndex={isOn && !modalState ? 0 : -1}
             onMouseEnter={handleVideoHover}
             onMouseLeave={handleVideoOff}
-            onClick={() => triggerModal(content.id)}
+            onClick={handleClick}
+            onKeyPress={handleSubmit}
           >
             <img
               className="work-panel-image"
@@ -48,7 +67,7 @@ function WorkPanel({ isOn, content, triggerModal, mobile }) {
               alt={content.name}
               style={{opacity: videoIsPlaying ? 0 : 1}}
             />
-            {!mobile && <>
+            {!mobileCheck && <>
               <div className="work-panel-text">
                 <h3 className="work-panel-title">{content.name}</h3>
                 <p className="work-panel-slug">{content.slug}</p>
