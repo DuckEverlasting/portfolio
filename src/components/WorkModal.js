@@ -21,14 +21,14 @@ const modalData = {
   1: {
     title: "Key Conservation",
     techStack: "React Native, Redux, Node.js, Auth0",
-    description: <p>Social media app built to connect conservationists with potential supporters. Built by rotating teams of developers as part of Lambda Labs. I was a member of the original team for the project; <a href="https://youtu.be/vivicbwPDts" target="_blank">this video</a> is a presentation of the work my team did in the app's first two months.</p>,
+    description: <p>Social media app built to connect conservationists with potential supporters. Built by rotating teams of developers as part of Lambda Labs. I was a member of the original team for the project; <a href="https://youtu.be/vivicbwPDts" target="_blank" rel="noopener noreferrer">this video</a> is a presentation of the work my team did in the app's first two months.</p>,
     video: keyConsVid,
     link: "https://www.keyconservation.org/"
   },
   2: {
     title: "Gazorkazork",
     techStack: "React, Django",
-    description: <p>Online MUD (Multi-User Dungeon) prototype built by a small team in one week. My work on the project included a <a href="https://github.com/Gazorkazork/django_be/blob/master/util/room_layout.py" target="_blank">room generation algorithm</a> and a <a href="https://github.com/Gazorkazork/frontend/blob/master/src/utils/textParser.js" target="_blank">language parser</a>.</p>,
+    description: <p>Online MUD (Multi-User Dungeon) prototype built by a small team in one week. My work on the project included a <a href="https://github.com/Gazorkazork/django_be/blob/master/util/room_layout.py" target="_blank" rel="noopener noreferrer">room generation algorithm</a> and a <a href="https://github.com/Gazorkazork/frontend/blob/master/src/utils/textParser.js" target="_blank" rel="noopener noreferrer">language parser</a>.</p>,
     video: gazorkazorkVid,
     link: "https://gazorkazork.netlify.com/"
   },

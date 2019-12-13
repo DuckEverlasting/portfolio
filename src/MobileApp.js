@@ -19,7 +19,6 @@ function MobileApp() {
   
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
-    console.log(id)
     setModalState(id)
   }, [])
 
@@ -31,7 +30,6 @@ function MobileApp() {
     const wait = ms => {
       return new Promise((res, rej) => setTimeout(res, ms))
     }
-    console.log(scrollPosition, target)
     const halfTarget = target < scrollPosition ? scrollPosition - 15 : scrollPosition + 15
     setHold(true)
     await setScrollPosition(halfTarget)
