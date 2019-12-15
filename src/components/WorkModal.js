@@ -100,7 +100,8 @@ function WorkModal({ state, trigger }) {
   const workModalSpring = useSpring({
     transform: state ? "translateX(0%)" : "translateX(-200%)",
     config: { mass: 1, tension: 100, friction: 15 },
-    onRest: handleSpringRest
+    onRest: handleSpringRest,
+    delay: state ? 300 : 0,
   });
 
   const turnOff = () => {

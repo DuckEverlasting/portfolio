@@ -8,19 +8,25 @@ function isMobileDevice() {
 const mobile = isMobileDevice();
 
 function WorkPanel({ isOn, content, triggerModal, modalState }) {
+  const [videoIsRendered, setVideoIsRendered] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (mobile) return;
+    if (!videoIsRendered) return;
     content.ref.current.currentTime = content.start || 0;
-  }, [content.ref, content.start])
+    content.ref.current.onloadeddata = () => {
+      setVideoIsLoaded(true)
+    }
+  }, [content.ref, content.start, videoIsRendered])
 
   const workPanelSpring = useSpring({
     transform: isOn ? "rotateX(0)" : "rotateX(0.5turn)",
     config: isOn
       ? { mass: 1, tension: Math.random() * 30 + 40, friction: 2 }
       : { mass: 1, tension: 480, friction: 38 },
-    delay: isOn ? Math.random() * 200 + 1000 : Math.random() * 50
+    delay: isOn ? Math.random() * 200 + 1000 : Math.random() * 50,
+    onRest: () => {if (!mobile) setVideoIsRendered(true)}
   });
 
   const handleClick = ev => {
@@ -34,9 +40,10 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
     }
   }
 
-  const handleVideoHover = () => {
+  const handleVideoHover = async () => {
     if (!mobile) {
-      setVideoIsPlaying(true);
+      await setVideoIsRendered(true);
+      await setVideoIsPlaying(true)
       content.ref.current.play();
     };
   }
@@ -65,9 +72,9 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
               className="work-panel-image"
               src={content.static}
               alt={content.name}
-              style={{opacity: videoIsPlaying ? 0 : 1}}
+              style={{opacity: videoIsPlaying && videoIsLoaded ? 0 : 1}}
             />
-            {!mobile && <>
+            {videoIsRendered && <>
               <div className="work-panel-text">
                 <h3 className="work-panel-title">{content.name}</h3>
                 <p className="work-panel-slug">{content.slug}</p>
