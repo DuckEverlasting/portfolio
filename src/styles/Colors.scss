@@ -1,3 +1,4 @@
+$dark-black: rgb(12, 12, 20);
 $black: rgb(20, 20, 24);
 $near-black: rgb(43, 43, 48);
 $magenta: rgb(100, 0, 80);
@@ -8,9 +9,12 @@ $red: rgb(70, 0, 20);
 $grey-blue: rgb(148, 161, 178);
 $dark-grey-blue: rgb(120, 125, 138);
 $cyan: rgb(0, 184, 230);
+$dark-cyan: rgb(0, 43, 54);
 
 :export {
+  darkBlack: $dark-black;
   black: $black;
+  nearBlack: $near-black;
   magenta: $magenta;
   brightMagenta: $bright-magenta;
   violet: $violet;
@@ -18,4 +22,5 @@ $cyan: rgb(0, 184, 230);
   greyBlue: $grey-blue;
   darkGreyBlue: $dark-grey-blue;
   cyan: $cyan;
+  darkCyan: $dark-cyan;
 }

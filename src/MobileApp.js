@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
 import About from "./views/About";
@@ -16,13 +16,17 @@ function MobileApp() {
   const [gearPosition, setGearPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
   const [hold, setHold] = useState(false)
-  
+  const [starModalIsVisible, setStarModalIsVisible] = useState(false)
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
     setModalState(id)
   }, [])
 
   const appRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => setStarModalIsVisible(true), 1500)
+  }, [])
 
   const fakeScroll = async target => {
     if (scrollPosition === target) return;
@@ -114,7 +118,13 @@ function MobileApp() {
         className={`top-container ${topContainerIsUp && "up"}`}
         style={{height: "100%"}}
       >
-        <Starfield toggle={contentIsVisible} startButtonHandler={startButtonHandler} clear={clearStarfield} />
+        <Starfield
+          toggle={contentIsVisible}
+          startButtonHandler={startButtonHandler}
+          clear={clearStarfield}
+          starModalIsVisible={starModalIsVisible}
+          setStarModalIsVisible={setStarModalIsVisible}
+        />
       </div>
       {contentIsVisible && (
         <>

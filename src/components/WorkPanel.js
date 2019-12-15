@@ -24,7 +24,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   });
 
   const handleClick = ev => {
-    ev.currentTarget.blur();
+    ev.target.blur();
     triggerModal(content.id);
   }
 

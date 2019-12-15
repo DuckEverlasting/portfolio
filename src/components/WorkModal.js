@@ -20,7 +20,7 @@ const modalData = {
   },
   1: {
     title: "Key Conservation",
-    techStack: "React Native, Redux, Node.js, Auth0",
+    techStack: "React Native, Redux, Node.js,\u00A0Auth0",
     description: <p>Social media app built to connect conservationists with potential supporters. Built by rotating teams of developers as part of Lambda Labs. I was a member of the original team for the project; <a href="https://youtu.be/vivicbwPDts" target="_blank" rel="noopener noreferrer">this video</a> is a presentation of the work my team did in the app's first two months.</p>,
     video: keyConsVid,
     link: "https://www.keyconservation.org/"

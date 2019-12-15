@@ -37,10 +37,6 @@ function ContactUnfold({ isOn }) {
     delay: isOn ? 375 : 0
   });
 
-  const handleEmailButton = ev => {
-    ev.currentTarget.blur();
-  };
-
   return (
     <div className="contact-unfold-container">
       <animated.div className="contact-unfold-box first-box" style={unfoldSpr1}>

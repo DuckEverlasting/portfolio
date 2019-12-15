@@ -13,7 +13,7 @@ function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
-  
+  const [starModalIsVisible, setStarModalIsVisible] = useState(false)
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
     if (id !== 0) {
@@ -27,10 +27,15 @@ function App() {
   const appRef = useRef(null);
 
   useEffect(() => {
+    setTimeout(() => setStarModalIsVisible(true), 1500)
+  }, [])
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
     return () => { 
       window.removeEventListener("scroll", handleScroll, true);
     };
+    // eslint-disable-next-line
   }, []);
 
   const handleScroll = ev => {
@@ -85,6 +90,7 @@ function App() {
   };
 
   const startButtonHandler = async ev => {
+    ev.target.blur();
     if (!hasStarted) {
       await setHasStarted(true);
       setTimeout(() => scrollButtonHandler(ev, 33), 1100);
@@ -100,7 +106,7 @@ function App() {
       style={{ height: hasStarted ? "7000px" : "100%"}}
     >
       <div className="nav-bar">
-        <p className="page-title">Matt&nbspKlein</p>
+        <p className="page-title">Matt{'\u00A0'}Klein</p>
         <div className="inner-nav-bar">
           <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
             RESET
@@ -117,7 +123,13 @@ function App() {
         </div>
       </div>
       <div className="top-container">
-          <Starfield toggle={hasStarted} startButtonHandler={startButtonHandler} clear={clearStarfield}/>
+          <Starfield
+            toggle={hasStarted}
+            startButtonHandler={startButtonHandler}
+            clear={clearStarfield}
+            starModalIsVisible={starModalIsVisible}
+            setStarModalIsVisible={setStarModalIsVisible}
+          />
       </div>
       {hasStarted && (
         <>
