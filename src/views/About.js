@@ -3,11 +3,11 @@ import React from "react";
 import AboutSign from "../components/AboutSign.js";
 import AboutTextBox from "../components/AboutTextBox.js";
 
-export default function About({ scrollPosition }) {
+export default function About({ scrollPosition, skip }) {
   return (
     <div className="about-page">
-      <AboutSign isOn={22 < scrollPosition && scrollPosition < 38} />
-      <AboutTextBox isOn={26 < scrollPosition && scrollPosition < 35} />
+      <AboutSign isOn={!skip && 22 < scrollPosition && scrollPosition < 38} />
+      <AboutTextBox isOn={!skip && 26 < scrollPosition && scrollPosition < 35} />
     </div>
   );
 }

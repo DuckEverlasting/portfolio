@@ -13,7 +13,7 @@ function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
-  const [starModalIsVisible, setStarModalIsVisible] = useState(false)
+  const [starModalIsVisible, setStarModalIsVisible] = useState(true)
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
     if (id !== 0) {
@@ -25,10 +25,6 @@ function App() {
   }, [])
 
   const appRef = useRef(null);
-
-  useEffect(() => {
-    setTimeout(() => setStarModalIsVisible(true), 1500)
-  }, [])
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
@@ -105,23 +101,6 @@ function App() {
       ref={appRef}
       style={{ height: hasStarted ? "7000px" : "100%"}}
     >
-      <div className="nav-bar">
-        <p className="page-title">Matt{'\u00A0'}Klein</p>
-        <div className="inner-nav-bar">
-          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
-            RESET
-          </button>
-          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
-            ABOUT
-          </button>
-          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
-            WORK
-          </button>
-          <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
-            CONTACT
-          </button>
-        </div>
-      </div>
       <div className="top-container">
           <Starfield
             toggle={hasStarted}
@@ -133,13 +112,30 @@ function App() {
       </div>
       {hasStarted && (
         <>
+          <div className="nav-bar">
+            <p className="page-title">Matt{'\u00A0'}Klein</p>
+            <div className="inner-nav-bar">
+              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
+                RESET
+              </button>
+              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
+                ABOUT
+              </button>
+              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
+                WORK
+              </button>
+              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
+                CONTACT
+              </button>
+            </div>
+          </div>
           <WorkModal state={modalState} trigger={triggerModal} />
           <div className="gradient" />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
-            {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
-            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} modalState={modalState} triggerModal={triggerModal}/>}
-            {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
+            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")}/>}
+            <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} modalState={modalState} triggerModal={triggerModal}/>}
+            <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")}/>}
           </div>
         </>
       )}

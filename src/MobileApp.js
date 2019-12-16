@@ -95,25 +95,8 @@ function MobileApp() {
     <div
       className="app"
       ref={appRef}
-      style={{ height: "100%"}}
+      style={{ height: "100%", width: "100%", position: "fixed"}}
     >
-      <div className="nav-bar">
-        <p className="page-title">Matt{'\u00A0'}Klein</p>
-        <div className="inner-nav-bar">
-          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
-            RESET
-          </button>
-          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
-            ABOUT
-          </button>
-          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
-            WORK
-          </button>
-          <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
-            CONTACT
-          </button>
-        </div>
-      </div>
       <div 
         className={`top-container ${topContainerIsUp && "up"}`}
         style={{height: "100%"}}
@@ -128,12 +111,29 @@ function MobileApp() {
       </div>
       {contentIsVisible && (
         <>
+          <div className="nav-bar">
+            <p className="page-title">Matt{'\u00A0'}Klein</p>
+            <div className="inner-nav-bar">
+              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
+                RESET
+              </button>
+              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
+                ABOUT
+              </button>
+              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
+                WORK
+              </button>
+              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
+                CONTACT
+              </button>
+            </div>
+          </div>
           <WorkModal state={modalState} trigger={triggerModal} />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${gearPosition * 5}deg)`, transition: "transform 1s"}}/>
-            {!skipSections.includes("about") && <About scrollPosition={scrollPosition}/>}
-            {!skipSections.includes("work") && <Work scrollPosition={scrollPosition} triggerModal={triggerModal}/>}
-            {!skipSections.includes("contact") && <Contact scrollPosition={scrollPosition}/>}
+            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")}/>
+            <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} triggerModal={triggerModal}/>
+            <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")}/>
           </div>
         </>
       )}

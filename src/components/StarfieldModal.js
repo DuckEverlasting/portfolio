@@ -3,8 +3,13 @@ import { useSpring, animated } from "react-spring";
 
 function StarfieldModal({ isVisible, trigger }) {
   const starfieldModalSpring = useSpring({
+    from: {transform: "scale(0)"}, 
     transform: isVisible ? "scale(1)" : "scale(0)",
-    config: { mass: 1, tension: 200, friction: 15 },
+    config: isVisible ?
+      { mass: 1, tension: 200, friction: 15 }
+      :
+      { mass: 1, tension: 100, friction: 15 },
+    delay: isVisible ? 1800 : 0
   });
 
   const handleOffButton = ev => {

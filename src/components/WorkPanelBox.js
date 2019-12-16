@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useSpring, animated } from "react-spring";
 
 import WorkPanel from "../components/WorkPanel.js";
@@ -36,7 +36,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 1,
       name: "Key Conservation",
       slug: "Conservation outreach app",
-      ref: useRef(null),
       video: keyConsVid,
       static: keyConsStill,
     },
@@ -44,7 +43,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 2,
       name: "Gazorkazork",
       slug: "Online multiuser dungeon",
-      ref: useRef(null),
       video: gazorkazorkVid,
       static: gazorkazorkStill,
     },
@@ -52,7 +50,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 3,
       name: "Photosmith",
       slug: "Raster graphics editor",
-      ref: useRef(null),
       video: photosmithVid,
       static: photosmithStill,
       style: {
@@ -66,7 +63,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 4,
       name: "Hexsweeper",
       slug: "Customizable puzzle game",
-      ref: useRef(null),
       video: hexsweeperVid,
       static: hexsweeperStill,
       style: {
@@ -79,7 +75,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 5,
       name: "Rejeweler",
       slug: "Tile matching game",
-      ref: useRef(null),
       video: rejewelerVid,
       static: rejewelerStill,
       style: {},
@@ -88,7 +83,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 6,
       name: "Tetro",
       slug: "Falling tile game",
-      ref: useRef(null),
       video: tetroVid,
       static: tetroStill,
       style: {},
@@ -97,7 +91,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 7,
       name: "First Person Prototype",
       slug: "POC game environment",
-      ref: useRef(null),
       video: firstPersonVid,
       static: firstPersonStill,
       style: {},
@@ -107,7 +100,6 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
       id: 8,
       name: "5e Encounter Generator",
       slug: "Online D&D tool",
-      ref: useRef(null),
       video: encounterVid,
       static: encounterStill,
       style: {},

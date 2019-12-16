@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated } from "react-spring";
 
 function isMobileDevice() {
@@ -12,13 +12,13 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
+  const vidRef = useRef(null)
+
   useEffect(() => {
     if (!videoIsRendered) return;
-    content.ref.current.currentTime = content.start || 0;
-    content.ref.current.onloadeddata = () => {
-      setVideoIsLoaded(true)
-    }
-  }, [content.ref, content.start, videoIsRendered])
+    vidRef.current.currentTime = content.start || 0;
+    vidRef.current.onloadeddata = () => setVideoIsLoaded(true);
+  }, [vidRef, content.start, videoIsRendered])
 
   const workPanelSpring = useSpring({
     transform: isOn ? "rotateX(0)" : "rotateX(0.5turn)",
@@ -30,7 +30,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   });
 
   const handleClick = ev => {
-    ev.target.blur();
+    ev.currentTarget.blur();
     triggerModal(content.id);
   }
 
@@ -42,17 +42,16 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
 
   const handleVideoHover = async () => {
     if (!mobile) {
-      await setVideoIsRendered(true);
       await setVideoIsPlaying(true)
-      content.ref.current.play();
+      vidRef.current.play();
     };
   }
 
   const handleVideoOff = () => {
     if (!mobile) {
       setVideoIsPlaying(false);
-      content.ref.current.pause();
-      content.ref.current.currentTime = content.start || 0;
+      vidRef.current.pause();
+      vidRef.current.currentTime = content.start || 0;
     }
   }
 
@@ -82,7 +81,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
               <div className="work-panel-video-box">
                 <video
                   className="work-panel-video"
-                  ref={content.ref}
+                  ref={vidRef}
                   alt={content.name}
                   style={content.style}
                   muted={true}
@@ -99,4 +98,4 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   );
 }
 
-export default React.memo(WorkPanel);
+export default WorkPanel;

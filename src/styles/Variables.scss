@@ -1,9 +1,14 @@
+$title-font: "Oswald", sans-serif;
+$main-font: "Open Sans", sans-serif;
+
 $break-mobile: 450px;
 $break-tablet: 900px;
 $break-720: 1100px;
 $break-hd: 1500px;
 
 :export {
+  mainFont: $main-font;
+  titleFont: $title-font;
   breakMobile: $break-mobile;
   breakTablet: $break-tablet;
   break720: $break-720;

@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import screenBorder from "../assets/Screen-Border.png";
 import Particle from "../utils/Particle.js";
 import StarfieldModal from "../components/StarfieldModal.js"
+import AnimatedText from "../components/AnimatedText";
+import AnimatedButton from "../components/AnimatedButton";
 
-import { BorderScreenSC, CanvasSC, CanvasBoxSC, StartButtonSC, PageTitleSC } from "../styles/starfieldStyles.js"
+import { StartButtonSC } from "../styles/starfieldStyles.js";
 
 let state = {
   animFrame: 0,
@@ -118,20 +120,25 @@ export default function Starfield(props) {
 
   return (
     <>
-      <BorderScreenSC src={screenBorder} toggle={props.toggle} />
-      <CanvasBoxSC toggle={props.toggle}>
-        <StartButtonSC tabIndex={props.toggle ? -1 : 0} onClick={handleStart}>BEGIN</StartButtonSC>
-        <CanvasSC
+      <img className="border-screen" alt="" src={screenBorder} style={{opacity: props.toggle ? 1 : 0, transform: `scale(${props.toggle ? 1 : 1.3})`}} />
+      <div className="canvas-box" toggle={props.toggle} style={{transform: `scale(${props.toggle ? 1 : 1.1})`}}>
+        <AnimatedButton toggle={props.toggle} onClick={handleStart} className="animated-button">
+          ENTER
+        </AnimatedButton>
+        <canvas
+          className="canvas"
           width={dimensions.width * 4}
           height={dimensions.height * 4}
           onMouseMove={setMousePosition}
-          onTouchMove={setTouchPosition}
+          onTouchStart={setTouchPosition}
           onTouchEnd={setTouchEnd}
           ref={canvasRef}
         />
-        <PageTitleSC>Matt Klein Development</PageTitleSC>
-        <StarfieldModal isVisible={props.starModalIsVisible} trigger={() => props.setStarModalIsVisible(false)}/>
-      </CanvasBoxSC>
+        <h1 className="page-title">
+          <AnimatedText string="Matt Klein Development"/>
+        </h1>
+        <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} trigger={() => props.setStarModalIsVisible(false)}/>
+      </div>
     </>
   );
 }
