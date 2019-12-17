@@ -9,7 +9,7 @@ function AnimatedButton(props) {
 
   setButtonSpring(i => ({
     transform: "scale(1)",
-    delay: 1000,
+    delay: 1500,
     config: {tension: 200, friction: 10}
   }))
 

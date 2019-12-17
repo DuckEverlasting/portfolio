@@ -5,11 +5,14 @@ import About from "./views/About";
 import Work from "./views/Work";
 import Contact from "./views/Contact";
 import WorkModal from "./components/WorkModal";
+import GradientWipe from "./components/GradientWipe";
 
 import gear from "./assets/gear.png";
 import colors from "./styles/Colors.scss";
 
 function App() {
+  const [appIsLoaded, setAppIsLoaded] = useState(false)
+  const [wipeIsMounted, setWipeIsMounted] = useState(true)
   const [clearStarfield, setClearStarfield] = useState(false)
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -29,6 +32,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
+    setTimeout(() => setAppIsLoaded(true), 500)
     return () => { 
       window.removeEventListener("scroll", handleScroll, true);
     };
@@ -102,14 +106,16 @@ function App() {
       ref={appRef}
       style={{ height: hasStarted ? "7000px" : "100%"}}
     >
+      {wipeIsMounted && <GradientWipe isVisible={!appIsLoaded} trigger={setWipeIsMounted} />}
       <div className="top-container">
-          <Starfield
-            toggle={hasStarted}
-            startButtonHandler={startButtonHandler}
-            clear={clearStarfield}
-            starModalIsVisible={starModalIsVisible}
-            setStarModalIsVisible={setStarModalIsVisible}
-          />
+        <Starfield
+          init={appIsLoaded}
+          toggle={hasStarted}
+          startButtonHandler={startButtonHandler}
+          clear={clearStarfield}
+          starModalIsVisible={starModalIsVisible}
+          setStarModalIsVisible={setStarModalIsVisible}
+        />
       </div>
       {hasStarted && (
         <>

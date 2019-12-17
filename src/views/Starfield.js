@@ -12,7 +12,7 @@ let state = {
 
 export default function Starfield(props) {
   const canvasRef = useRef(null);
-  let totalParticles = 40;
+  let totalParticles = 50;
   let particles = [];
 
   let [dimensions, setDimensions] = useState({
@@ -39,7 +39,7 @@ export default function Starfield(props) {
 
     ctx.globalAlpha = 0;
     
-    if (!props.toggle) {
+    if (!props.toggle && props.init) {
       startAnimateParticles(canvas);
       animateParticles();
     }
@@ -64,7 +64,7 @@ export default function Starfield(props) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (ctx.globalAlpha < 1) {
-        ctx.globalAlpha += .006
+        ctx.globalAlpha += .003
       }
 
       // Draw all of our particles in their new location
@@ -77,7 +77,7 @@ export default function Starfield(props) {
       window.cancelAnimationFrame(state.animFrame)
       window.removeEventListener("resize", handleResize);
     }
-  }, [props.toggle]);
+  }, [props.toggle, props.init]);
 
   useEffect(() => {
     if (props.clear) {
@@ -104,13 +104,6 @@ export default function Starfield(props) {
     };
   }
 
-  function setTouchEnd() {
-    state = {
-      ...state,
-      mousePosition: { x: -1000, y: -1000 }
-    };
-  }
-
   function handleStart(ev) {
     props.setStarModalIsVisible(false);
     props.startButtonHandler(ev);
@@ -125,8 +118,7 @@ export default function Starfield(props) {
           width={dimensions.width * 4}
           height={dimensions.height * 4}
           onMouseMove={setMousePosition}
-          onTouchStart={setTouchPosition}
-          onTouchEnd={setTouchEnd}
+          onTouchMove={setTouchPosition}
           ref={canvasRef}
         />
         <div className="starfield-content-box">
@@ -136,7 +128,7 @@ export default function Starfield(props) {
           <AnimatedButton onClick={handleStart} className="animated-button">
             ENTER
           </AnimatedButton>
-          <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} trigger={() => props.setStarModalIsVisible(false)}/>
+          <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} />
         </div>
       </div>
     </>

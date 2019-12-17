@@ -1,15 +1,18 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
 import About from "./views/About";
 import Work from "./views/Work";
 import Contact from "./views/Contact";
 import WorkModal from "./components/WorkModal";
+import GradientWipe from "./components/GradientWipe";
 
 import gear from "./assets/gear.png";
 import colors from "./styles/Colors.scss";
 
 function MobileApp() {
+  const [appIsLoaded, setAppIsLoaded] = useState(false)
+  const [wipeIsMounted, setWipeIsMounted] = useState(true)
   const [topContainerIsUp, setTopContainerIsUp] = useState(false);
   const [contentIsVisible, setContentIsVisible] = useState(false);
   const [clearStarfield, setClearStarfield] = useState(false)
@@ -24,6 +27,10 @@ function MobileApp() {
   }, [])
 
   const appRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => setAppIsLoaded(true), 500)
+  }, []);
 
   const fakeScroll = async target => {
     if (scrollPosition === target) return;
@@ -45,7 +52,7 @@ function MobileApp() {
     if (hold) {
       return
     }
-    
+
     // check for sections to skip
     let toSkip = []
     if (target === 0) {
@@ -94,11 +101,13 @@ function MobileApp() {
       ref={appRef}
       style={{ height: "100%", width: "100%", position: "fixed"}}
     >
+      {wipeIsMounted && <GradientWipe isVisible={!appIsLoaded} trigger={setWipeIsMounted} />}
       <div 
         className={`top-container ${topContainerIsUp && "up"}`}
         style={{height: "100%"}}
       >
         <Starfield
+          init={appIsLoaded}
           toggle={contentIsVisible}
           startButtonHandler={startButtonHandler}
           clear={clearStarfield}
@@ -109,7 +118,7 @@ function MobileApp() {
       {contentIsVisible && (
         <>
           <div className="nav-bar">
-      <p className="nav-page-title">Matt{'\u00A0'}Klein</p>
+          <p className="nav-page-title">Matt{'\u00A0'}Klein</p>
             <div className="inner-nav-bar">
               <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
                 RESET

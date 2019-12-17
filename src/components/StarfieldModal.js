@@ -9,7 +9,7 @@ function StarfieldModal({ isVisible, trigger }) {
       { mass: 1, tension: 200, friction: 15 }
       :
       config.default,
-    delay: isVisible ? 1800 : 0
+    delay: isVisible ? 3500 : 0
   });
 
   const handleOffButton = ev => {

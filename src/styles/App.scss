@@ -106,6 +106,22 @@ body {
     }
   }
 
+  .gradient-wipe {
+    position: fixed;
+    width: 160%;
+    min-width: 250vh;
+    height: 100vh;
+    right: 0;
+    background: $black;
+    background: linear-gradient(
+      120deg,
+      rgba(0, 0, 0, 0) 20%,
+      $black 23%,
+    );
+    transition: background 3s;
+    z-index: 10;
+  }
+
   .top-container {
     position: relative;
     height: 100vh;

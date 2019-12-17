@@ -12,8 +12,8 @@ function AnimatedWord({ word }) {
   setTextSprings(i => ({
     display: "inline-block",
     transform: "scale(1)",
-    delay: 200 + Math.floor(Math.random() * 800),
-    config: {tension: 200, friction: 10}
+    delay: 600 + Math.floor(Math.random() * 800),
+    config: {tension: 500, friction: 15}
   }))
 
   return (

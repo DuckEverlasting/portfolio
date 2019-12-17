@@ -1,3 +1,8 @@
+const screenWidth = window.innerWidth
+const screenHeight = window.innerHeight
+const smallestDimension = screenWidth < screenHeight ? screenWidth : screenHeight
+console.log(smallestDimension)
+
 export default class Particle {
   constructor(x, y, hue) {
     this.hue =
@@ -13,13 +18,13 @@ export default class Particle {
   };
 
   // Size the particle
-  radius = 4 + Math.random() * 4;
+  radius = 3 + smallestDimension / 200 + Math.random() * 4;
 
   // Set color variance
   hueVariance = 50;
 
   // Set radius of circle around mouse the particle will avoid
-  mouseAvoidRadius = 500;
+  mouseAvoidRadius = 100 * this.radius;
 
   // Set how quickly the particle should move away from the mouse (higher = faster)
   mouseAvoidStrength = 5;
@@ -34,7 +39,7 @@ export default class Particle {
     ctx.arc(p.currentX, p.currentY, p.radius, 0, Math.PI * 2);
     ctx.fillStyle = `hsl(${p.hue}, 100%, 70%)`;
     ctx.shadowColor = `hsl(${p.hue}, 100%, 70%)`;
-    ctx.shadowBlur = 25;
+    ctx.shadowBlur = 2 * p.radius;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.fill();
@@ -59,12 +64,10 @@ export default class Particle {
     );
 
     if (mouseDistance < p.mouseAvoidRadius) {
-      // reset base speed with angle
 
       let avoidSpeed =
         p.mouseAvoidStrength *
         Math.pow((p.mouseAvoidRadius - mouseDistance) / p.mouseAvoidRadius, 2);
-      // also calc currentSpeed ugh
 
       let moveDistX = ((p.currentX - mpX) * avoidSpeed) / mouseDistance;
       let moveDistY = ((p.currentY - mpY) * avoidSpeed) / mouseDistance;
