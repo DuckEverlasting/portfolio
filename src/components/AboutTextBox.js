@@ -4,7 +4,8 @@ import { useSpring, animated, config } from "react-spring";
 function AboutTextBox({ isOn }) {
   const textBoxHeightSpr = useSpring({
     height: isOn ? "100%" : "0%",
-    delay: isOn ? 200 : 220,
+    borderWidth: isOn ? "3px" : "0px",
+    delay: isOn ? 200 : 240,
     config: isOn
       ? config.easy
       : config.stiff
@@ -14,7 +15,7 @@ function AboutTextBox({ isOn }) {
     delay: isOn ? 700 : 10,
     config: isOn
       ? config.default
-      : {tension: 350, friction: 30}
+      : {tension: 650, friction: 50}
   })
 
   return (
