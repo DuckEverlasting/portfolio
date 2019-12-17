@@ -7,6 +7,7 @@ import Contact from "./views/Contact";
 import WorkModal from "./components/WorkModal";
 
 import gear from "./assets/gear.png";
+import colors from "./styles/Colors.scss";
 
 function MobileApp() {
   const [topContainerIsUp, setTopContainerIsUp] = useState(false);
@@ -16,17 +17,13 @@ function MobileApp() {
   const [gearPosition, setGearPosition] = useState(0);
   const [skipSections, setSkipSections] = useState([])
   const [hold, setHold] = useState(false)
-  const [starModalIsVisible, setStarModalIsVisible] = useState(false)
+  const [starModalIsVisible, setStarModalIsVisible] = useState(true)
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
     setModalState(id)
   }, [])
 
   const appRef = useRef(null);
-
-  useEffect(() => {
-    setTimeout(() => setStarModalIsVisible(true), 1500)
-  }, [])
 
   const fakeScroll = async target => {
     if (scrollPosition === target) return;
@@ -112,18 +109,18 @@ function MobileApp() {
       {contentIsVisible && (
         <>
           <div className="nav-bar">
-            <p className="page-title">Matt{'\u00A0'}Klein</p>
+      <p className="nav-page-title">Matt{'\u00A0'}Klein</p>
             <div className="inner-nav-bar">
               <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
                 RESET
               </button>
-              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
+              <button className="nav-link mobile" tabIndex={0} style={!skipSections.includes("about") && scrollPosition < 35 ? {background: colors.brightMagenta} : null} onClick={ev => scrollButtonHandler(ev, 39)}>
                 ABOUT
               </button>
-              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
+              <button className="nav-link mobile" tabIndex={0} style={!skipSections.includes("work") && 63 < scrollPosition && scrollPosition < 69 ? {background: colors.brightMagenta} : null} onClick={ev => scrollButtonHandler(ev, 60)}>
                 WORK
               </button>
-              <button className="nav-link mobile" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
+              <button className="nav-link mobile" tabIndex={0} style={!skipSections.includes("contact") && 95 < scrollPosition ? {background: colors.brightMagenta} : null} onClick={ev => scrollButtonHandler(ev, 88)}>
                 CONTACT
               </button>
             </div>

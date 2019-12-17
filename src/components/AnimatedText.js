@@ -19,7 +19,7 @@ function AnimatedWord({ word }) {
   return (
     <nobr> 
       {textSprings.map((props, index) => {
-        return <animated.span style={props}>{characters[index]}</animated.span>
+        return <animated.span key={index} style={props}>{characters[index]}</animated.span>
       })}
     </nobr>
   );
@@ -31,12 +31,12 @@ function AnimatedText({string}) {
     <> 
       {words.map((word, index) => {
         return index === words.length - 1 ?
-          <AnimatedWord word={word}/>
+          <AnimatedWord key={index} word={word}/>
           :
-          <>
+          <span key={index}>
             <AnimatedWord word={word}/>
             <span> </span>
-          </>
+          </span>
       })}
     </>
   );

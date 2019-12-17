@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated, config } from "react-spring";
 
 function StarfieldModal({ isVisible, trigger }) {
   const starfieldModalSpring = useSpring({
@@ -8,7 +8,7 @@ function StarfieldModal({ isVisible, trigger }) {
     config: isVisible ?
       { mass: 1, tension: 200, friction: 15 }
       :
-      { mass: 1, tension: 100, friction: 15 },
+      config.default,
     delay: isVisible ? 1800 : 0
   });
 
@@ -26,7 +26,7 @@ function StarfieldModal({ isVisible, trigger }) {
         <button className="modal-off-button" onClick={handleOffButton}>
           X
         </button>
-        <p className="starfield-modal-text">EXPLANATION TEXT GOES HERE! LA DI DA DI DA</p>
+        <p className="starfield-modal-text">Welcome! This is an interactive website. Feel free to play around with the floating lights, or press ENTER if you're ready to move{'\u00A0'}on.</p>
       </animated.div>
     </div>
   );

@@ -7,8 +7,8 @@ function Contact({ scrollPosition, skip }) {
 
   return (
     <div className="contact-page">
-      <ContactSign isOn={!skip && 85 < scrollPosition}/>
-      <ContactUnfold isOn={!skip && 90 < scrollPosition}/>
+      <ContactSign isOn={!skip && 80 < scrollPosition}/>
+      <ContactUnfold isOn={!skip && 85 < scrollPosition}/>
     </div>
   );
 }

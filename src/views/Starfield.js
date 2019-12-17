@@ -5,8 +5,6 @@ import StarfieldModal from "../components/StarfieldModal.js"
 import AnimatedText from "../components/AnimatedText";
 import AnimatedButton from "../components/AnimatedButton";
 
-import { StartButtonSC } from "../styles/starfieldStyles.js";
-
 let state = {
   animFrame: 0,
   mousePosition: { x: -1000, y: -1000 }
@@ -121,10 +119,7 @@ export default function Starfield(props) {
   return (
     <>
       <img className="border-screen" alt="" src={screenBorder} style={{opacity: props.toggle ? 1 : 0, transform: `scale(${props.toggle ? 1 : 1.3})`}} />
-      <div className="canvas-box" toggle={props.toggle} style={{transform: `scale(${props.toggle ? 1 : 1.1})`}}>
-        <AnimatedButton toggle={props.toggle} onClick={handleStart} className="animated-button">
-          ENTER
-        </AnimatedButton>
+      <div className="starfield-box" style={{transform: `scale(${props.toggle ? 1 : 1.1})`}}>
         <canvas
           className="canvas"
           width={dimensions.width * 4}
@@ -134,10 +129,15 @@ export default function Starfield(props) {
           onTouchEnd={setTouchEnd}
           ref={canvasRef}
         />
-        <h1 className="page-title">
-          <AnimatedText string="Matt Klein Development"/>
-        </h1>
-        <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} trigger={() => props.setStarModalIsVisible(false)}/>
+        <div className="starfield-content-box">
+          <h1 className="page-title">
+            <AnimatedText string="Matt Klein Development"/>
+          </h1>
+          <AnimatedButton onClick={handleStart} className="animated-button">
+            ENTER
+          </AnimatedButton>
+          <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} trigger={() => props.setStarModalIsVisible(false)}/>
+        </div>
       </div>
     </>
   );

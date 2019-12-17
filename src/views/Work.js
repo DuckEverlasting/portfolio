@@ -6,8 +6,8 @@ import WorkTelescope from "../components/WorkTelescope.js";
 function Work({ scrollPosition, skip, triggerModal, modalState }) {
   return (
     <div className="work-page">
-      <WorkSign isOn={!skip && 57 < scrollPosition && scrollPosition < 71} />
-      <WorkTelescope isOn={!skip && 60 < scrollPosition && scrollPosition < 68} triggerModal={triggerModal} modalState={modalState}/>
+      <WorkSign isOn={!skip && 52 < scrollPosition && scrollPosition < 71} />
+      <WorkTelescope isOn={!skip && 57 < scrollPosition && scrollPosition < 68} triggerModal={triggerModal} modalState={modalState}/>
     </div>
   );
 }

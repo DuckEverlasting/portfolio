@@ -7,6 +7,7 @@ import Contact from "./views/Contact";
 import WorkModal from "./components/WorkModal";
 
 import gear from "./assets/gear.png";
+import colors from "./styles/Colors.scss";
 
 function App() {
   const [clearStarfield, setClearStarfield] = useState(false)
@@ -113,18 +114,18 @@ function App() {
       {hasStarted && (
         <>
           <div className="nav-bar">
-            <p className="page-title">Matt{'\u00A0'}Klein</p>
+            <p className="nav-page-title" onClick={ev => scrollButtonHandler(ev, 100)}>Matt{'\u00A0'}Klein</p>
             <div className="inner-nav-bar">
               <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 0, true)}>
                 RESET
               </button>
-              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 33)}>
+              <button className="nav-link" tabIndex={0} style={!skipSections.includes("about") && scrollPosition < 50 ? {background: colors.brightMagenta} : null} onClick={ev => scrollButtonHandler(ev, 33)}>
                 ABOUT
               </button>
-              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 66)}>
+              <button className="nav-link" tabIndex={0} style={!skipSections.includes("work") && 50 < scrollPosition && scrollPosition < 75 ? {background: colors.brightMagenta} : null} onClick={ev => scrollButtonHandler(ev, 66)}>
                 WORK
               </button>
-              <button className="nav-link" tabIndex={0} onClick={ev => scrollButtonHandler(ev, 100)}>
+              <button className="nav-link" tabIndex={0} style={!skipSections.includes("contact") && 75 < scrollPosition ? {background: colors.brightMagenta} : null} onClick={ev => scrollButtonHandler(ev, 100)}>
                 CONTACT
               </button>
             </div>

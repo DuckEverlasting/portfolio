@@ -4,21 +4,21 @@ import { useSpring, animated, config } from "react-spring";
 function AboutTextBox({ isOn }) {
   const textBoxHeightSpr = useSpring({
     height: isOn ? "100%" : "0%",
-    delay: isOn ? 0 : 220,
+    delay: isOn ? 200 : 220,
     config: isOn
-      ? config.default
+      ? config.easy
       : config.stiff
   })
   const textBoxWidthSpr = useSpring({
     width: isOn ? "100%" : "0%",
-    delay: isOn ? 400 : 10,
+    delay: isOn ? 700 : 10,
     config: isOn
       ? config.default
       : config.stiff
   })
   const textWidthSpr = useSpring({
     transform: isOn ? "scaleX(1)" : "scaleX(0)",
-    delay: isOn ? 390 : 0,
+    delay: isOn ? 690 : 0,
     config: isOn
       ? config.default
       : config.stiff
@@ -29,7 +29,7 @@ function AboutTextBox({ isOn }) {
       {
         <animated.div className="text-box" style={{...textBoxWidthSpr, ...textBoxHeightSpr}}>
           <animated.p className="about-text" style={textWidthSpr}>
-            I am a full stack web developer based in Los Angeles, CA. I enjoy making things that work, and fixing things that don't.
+            I am a full stack web developer based in Los Angeles, CA. I enjoy making things that work, and fixing things that don't. I come from 
           </animated.p>
         </animated.div>
       }
