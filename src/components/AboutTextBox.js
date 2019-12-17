@@ -14,23 +14,19 @@ function AboutTextBox({ isOn }) {
     delay: isOn ? 700 : 10,
     config: isOn
       ? config.default
-      : config.stiff
-  })
-  const textWidthSpr = useSpring({
-    transform: isOn ? "scaleX(1)" : "scaleX(0)",
-    delay: isOn ? 690 : 0,
-    config: isOn
-      ? config.default
-      : config.stiff
+      : {tension: 350, friction: 30}
   })
 
   return (
     <div className="text-box-wrapper">
       {
         <animated.div className="text-box" style={{...textBoxWidthSpr, ...textBoxHeightSpr}}>
-          <animated.p className="about-text" style={textWidthSpr}>
-            I am a full stack web developer based in Los Angeles, CA. I enjoy making things that work, and fixing things that don't. I come from 
-          </animated.p>
+          <p className="about-text">
+            I am a full stack web developer based in Los Angeles, CA. 
+            I enjoy making things that work, and fixing things that don't. 
+            My background is in film and television production; I've been an editor, a graphic designer, and a colorist. 
+            Now I'm looking for the next challenge. 
+          </p>
         </animated.div>
       }
     </div>

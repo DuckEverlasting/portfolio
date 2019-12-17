@@ -92,7 +92,6 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
             </>}
           </div>
         </div>
-        <div className="work-panel-back" />
       </animated.div>
     </div>
   );

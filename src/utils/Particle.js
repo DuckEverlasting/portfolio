@@ -32,19 +32,19 @@ export default class Particle {
     // Draw a circle at the current location
     ctx.beginPath();
     ctx.arc(p.currentX, p.currentY, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `hsl(${p.hue}, 100%, 50%)`;
-    ctx.shadowColor = `hsl(${p.hue}, 100%, 50%)`;
+    ctx.fillStyle = `hsl(${p.hue}, 100%, 70%)`;
+    ctx.shadowColor = `hsl(${p.hue}, 100%, 70%)`;
     ctx.shadowBlur = 25;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.fill();
     ctx.closePath();
-    ctx.beginPath();
-    ctx.arc(p.currentX, p.currentY, p.radius / 1.5, 0, Math.PI * 2);
-    ctx.fillStyle = `hsl(${p.hue}, 100%, 70%)`;
-    ctx.shadowColor = `hsl(${p.hue}, 100%, 70%)`;
-    ctx.shadowBlur = 10;
-    ctx.fill();
+    // ctx.beginPath();
+    // ctx.arc(p.currentX, p.currentY, p.radius / 1.5, 0, Math.PI * 2);
+    // ctx.fillStyle = `hsl(${p.hue}, 100%, 70%)`;
+    // ctx.shadowColor = `hsl(${p.hue}, 100%, 70%)`;
+    // ctx.shadowBlur = 10;
+    // ctx.fill();
 
     // Update the particle's location
     p.currentX += p.speed.x;
