@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated, config } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 function GradientWipe({ isVisible, trigger }) {
   const gradientWipeSpring = useSpring({

@@ -19,6 +19,7 @@ function App() {
   const [skipSections, setSkipSections] = useState([])
   const [starModalIsVisible, setStarModalIsVisible] = useState(true)
   const [modalState, setModalState] = useState(0)
+  
   const triggerModal = useCallback(id => {
     if (id !== 0) {
       document.body.style.overflow = 'hidden';

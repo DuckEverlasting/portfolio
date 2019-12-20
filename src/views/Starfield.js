@@ -7,12 +7,12 @@ import AnimatedButton from "../components/AnimatedButton";
 
 let state = {
   animFrame: 0,
-  mousePosition: { x: -1000, y: -1000 }
+  mousePosition: { x: Infinity, y: Infinity }
 };
 
 export default function Starfield(props) {
   const canvasRef = useRef(null);
-  let totalParticles = 50;
+  let totalParticles = 100;
   let particles = [];
 
   let [dimensions, setDimensions] = useState({
@@ -86,14 +86,14 @@ export default function Starfield(props) {
     }
   }, [props.clear])
 
-  function setMousePosition(ev) {
+  function handleMouse(ev) {
     state = {
       ...state,
       mousePosition: { x: ev.nativeEvent.offsetX, y: ev.nativeEvent.offsetY }
     };
   }
 
-  function setTouchPosition(ev) {
+  function handleTouch(ev) {
     const rect = ev.target.getBoundingClientRect();
     const x = ev.nativeEvent.targetTouches[0].pageX - rect.left;
     const y = ev.nativeEvent.targetTouches[0].pageY - rect.top;
@@ -101,6 +101,13 @@ export default function Starfield(props) {
     state = {
       ...state,
       mousePosition: { x, y }
+    };
+  }
+
+  function handleTouchEnd(ev) {
+    state = {
+      ...state,
+      mousePosition: { x: Infinity, y: Infinity }
     };
   }
 
@@ -117,8 +124,10 @@ export default function Starfield(props) {
           className="canvas"
           width={dimensions.width * 4}
           height={dimensions.height * 4}
-          onMouseMove={setMousePosition}
-          onTouchMove={setTouchPosition}
+          onMouseMove={handleMouse}
+          onTouchStart={handleTouch}
+          onTouchMove={handleTouch}
+          onTouchEnd={handleTouchEnd}
           ref={canvasRef}
         />
         <div className="starfield-content-box">

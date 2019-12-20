@@ -3,6 +3,11 @@ const screenHeight = window.innerHeight
 const smallestDimension = screenWidth < screenHeight ? screenWidth : screenHeight
 console.log(smallestDimension)
 
+// helper to get current speed
+const getDelta = (data) => Math.sqrt(
+  Math.pow(data.x, 2) + Math.pow(data.y, 2)
+);
+
 export default class Particle {
   constructor(x, y, hue) {
     this.hue =
@@ -11,11 +16,19 @@ export default class Particle {
     this.currentY = y;
   }
 
-  // Set the speed for the particle
-  speed = {
-    x: -1 + Math.random() * 2,
-    y: -1 + Math.random() * 2
+  // Set the initial speed and direction for the particle
+  initSpeed = {
+    x: (-1 + Math.random() * 2),
+    y: (-1 + Math.random() * 2)
   };
+
+  speed = {...this.initSpeed}
+
+  // Calculate base speed
+  minSpeed = getDelta(this.initSpeed);
+
+  // Set rate of deacceleration
+  friction = 0.99
 
   // Size the particle
   radius = 3 + smallestDimension / 200 + Math.random() * 4;
@@ -27,7 +40,9 @@ export default class Particle {
   mouseAvoidRadius = 100 * this.radius;
 
   // Set how quickly the particle should move away from the mouse (higher = faster)
-  mouseAvoidStrength = 5;
+  mouseAvoidStrength = 2;
+
+  lastMouseDistance = Infinity;
 
   // Function to draw particle on canvas (and update location based on speed)
   draw = (canvas, state) => {
@@ -63,17 +78,33 @@ export default class Particle {
       Math.pow(p.currentX - mpX, 2) + Math.pow(p.currentY - mpY, 2)
     );
 
-    if (mouseDistance < p.mouseAvoidRadius) {
+    //
+    // if (mouseDistance < p.mouseAvoidRadius) {
+    //   // reset speed with angle
 
+    //   let avoidSpeed =
+    //     p.mouseAvoidStrength *
+    //     Math.pow((p.mouseAvoidRadius - mouseDistance) / p.mouseAvoidRadius, 2);
+    //   // also calc currentSpeed ugh
+
+    //   let moveDistX = ((p.currentX - mpX) * avoidSpeed) / mouseDistance;
+    //   let moveDistY = ((p.currentY - mpY) * avoidSpeed) / mouseDistance;
+
+    //   p.currentX += moveDistX;
+    //   p.currentY += moveDistY;
+    // }
+
+    if (mouseDistance < p.mouseAvoidRadius && mouseDistance < p.lastMouseDistance) {
       let avoidSpeed =
         p.mouseAvoidStrength *
         Math.pow((p.mouseAvoidRadius - mouseDistance) / p.mouseAvoidRadius, 2);
 
-      let moveDistX = ((p.currentX - mpX) * avoidSpeed) / mouseDistance;
-      let moveDistY = ((p.currentY - mpY) * avoidSpeed) / mouseDistance;
+      p.speed.x += ((p.currentX - mpX) * avoidSpeed) / mouseDistance;
+      p.speed.y += ((p.currentY - mpY) * avoidSpeed) / mouseDistance;
 
-      p.currentX += moveDistX;
-      p.currentY += moveDistY;
+    } else if (getDelta(p.speed) > p.minSpeed) {
+      p.speed.x *= p.friction;
+      p.speed.y *= p.friction;
     }
 
     if (p.currentX <= 0) {
@@ -91,5 +122,7 @@ export default class Particle {
       p.currentY = canvas.height;
       p.speed.y *= -1;
     }
+
+    p.lastMouseDistance = mouseDistance;
   };
 }
