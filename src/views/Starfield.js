@@ -137,7 +137,7 @@ export default function Starfield(props) {
           <AnimatedButton onClick={handleStart} className="animated-button">
             ENTER
           </AnimatedButton>
-          <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} />
+          <StarfieldModal tabIndex={props.toggle ? -1 : 0} isVisible={props.starModalIsVisible} trigger={() => props.setStarModalIsVisible(false)}/>
         </div>
       </div>
     </>
