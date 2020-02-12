@@ -1,6 +1,7 @@
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
 const smallestDimension = screenWidth < screenHeight ? screenWidth : screenHeight
+console.log(smallestDimension)
 
 // helper to get current speed
 const getDelta = (data) => Math.sqrt(
@@ -8,40 +9,38 @@ const getDelta = (data) => Math.sqrt(
 );
 
 export default class Particle {
-  constructor({x, y, hue, size, baseSpeed, avoidRadius, avoidStrength, clickStrength}) {
-    let variance = (-0.5 * this.hueVariance + Math.random() * this.hueVariance);
+  constructor(x, y, hue) {
     this.hue =
-      (hue + variance);
-    console.log(this.hue)
+      hue + (-0.5 * this.hueVariance + Math.random() * this.hueVariance);
     this.currentX = x;
     this.currentY = y;
-    // Size the particle
-    this.radius = (3 + smallestDimension / 200 + Math.random() * 4) * size;
-    // Set radius of circle around mouse the particle will avoid
-    this.mouseAvoidRadius = avoidRadius * (5 + smallestDimension / 200);
-    // Set how quickly the particle should move away from the mouse (higher = faster)
-    this.mouseAvoidStrength = avoidStrength;
-    // Set force multiplier when mouse is clicked
-    this.mouseClickForce = clickStrength;
-    // Set the initial speed and direction for the particle
-    this.initSpeed = {
-      x: (-1 + Math.random() * 2) * baseSpeed,
-      y: (-1 + Math.random() * 2 ) * baseSpeed
-    };
-    this.speed = {...this.initSpeed}
-    // Calculate base speed
-    this.minSpeed = getDelta(this.initSpeed);
   }
 
+  // Set the initial speed and direction for the particle
+  initSpeed = {
+    x: (-1 + Math.random() * 2),
+    y: (-1 + Math.random() * 2)
+  };
+
+  speed = {...this.initSpeed}
+
+  // Calculate base speed
+  minSpeed = getDelta(this.initSpeed);
 
   // Set rate of deacceleration
   friction = 0.99
 
+  // Size the particle
+  radius = 3 + smallestDimension / 200 + Math.random() * 4;
+
   // Set color variance
   hueVariance = 50;
 
-  // Set area of effect multiplier when mouse is clicked 
-  mouseClickRadius = 1.25;
+  // Set radius of circle around mouse the particle will avoid
+  mouseAvoidRadius = 100 * this.radius;
+
+  // Set how quickly the particle should move away from the mouse (higher = faster)
+  mouseAvoidStrength = 2;
 
   lastMouseDistance = Infinity;
 
@@ -95,17 +94,7 @@ export default class Particle {
     //   p.currentY += moveDistY;
     // }
 
-
-    if (state.mouseClicked && mouseDistance < p.mouseAvoidRadius * p.mouseClickRadius) {
-      let avoidSpeed =
-        p.mouseAvoidStrength *
-        p.mouseClickForce *
-        Math.pow((p.mouseAvoidRadius - mouseDistance) / p.mouseAvoidRadius, 2);
-
-      p.speed.x += ((p.currentX - mpX) * avoidSpeed) / mouseDistance;
-      p.speed.y += ((p.currentY - mpY) * avoidSpeed) / mouseDistance;
-    }
-    else if (mouseDistance < p.mouseAvoidRadius && mouseDistance < p.lastMouseDistance) {
+    if (mouseDistance < p.mouseAvoidRadius && mouseDistance < p.lastMouseDistance) {
       let avoidSpeed =
         p.mouseAvoidStrength *
         Math.pow((p.mouseAvoidRadius - mouseDistance) / p.mouseAvoidRadius, 2);
