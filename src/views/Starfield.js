@@ -4,6 +4,7 @@ import Particle from "../utils/Particle.js";
 import StarfieldModal from "../components/StarfieldModal.js";
 import AnimatedText from "../components/AnimatedText";
 import AnimatedButton from "../components/AnimatedButton";
+import StarfieldSettings from "../components/StarfieldSettings";
 
 let state = {
   animFrame: 0,
@@ -25,7 +26,6 @@ export default function Starfield(props) {
     clickStrength: 40
   });
   const [newSettings, setNewSettings] = useState(settings);
-  
 
   let [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -40,7 +40,7 @@ export default function Starfield(props) {
     const handleResize = () => {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
       // eslint-disable-next-line
-      particles.current.current = [];
+      particles.current = [];
       ctx.globalAlpha = 0;
       if (!props.toggle) {
         startAnimateParticles(canvas);
@@ -71,7 +71,7 @@ export default function Starfield(props) {
 
   useEffect(() => {
     if (firstLoad) {
-      setFirstLoad(false)
+      setFirstLoad(false);
     } else {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
@@ -214,85 +214,12 @@ export default function Starfield(props) {
           <AnimatedButton onClick={handleStart} className="animated-button">
             ENTER
           </AnimatedButton>
-          {/* <form style={{ position: "relative", zIndex: "12", color: "white" }}>
-            <label>
-              Total Particles
-              <input
-                type="range"
-                name="totalParticles"
-                max={500}
-                value={newSettings.totalParticles}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Color
-              <input
-                type="range"
-                name="hue"
-                max={255}
-                step={1}
-                value={newSettings.hue}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Size
-              <input
-                type="range"
-                name="size"
-                min={0.25}
-                max={10}
-                step={0.25}
-                value={newSettings.size}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Speed
-              <input
-                type="range"
-                name="baseSpeed"
-                max={10}
-                step={.1}
-                value={newSettings.baseSpeed}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Avoid Strength
-              <input
-                type="range"
-                name="avoidStrength"
-                max={10}
-                step={.1}
-                value={newSettings.avoidStrength}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Avoid Radius
-              <input
-                type="range"
-                name="avoidRadius"
-                max={500}
-                value={newSettings.avoidRadius}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Click Strength
-              <input
-                type="range"
-                name="clickStrength"
-                max={500}
-                value={newSettings.clickStrength}
-                onChange={handleChange}
-              />
-            </label>
-            <button onClick={handleSubmit}>SUBMIT</button>
-            <button onClick={handleCancel}>CANCEL</button>
-          </form> */}
+          {/* <StarfieldSettings
+            newSettings={newSettings}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleCancel={handleCancel}
+          /> */}
           <StarfieldModal
             tabIndex={props.toggle ? -1 : 0}
             isVisible={props.starModalIsVisible}
