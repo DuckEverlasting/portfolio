@@ -1,6 +1,7 @@
 $title-font: "Rock Salt", sans-serif;
 $main-font: "Roboto", sans-serif;
 
+$break-brannan: 330px;
 $break-mobile: 450px;
 $break-tablet: 900px;
 $break-720: 1100px;
@@ -9,6 +10,7 @@ $break-hd: 1500px;
 :export {
   mainFont: $main-font;
   titleFont: $title-font;
+  breakBrannan: $break-brannan;
   breakMobile: $break-mobile;
   breakTablet: $break-tablet;
   break720: $break-720;

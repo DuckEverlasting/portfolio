@@ -40,6 +40,11 @@ body {
       padding: 0 5% 0 5%;
     }
 
+    @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+      width: 85%;
+      justify-content: flex-end;
+    }
+
     .nav-page-title {
       color: white;
       font-family: $title-font;
@@ -52,8 +57,7 @@ body {
       }
 
       @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-        font-size: 2rem;
-        visibility: hidden;
+        display: none;
       }
     }
 
@@ -101,6 +105,14 @@ body {
         @media screen and (max-width: $break-mobile) and (orientation: portrait) {
           font-size: 0.8rem;
           padding: 8px 10px;
+        }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          font-size: 0.9rem;
+        }
+        
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          padding: 8px 6px;
         }
       }
     }
@@ -203,51 +215,95 @@ body {
           @media screen and (max-height: $break-mobile) and (orientation: landscape) {
             font-size: 2rem;
           }
+
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            font-size: 1.8rem;
+          }
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            font-size: 1.8rem;
+          }
         }
 
-        .animated-button {
-          background: $black;
-          padding: 15px 20px;
-          border: 2px solid rgb(207, 207, 207);
-          border-radius: 10px;
-          font-size: 1.6rem;
-          font-family: $main-font;
-          font-weight: bold;
-          color: white;
-          z-index: 7;
-          user-select: none;
-          transition: background 0.3s;
-          outline: none;
-          cursor: pointer;
+        .button-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
-          @media screen and (max-width: $break-mobile) and (orientation: portrait) {
-            font-size: 1.2rem;
-          }
-
-          @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-            font-size: 1.2rem;
-          }
-
-          &:focus {
-            background: $near-black;
-          }
-
-          &:hover {
-            background: $bright-magenta;
+          .animated-button {
+            background: $black;
+            padding: 15px 20px;
+            border: 2px solid rgb(207, 207, 207);
+            border-radius: 10px;
+            font-size: 1.6rem;
+            font-family: $main-font;
+            font-weight: bold;
             color: white;
+            z-index: 7;
+            user-select: none;
+            transition: background 0.3s;
+            outline: none;
             cursor: pointer;
-
-            &:active {
-              background: $magenta;
+  
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              font-size: 1.2rem;
+            }
+  
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: 1.2rem;
+            }
+  
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              font-size: 1rem;
+              padding: 13px 18px;
+            }
+  
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              font-size: 1rem;
+              padding: 13px 18px;
+            }
+  
+            &:focus {
+              background: $near-black;
+            }
+  
+            &:hover {
+              background: $bright-magenta;
+              color: white;
+              cursor: pointer;
+  
+              &:active {
+                background: $magenta;
+              }
+            }
+  
+            &.settings {
+              margin-top: 10px;
+              padding: 8px 12px;
+              border-radius: 7px;
+              font-size: .9rem;
+  
+              @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+                font-size: .8rem;
+              }
+    
+              @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+                font-size: .8rem;
+              }
+    
+              @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+                font-size: .7rem;
+                padding: 7px 11px;
+              }
+    
+              @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+                font-size: .7rem;
+                padding: 7px 11px;
+              }
             }
           }
-
-          &.settings {
-            padding: 8px 12px;
-            border-radius: 7px;
-            font-size: .9rem;
-          }
         }
+
         .starfield-modal-container {
           display: flex;
           justify-content: center;
@@ -266,9 +322,17 @@ body {
             max-height: 280px;
             padding: 15px;
             border-radius: 10px;
-            margin-top: 10%;
+            margin-top: 5%;
             background: rgba(20, 20, 24, 0.6);
             z-index: 1;
+
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              display: none;
+            }
+            
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              min-width: 220px;
+            }
 
             .starfield-modal-text {
               color: white;
@@ -707,6 +771,18 @@ body {
       margin-left: -70px;
       margin-top: -15px;
     }
+
+    @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+      width: 125px;
+      margin-left: -65px;
+      margin-top: 50px;
+    }
+
+    @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+      width: 125px;
+      margin-left: -60px;
+      margin-top: 0px;   
+    }
   }
 
   .title {
@@ -783,6 +859,10 @@ body {
         margin-top: 18vh;
       }
 
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        margin-top: 0vh;
+      }
+
       .text-box {
         position: relative;
         display: flex;
@@ -821,6 +901,14 @@ body {
 
           @media screen and (max-height: 420px) and (orientation: landscape) {
             font-size: 1rem;
+          }
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            font-size: .9rem;
+          }
+          
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            font-size: .9rem;
           }
         }
       }
@@ -878,6 +966,14 @@ body {
           transform: rotateY(0.5turn);
           z-index: 1;
           backface-visibility: hidden;
+          
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            display: none;
+          }
+
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            margin-top: 15px;
+          }
 
           .work-sign-front {
             position: absolute;
@@ -887,6 +983,21 @@ body {
             backface-visibility: hidden;
             border-radius: 20px;
             z-index: 2;
+
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              width: 80%;
+              margin: 0 10%;
+              height: 58px;
+              border-radius: 10px;
+            }
+
+            .title {
+              @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+                font-size: 2rem;
+                padding: 0px;
+                padding-top: 7px;
+              }
+            }
           }
 
           .work-sign-back {
@@ -897,6 +1008,13 @@ body {
             border-radius: 20px;
             transform: rotateX(0.5turn);
             z-index: 1;
+
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              width: 80%;
+              margin: 0 10%;
+              height: 58px;
+              border-radius: 10px;
+            }
           }
         }
       }
@@ -910,6 +1028,14 @@ body {
       width: 100%;
       top: 25.5%;
 
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        top: 30%;
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        top: 27%;
+      }
+
       .perspective-box {
         position: absolute;
         perspective: 1500px;
@@ -918,6 +1044,14 @@ body {
         transform: translateZ(500px);
         margin: 5px auto 0;
         top: 0%;
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          left: 30px;
+        }
+  
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          left: 30px;
+        }
 
         .adjustment-box {
           position: relative;
@@ -1098,6 +1232,14 @@ body {
         @media screen and (max-width: $break-mobile) {
           right: -6%;
         }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          right: -3%;
+        }
+  
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          right: -8.5%;
+        }
       }
 
       .telescope-2 {
@@ -1113,6 +1255,14 @@ body {
 
         @media screen and (max-width: $break-mobile) {
           right: -9.5%;
+        }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          right: -4%;
+        }
+  
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          right: -14%;
         }
       }
 
@@ -1130,6 +1280,14 @@ body {
         @media screen and (max-width: $break-mobile) {
           right: -13%;
         }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          right: -5%;
+        }
+  
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          right: -19%;
+        }
       }
 
       .telescope-bar {
@@ -1144,6 +1302,14 @@ body {
 
         @media screen and (orientation: portrait) {
           left: calc(50vw - 16vh - 50px);
+        }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          left: calc(20vw - 30px);
+        }
+  
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          left: calc(50vw - 16vh - 30px);
         }
 
         .bar {
@@ -1163,6 +1329,16 @@ body {
           width: 20px;
           border-radius: 50%;
           background: $black;
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            height: 18px;
+            width: 18px;
+          }
+    
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            height: 18px;
+            width: 18px;
+          }
         }
       }
     }
@@ -1185,18 +1361,21 @@ body {
       z-index: 2;
       top: -2%;
 
-      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-        display: none;
-      }
-
       @media screen and (max-width: $break-tablet) and (orientation: portrait) {
         transform: scale(0.85);
         top: 0;
       }
 
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        display: none;
+      }
+
       @media screen and (max-width: $break-mobile) and (orientation: portrait) {
         transform: scale(0.7);
         top: -3%;
+      }
+      @media screen and (max-width: $break-brannan) and (max-height: 590px) and (orientation: portrait) {
+        transform: scale(0.55);
       }
 
       .contact-sign-box {
@@ -1216,6 +1395,12 @@ body {
           background: $black;
           border: 2px dashed $grey-blue;
           z-index: 8;
+
+          
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            transform: scaleY(1.1);
+            margin-bottom: -88px;
+          }
         }
         .contact-text-box {
           position: relative;
@@ -1241,6 +1426,14 @@ body {
       margin-bottom: -20vh;
       perspective: 1000px;
 
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        min-width: 250px;
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        min-width: 250px;
+      }
+
       .contact-unfold-box {
         position: absolute;
         display: flex;
@@ -1254,6 +1447,10 @@ body {
         bottom: 100%;
         pointer-events: all;
 
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          height: 16vh;
+        }
+
         .contact-unfold-front {
           position: absolute;
           width: 100%;
@@ -1263,6 +1460,10 @@ body {
           transform-style: preserve-3d;
           background: $black;
           box-sizing: border-box;
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            height: 16.05vh;
+          }
 
           &.first {
             background: $near-black;
@@ -1288,11 +1489,19 @@ body {
           border-right: 10px solid $magenta;
           border-left: 10px solid $magenta;
 
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            height: 16.1vh;
+          }
+
           &.fourth {
             border-top: 10px solid $magenta;
             height: 14.9vh;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
+
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              height: 15.9vh;
+            }
           }
         }
 
@@ -1311,16 +1520,21 @@ body {
           bottom: 100%;
           backface-visibility: hidden;
 
-          @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-            font-size: 1rem;
-          }
-
+          
           @media screen and (max-width: $break-tablet) and (orientation: portrait) {
             font-size: 1.35rem;
           }
 
+          @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+            font-size: 1rem;
+          }
+
           @media screen and (max-width: $break-mobile) and (orientation: portrait) {
             font-size: 1.1rem;
+          }
+    
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            font-size: .9rem;
           }
 
           &.first {
@@ -1328,6 +1542,16 @@ body {
             color: white;
             font-size: 1rem;
             margin-top: -9vh;
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              margin-top: -5vh;
+              font-size: .9rem;
+            }
+
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              margin-top: -5vh;
+              font-size: .8rem;
+            }
           }
 
           .email-button {
@@ -1341,16 +1565,24 @@ body {
             text-decoration: none;
             outline: none;
 
-            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-              font-size: 1.2rem;
-            }
-
             @media screen and (max-width: $break-tablet) and (orientation: portrait) {
               font-size: 1.7rem;
             }
 
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: 1.2rem;
+            }
+
             @media screen and (max-width: $break-mobile) and (orientation: portrait) {
               font-size: 1.4rem;
+            }
+        
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              font-size: 1rem;
+            }
+
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              font-size: 1.2rem;
             }
 
             &:hover {
@@ -1382,12 +1614,12 @@ body {
             outline: none;
             transition: background 0.3s, border 0.3s;
 
-            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-              margin: 0 10px;
-            }
-
             @media screen and (max-width: $break-tablet) and (orientation: portrait) {
               margin: 0 14px;
+            }
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              margin: 0 10px;
             }
 
             @media screen and (max-width: $break-mobile) and (orientation: portrait) {
@@ -1400,16 +1632,24 @@ body {
               font-size: 40px;
               padding: 8px;
 
-              @media screen and (max-height: $break-mobile) and (orientation: landscape) {
-                font-size: 20px;
-              }
-
               @media screen and (max-width: $break-tablet) and (orientation: portrait) {
                 font-size: 35px;
               }
 
+              @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+                font-size: 20px;
+              }
+
               @media screen and (max-width: $break-mobile) and (orientation: portrait) {
                 font-size: 30px;
+              }
+
+              @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+                font-size: 18px;
+              }
+  
+              @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+                font-size: 27px;
               }
             }
 
