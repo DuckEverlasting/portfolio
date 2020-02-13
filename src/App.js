@@ -85,7 +85,7 @@ function App() {
     if (reset) {
       setClearStarfield(true);
       setTimeout(() => {
-        setHasStarted(false)
+        setHasStarted(false);
         setClearStarfield(false);
       }, pauseNum);
     };
@@ -98,7 +98,7 @@ function App() {
       await setHasStarted(true);
       setTimeout(() => scrollButtonHandler(ev, 33), 1100);
     } else {
-      scrollButtonHandler(ev, 33)
+      scrollButtonHandler(ev, 33);
     }
   };
 

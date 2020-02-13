@@ -27,7 +27,7 @@ function StarfieldSettings({
       </button>
       <form className="starfield-form">
         <div className="input-box">
-          <label title="Sets the total amount of particles. (Higher numbers may decrease performance.)">
+          <label title="Sets the total amount of particles. (Higher numbers may slow performance.)">
             Total Particles
             <input
               type="range"
@@ -60,7 +60,7 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Toggles particle glow. (Reduces performance.)">
+          <label title="Toggles particle glow. (Slows performance.)">
             Outer Glow
             <input
               type="checkbox"
