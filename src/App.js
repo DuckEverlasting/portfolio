@@ -11,14 +11,15 @@ import gear from "./assets/gear.png";
 import colors from "./styles/Colors.scss";
 
 function App() {
-  const [appIsLoaded, setAppIsLoaded] = useState(false)
-  const [wipeIsMounted, setWipeIsMounted] = useState(true)
-  const [clearStarfield, setClearStarfield] = useState(false)
+  const [appIsLoaded, setAppIsLoaded] = useState(false);
+  const [wipeIsMounted, setWipeIsMounted] = useState(true);
+  const [clearStarfield, setClearStarfield] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [skipSections, setSkipSections] = useState([])
-  const [starModalIsVisible, setStarModalIsVisible] = useState(true)
-  const [modalState, setModalState] = useState(0)
+  const [skipSections, setSkipSections] = useState([]);
+  const [starModalIsVisible, setStarModalIsVisible] = useState(true);
+  const [starSettingsAreOpen, setStarSettingsAreOpen] = useState(false);
+  const [modalState, setModalState] = useState(0);
   
   const triggerModal = useCallback(id => {
     if (id !== 0) {
@@ -116,6 +117,8 @@ function App() {
           clear={clearStarfield}
           starModalIsVisible={starModalIsVisible}
           setStarModalIsVisible={setStarModalIsVisible}
+          starSettingsAreOpen={starSettingsAreOpen}
+          setStarSettingsAreOpen={setStarSettingsAreOpen}
         />
       </div>
       {hasStarted && (

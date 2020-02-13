@@ -241,6 +241,12 @@ body {
               background: $magenta;
             }
           }
+
+          &.settings {
+            padding: 10px 15px;
+            border-radius: 7px;
+            font-size: 1rem;
+          }
         }
         .starfield-modal-container {
           display: flex;
@@ -292,7 +298,190 @@ body {
           }
         }
       }
+
+      .starfield-form-outer-box {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        right: 0%;
+        top: 10%;
+        top: calc(21% - 65px);
+        height: 90%;
+        min-height: 220px;
+        width: 420px;
+        width: calc(6% + 310px);
+        pointer-events: none;
+        z-index: 8;
+
+        @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+          top: calc(27% - 45px);
+          width: 680px;
+          width: calc(12% + 460px);
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          top: -5%;
+        }
+
+        @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          top: calc(35% - 185px);
+          width: 360px;
+          width: calc(6% + 250px);
+        }
+        
+        .starfield-form {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          padding: 20px 200px 20px 10%;
+          border-radius: 20px;
+          right: 0%;
+          font-family: $main-font;
+          font-size: 1rem;
+          color: white;
+          background: rgba(20, 20, 24, 1);
+          border: 2px solid white;
+          overflow: auto;
+          user-select: none;
+          pointer-events: auto;
+
+
+          @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+            padding: 10px 200px 10px 10%;
+            font-size: .8rem;
+          }
+
+          @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+            font-size: .8rem;
+          }
+
+          .input-box {
+            display: flex;
+            flex-direction: column;
+            width: 260px;
+
+            @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+              width: 520px;
+              height: 90%;
+              flex-direction: row;
+              flex-wrap: wrap;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              width: 200px;
+            }
+
+            label {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin: 15px 0;
+              width: 100%;
+
+              @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+                width: 40%;
+                margin: 10px 30px 10px 0;
+              }
+
+              @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+                width: 40%;
+                margin: 8px 20px 8px 0;
+              }
+
+              @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+                margin: 8px 20px 8px 0;
+              }
+
+              input {
+                margin-left: 15px;
+                
+                @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+                  width: 40%;
+                }
+
+                @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+                  width: 40%;
+                }
+              }
+            }
+
+          }
+
+          .button-box {
+            display: flex;
+            justify-content: center;
+            width: 270px;
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              width: 210px;
+            }
+            
+            .animated-button {
+              font-size: 16px;
+              border-radius: 5px;
+              padding: 7px;
+              margin-left: 5px;
+              margin-top: 15px;
+
+              @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+                margin-top: 8px;
+                font-size: 14px;
+              }
+
+              @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+                margin-top: 8px;
+                font-size: 14px;
+              }
+            }
+          }
+          
+        }
+        .form-off-button {
+          position: sticky;
+          left: 0%;
+          top: 38%;
+          top: calc(21% + 234px);
+          background: none;
+          color: white;
+          border: 2px solid white;
+          border-left: none;
+          border-bottom-right-radius: 5px;
+          border-top-right-radius: 5px;
+          padding: 20px 5px 20px 3px;
+          cursor: pointer;
+          user-select: none;
+          outline: none;
+          z-index: 10;
+          pointer-events: auto;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.2);
+          }
+      
+          &:focus {
+            background: rgba(255, 255, 255, 0.2);
+          }
+
+          @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+            top: calc(22% + 164px);
+          }
+
+          @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+            top: 120px;
+          }
+
+          @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+            top: calc(32% + 70px);
+          }
+        }
+      }
     }
+
+
   }
 
   .modal-off-button {

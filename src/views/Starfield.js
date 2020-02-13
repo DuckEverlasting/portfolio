@@ -9,7 +9,8 @@ import StarfieldSettings from "../components/StarfieldSettings";
 let state = {
   animFrame: 0,
   mousePosition: { x: Infinity, y: Infinity },
-  mouseClicked: false
+  mouseClicked: false,
+  clickPosition: { x: Infinity, y: Infinity }
 };
 
 export default function Starfield(props) {
@@ -19,6 +20,8 @@ export default function Starfield(props) {
   const [settings, setSettings] = useState({
     totalParticles: 100,
     hue: 200,
+    hueVariance: 50,
+    glow: true,
     size: 1,
     baseSpeed: 1,
     avoidStrength: 1,
@@ -146,9 +149,11 @@ export default function Starfield(props) {
     };
   }
 
-  function handleTouchEnd(ev) {
+  function handleTouchEnd() {
     state = {
       ...state,
+      mouseClicked: true,
+      clickPosition: state.mousePosition,
       mousePosition: { x: Infinity, y: Infinity }
     };
   }
@@ -161,12 +166,14 @@ export default function Starfield(props) {
   function handleClick() {
     state = {
       ...state,
-      mouseClicked: true
+      mouseClicked: true,
+      clickPosition: state.mousePosition
     };
   }
 
   function handleSubmit(ev) {
     ev.preventDefault();
+    console.log(newSettings.glow)
     setSettings(newSettings);
   }
 
@@ -177,8 +184,19 @@ export default function Starfield(props) {
 
   function handleChange(ev) {
     const target = ev.target.name;
-    const value = parseInt(ev.target.value);
+    let value;
+    if (target === "glow") {
+      value = ev.target.checked;
+    } else {
+      value = parseInt(ev.target.value);
+    }
+    
     setNewSettings({ ...newSettings, [target]: value });
+  }
+
+  function handleSettingsClose(ev) {
+    ev.preventDefault();
+
   }
 
   return (
@@ -214,12 +232,17 @@ export default function Starfield(props) {
           <AnimatedButton onClick={handleStart} className="animated-button">
             ENTER
           </AnimatedButton>
-          {/* <StarfieldSettings
+          <AnimatedButton delay={500} config={{tension: 160, friction: 15}} onClick={() => props.setStarSettingsAreOpen(!props.starSettingsAreOpen)} className="animated-button settings">
+            SETTINGS
+          </AnimatedButton>
+          <StarfieldSettings
             newSettings={newSettings}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             handleCancel={handleCancel}
-          /> */}
+            handleClose={() => props.setStarSettingsAreOpen(false)}
+            isOpen={props.starSettingsAreOpen}
+          />
           <StarfieldModal
             tabIndex={props.toggle ? -1 : 0}
             isVisible={props.starModalIsVisible}
