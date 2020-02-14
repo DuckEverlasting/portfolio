@@ -388,13 +388,25 @@ body {
           top: -5%;
         }
 
-        @media screen and (max-width: $break-tablet) and (orientation: portrait) {
-        }
-
         @media screen and (max-width: $break-mobile) and (orientation: portrait) {
           top: calc(35% - 185px);
           width: 360px;
           width: calc(6% + 250px);
+        }
+
+        
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          top: -6%;
+          height: 96%;
+          width: 610px;
+          width: calc(12% + 390px);
+        }
+
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          top: calc(32% - 175px);
+          height: 96%;
+          width: 320px;
+          width: calc(6% + 240px);
         }
         
         .starfield-form {
@@ -423,6 +435,11 @@ body {
             font-size: .8rem;
           }
 
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            padding: 10px 200px 10px 8%;
+            font-size: .8rem;
+          }
+
           .input-box {
             display: flex;
             flex-direction: column;
@@ -437,6 +454,10 @@ body {
 
             @media screen and (max-width: $break-mobile) and (orientation: portrait) {
               width: 200px;
+            }
+
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              width: 440px;
             }
 
             label {
@@ -460,6 +481,14 @@ body {
                 margin: 8px 20px 8px 0;
               }
 
+              @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+                margin: 4px 15px 4px 0;
+              }
+
+              @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+                margin: 4px 15px 4px 0;
+              }
+
               input {
                 margin-left: 15px;
                 
@@ -477,11 +506,17 @@ body {
 
           .button-box {
             display: flex;
+            flex-direction: row;
             justify-content: center;
+            align-items: center;
             width: 270px;
 
             @media screen and (max-width: $break-mobile) and (orientation: portrait) {
               width: 210px;
+            }
+
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              width: 206px;
             }
             
             .animated-button {
@@ -540,6 +575,10 @@ body {
 
           @media screen and (max-width: $break-mobile) and (orientation: portrait) {
             top: calc(32% + 70px);
+          }
+
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            top: calc(32% + 40px);
           }
         }
       }
