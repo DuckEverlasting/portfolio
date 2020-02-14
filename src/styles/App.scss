@@ -1118,6 +1118,11 @@ body {
               border: 2vh solid $black;
               border-radius: 1vh;
             }
+      
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              width: 30vh;
+              height: 56vh;
+            }
 
             .work-panel-container {
               position: relative;
@@ -1129,6 +1134,11 @@ body {
               @media screen and (orientation: portrait) {
                 width: 14vh;
                 height: 14vh;
+              }
+        
+              @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+                height: 13vh;
+                width: 13vh;
               }
 
               .work-panel {
@@ -1348,7 +1358,7 @@ body {
         }
   
         @media screen and (max-width: $break-brannan) and (orientation: portrait) {
-          left: calc(50vw - 16vh - 30px);
+          left: calc(50vw - 15vh - 30px);
         }
 
         .bar {
