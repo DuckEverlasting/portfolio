@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated, config } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 function StarfieldSettings({
   newSettings,
@@ -39,7 +39,19 @@ function StarfieldSettings({
             />
           </label>
           <label title="Sets the base particle color.">
-            Color
+            <div style={{
+              display: "flex",
+              alignItems: "center"
+            }}>
+            	Color
+            	<div style={{
+            	  width: ".7rem",
+            	  height: ".7rem",
+            	  borderRadius: "50%",
+                background: `hsl(${newSettings.hue}, 100%, 70%)`,
+                marginLeft: ".5rem"
+            	}}/>
+            </div>
             <input
               type="range"
               name="hue"

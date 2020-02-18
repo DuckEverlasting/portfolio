@@ -79,10 +79,12 @@ export default function Starfield(props) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
       particles.current = [];
-      ctx.globalAlpha = 0;
-      if (!props.toggle) {
-        startAnimateParticles(canvas);
-      }
+      setTimeout(() => {
+        ctx.globalAlpha = 0;
+        if (!props.toggle) {
+          startAnimateParticles(canvas);
+        }
+      }, 500)
     }
   }, [settings]);
 
@@ -173,13 +175,14 @@ export default function Starfield(props) {
 
   function handleSubmit(ev) {
     ev.preventDefault();
-    console.log(newSettings.glow)
     setSettings(newSettings);
+    props.setStarSettingsAreOpen(false);
   }
 
   function handleCancel(ev) {
     ev.preventDefault();
     setNewSettings(settings);
+    props.setStarSettingsAreOpen(false);
   }
 
   function handleChange(ev) {
@@ -192,11 +195,6 @@ export default function Starfield(props) {
     }
     
     setNewSettings({ ...newSettings, [target]: value });
-  }
-
-  function handleSettingsClose(ev) {
-    ev.preventDefault();
-
   }
 
   return (
