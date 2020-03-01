@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 
 import WorkPanel from "../components/WorkPanel.js";
@@ -22,13 +22,27 @@ import firstPersonVid from "../assets/Videos/First-Person-sample.mp4";
 import encounterVid from "../assets/Videos/5E-Encounter-sample.mp4";
 
 function WorkPanelBox({ isOn, triggerModal, modalState }) {
-  const workPanelBoxSpring = useSpring({
-    transform: isOn ? "rotateX(0)" : "rotateX(-0.25turn)",
-    config: isOn
-      ? { mass: 1, tension: 40, friction: 2 }
-      : { mass: 1, tension: 480, friction: 38 },
-    delay: isOn ? 1000 : 0
-  });
+  useEffect(() => {
+    isOn ? 
+    setWorkPanelBoxSpring(() => ({
+      transform: "rotateX(0)",
+      config: { mass: 1, tension: 40, friction: 2 },
+      delay: 1000,
+    }))
+    :
+    setWorkPanelBoxSpring(() => ({
+      transform: "rotateX(-0.25turn)",
+      config: { mass: 1, tension: 480, friction: 38 },
+      delay: 0
+    }))
+    // eslint-disable-next-line
+  }, [isOn])
+
+  const [workPanelBoxSpring, setWorkPanelBoxSpring] = useSpring(() => ({
+    transform: "rotateX(-0.25turn)",
+    config: { mass: 1, tension: 480, friction: 38 },
+    delay: 0
+  }));
 
 
   const content = [
@@ -127,4 +141,4 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
   );
 }
 
-export default React.memo(WorkPanelBox);
+export default WorkPanelBox;
