@@ -11,14 +11,15 @@ import gear from "./assets/gear.png";
 import colors from "./styles/Colors.scss";
 
 function App() {
-  const [appIsLoaded, setAppIsLoaded] = useState(false)
-  const [wipeIsMounted, setWipeIsMounted] = useState(true)
-  const [clearStarfield, setClearStarfield] = useState(false)
+  const [appIsLoaded, setAppIsLoaded] = useState(false);
+  const [wipeIsMounted, setWipeIsMounted] = useState(true);
+  const [clearStarfield, setClearStarfield] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [skipSections, setSkipSections] = useState([])
-  const [starModalIsVisible, setStarModalIsVisible] = useState(true)
-  const [modalState, setModalState] = useState(0)
+  const [skipSections, setSkipSections] = useState([]);
+  const [starModalIsVisible, setStarModalIsVisible] = useState(true);
+  const [starSettingsAreOpen, setStarSettingsAreOpen] = useState(false);
+  const [modalState, setModalState] = useState(0);
   
   const triggerModal = useCallback(id => {
     if (id !== 0) {
@@ -52,10 +53,10 @@ function App() {
   };
 
   const scrollButtonHandler = async (ev, target, reset=false) => {
-    ev.preventDefault();
-    if (ev.target) {
-      ev.target.blur()
-    };
+    // ev.preventDefault();
+    // if (ev.target) {
+    //   ev.target.blur()
+    // };
     const scrollNum = (target / 100) * (appRef.current.getBoundingClientRect().height - window.innerHeight);
     
     // check for sections to skip
@@ -84,7 +85,7 @@ function App() {
     if (reset) {
       setClearStarfield(true);
       setTimeout(() => {
-        setHasStarted(false)
+        setHasStarted(false);
         setClearStarfield(false);
       }, pauseNum);
     };
@@ -97,7 +98,7 @@ function App() {
       await setHasStarted(true);
       setTimeout(() => scrollButtonHandler(ev, 33), 1100);
     } else {
-      scrollButtonHandler(ev, 33)
+      scrollButtonHandler(ev, 33);
     }
   };
 
@@ -116,6 +117,8 @@ function App() {
           clear={clearStarfield}
           starModalIsVisible={starModalIsVisible}
           setStarModalIsVisible={setStarModalIsVisible}
+          starSettingsAreOpen={starSettingsAreOpen}
+          setStarSettingsAreOpen={setStarSettingsAreOpen}
         />
       </div>
       {hasStarted && (

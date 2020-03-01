@@ -21,6 +21,7 @@ function MobileApp() {
   const [skipSections, setSkipSections] = useState([])
   const [hold, setHold] = useState(false)
   const [starModalIsVisible, setStarModalIsVisible] = useState(true)
+  const [starSettingsAreOpen, setStarSettingsAreOpen] = useState(false);
   const [modalState, setModalState] = useState(0)
   const triggerModal = useCallback(id => {
     setModalState(id)
@@ -113,6 +114,8 @@ function MobileApp() {
           clear={clearStarfield}
           starModalIsVisible={starModalIsVisible}
           setStarModalIsVisible={setStarModalIsVisible}
+          starSettingsAreOpen={starSettingsAreOpen}
+          setStarSettingsAreOpen={setStarSettingsAreOpen}
         />
       </div>
       {contentIsVisible && (
