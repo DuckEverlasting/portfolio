@@ -74,7 +74,7 @@ body {
         color: white;
         background: transparent;
         padding: 10px 20px;
-        border: 2px solid rgb(207, 207, 207);
+        border: 2px solid rgb(175, 175, 175);
         border-radius: 5px;
         font-family: $main-font;
         font-weight: bold;
@@ -233,7 +233,7 @@ body {
           .animated-button {
             background: $black;
             padding: 15px 20px;
-            border: 2px solid rgb(207, 207, 207);
+            border: 2px solid rgb(175, 175, 175);
             border-radius: 10px;
             font-size: 1.6rem;
             font-family: $main-font;
@@ -420,7 +420,7 @@ body {
           font-size: 1rem;
           color: white;
           background: rgba(20, 20, 24, 1);
-          border: 2px solid white;
+          border: 2px solid rgb(175, 175, 175);
           overflow: auto;
           user-select: none;
           pointer-events: auto;
@@ -520,6 +520,7 @@ body {
             }
             
             .animated-button {
+              width: 80px;
               font-size: 16px;
               border-radius: 5px;
               padding: 7px;
@@ -546,7 +547,7 @@ body {
           top: calc(21% + 234px);
           background: none;
           color: white;
-          border: 2px solid white;
+          border: 2px solid rgb(175, 175, 175);
           border-left: none;
           border-bottom-right-radius: 5px;
           border-top-right-radius: 5px;
@@ -596,7 +597,7 @@ body {
     top: 2%;
     right: 2%;
     background: transparent;
-    border: 2px solid rgb(207, 207, 207);
+    border: 2px solid rgb(175, 175, 175);
     font-size: 12px;
     text-align: center;
     color: white;
@@ -746,7 +747,7 @@ body {
         &:hover {
           cursor: pointer;
           background: $bright-magenta;
-          border: 2px solid rgb(207, 207, 207);
+          border: 2px solid rgb(175, 175, 175);
           transition: background 0.3s, border 0.3s;
         }
 
@@ -1637,7 +1638,7 @@ body {
             &:hover {
               cursor: pointer;
               background: $bright-magenta;
-              border: 2px solid rgb(207, 207, 207);
+              border: 2px solid rgb(175, 175, 175);
               transition: background 0.3s, border 0.3s;
             }
 
@@ -1657,7 +1658,7 @@ body {
             margin: 0 20px;
             padding: 0 3px;
             background: $black;
-            color: rgb(207, 207, 207);
+            color: rgb(175, 175, 175);
             border: 2px solid $cyan;
             border-radius: 5px;
             outline: none;
@@ -1708,7 +1709,7 @@ body {
 
             &:hover {
               background: $bright-magenta;
-              border: 2px solid rgb(207, 207, 207);
+              border: 2px solid rgb(175, 175, 175);
 
               &:active {
                 background: $magenta;

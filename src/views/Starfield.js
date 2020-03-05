@@ -228,7 +228,7 @@ export default function Starfield(props) {
             <AnimatedText string="Matt Klein Development" />
           </h1>
           <div className="button-box">
-            <AnimatedButton onClick={handleStart} className="animated-button">
+            <AnimatedButton onClick={handleStart} className="animated-button enter">
               ENTER
             </AnimatedButton>
             <AnimatedButton delay={500} config={{tension: 160, friction: 15}} onClick={() => props.setStarSettingsAreOpen(!props.starSettingsAreOpen)} className="animated-button settings">
