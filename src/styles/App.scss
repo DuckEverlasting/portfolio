@@ -818,9 +818,9 @@ body {
   .gear.bottom-right {
     bottom: 0;
     right: 0;
-    width: 250px;
-    margin-right: -125px;
-    margin-bottom: -65px;
+    width: 320px;
+    margin-right: -215px;
+    margin-bottom: -125px;
     
     @media screen and (max-width: $break-tablet) and (orientation: portrait) {
       width: 200px;
