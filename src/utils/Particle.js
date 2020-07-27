@@ -1,3 +1,5 @@
+import createParticleImage from "./createParticleImage";
+
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
 const smallestDimension = screenWidth < screenHeight ? screenWidth : screenHeight
@@ -8,7 +10,7 @@ const getDelta = (data) => Math.sqrt(
 );
 
 export default class Particle {
-  constructor({x, y, hue, hueVariance, glow, size, baseSpeed, avoidRadius, avoidStrength, clickStrength}) {
+  constructor({x, y, hue, hueVariance, glow, size, baseSpeed, avoidRadius, avoidStrength, clickStrength, image}) {
     let variance = (-0.5 * hueVariance + Math.random() * hueVariance);
     this.hue =
       (hue + variance);
@@ -32,34 +34,33 @@ export default class Particle {
     this.speed = {...this.initSpeed}
     // Calculate base speed
     this.minSpeed = getDelta(this.initSpeed);
+    // Set rate of deacceleration
+    this.friction = 0.99;
+    // Set area of effect multiplier when mouse is clicked 
+    this.mouseClickRadius = 1.25;
+
+    this.lastMouseDistance = Infinity;
+    
+    // Create and store particle to stamp onto canvas
+    this.particleImage = image || createParticleImage(this.radius, this.glow, this.hue);
   }
 
 
   // Set rate of deacceleration
-  friction = 0.99
+  // friction = 0.99
 
   // Set area of effect multiplier when mouse is clicked 
-  mouseClickRadius = 1.25;
+  // mouseClickRadius = 1.25;
 
-  lastMouseDistance = Infinity;
+  // lastMouseDistance = Infinity;
 
   // Function to draw particle on canvas (and update location based on speed)
   draw = (canvas, state) => {
     const p = this;
-    const ctx = canvas.getContext("2d");
 
-    // Draw a circle at the current location
-    ctx.beginPath();
-    ctx.arc(p.currentX, p.currentY, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `hsl(${p.hue}, 100%, 70%)`;
-    ctx.shadowColor = `hsl(${p.hue}, 100%, 70%)`;
-    ctx.shadowBlur = p.glow ? 2 * p.radius : 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-    ctx.fill();
-    ctx.closePath();
-    ctx.beginPath();
-
+    // Draw particle image at the current location
+    canvas.getContext("2d").drawImage(p.particleImage, p.currentX - p.particleImage.width / 2, p.currentY - p.particleImage.height / 2);
+    
     // Update the particle's location
     p.currentX += p.speed.x;
     p.currentY += p.speed.y;
@@ -81,7 +82,6 @@ export default class Particle {
     }
 
     if (state.mouseClicked && clickDistance < p.mouseAvoidRadius * p.mouseClickRadius) {
-      console.log("YO")
       let avoidSpeed =
         p.mouseAvoidStrength *
         p.mouseClickForce *

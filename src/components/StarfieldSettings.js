@@ -33,7 +33,7 @@ function StarfieldSettings({
               type="range"
               name="totalParticles"
               min={1}
-              max={500}
+              max={2000}
               value={newSettings.totalParticles}
               onChange={handleChange}
             />

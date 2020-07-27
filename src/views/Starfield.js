@@ -5,6 +5,7 @@ import StarfieldModal from "../components/StarfieldModal.js";
 import AnimatedText from "../components/AnimatedText";
 import AnimatedButton from "../components/AnimatedButton";
 import StarfieldSettings from "../components/StarfieldSettings";
+import createParticleImage from "../utils/createParticleImage";
 
 let state = {
   animFrame: 0,
@@ -16,6 +17,7 @@ let state = {
 export default function Starfield(props) {
   const canvasRef = useRef(null);
   const particles = useRef([]);
+  const particleImages = useRef([]);
   const [firstLoad, setFirstLoad] = useState(true);
   const [settings, setSettings] = useState({
     totalParticles: 100,
@@ -44,6 +46,7 @@ export default function Starfield(props) {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
       // eslint-disable-next-line
       particles.current = [];
+      particleImages.current = [];
       ctx.globalAlpha = 0;
       if (!props.toggle) {
         startAnimateParticles(canvas);
@@ -79,6 +82,7 @@ export default function Starfield(props) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
       particles.current = [];
+      particleImages.current = [];
       setTimeout(() => {
         ctx.globalAlpha = 0;
         if (!props.toggle) {
@@ -89,11 +93,20 @@ export default function Starfield(props) {
   }, [settings]);
 
   function startAnimateParticles(canvas) {
-    for (let j = 0; j < settings.totalParticles; j++) {
-      particles.current = particleEmitter(particles.current);
+    const screenWidth = window.innerWidth
+    const screenHeight = window.innerHeight
+    const smallestDimension = screenWidth < screenHeight ? screenWidth : screenHeight
+    for (let i = 0; i < 100; i++) {
+      let variance = (-0.5 * settings.hueVariance + Math.random() * settings.hueVariance);
+      const radius = (3 + smallestDimension / 200 + Math.random() * 4) * settings.size;
+      particleImages.current.push(createParticleImage(radius, settings.glow, settings.hue + variance));
+    }
+    for (let i = 0; i < settings.totalParticles; i++) {
+      const num = Math.floor(Math.random() * particleImages.current.length);
+      particles.current = particleEmitter(particles.current, particleImages[num]);
     }
 
-    function particleEmitter(particles) {
+    function particleEmitter(particles, image) {
       const x = Math.floor(canvas.width * Math.random());
       const y = Math.floor(canvas.height * Math.random());
       const { totalParticles, ...particleSettings } = settings;
@@ -103,7 +116,8 @@ export default function Starfield(props) {
         new Particle({
           x,
           y,
-          ...particleSettings
+          image,
+          ...particleSettings,
         })
       ];
     }
