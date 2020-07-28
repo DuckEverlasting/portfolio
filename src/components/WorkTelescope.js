@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated, interpolate } from "react-spring";
 
 import WorkPanelBox from "../components/WorkPanelBox.js";
 
@@ -8,30 +8,35 @@ import telescope2 from "../assets/telescope-2.png";
 import telescope3 from "../assets/telescope-3.png";
 
 function WorkTelescope({ isOn, triggerModal, modalState }) {
-  const telescope1Spr = useSpring({
-    transform:
-      isOn
-        ? "translate(50%, 0)"
-        : "translate(150%, 0)",
+  const telescopeSpr = useSpring({
+    val: isOn ? 0 : 100,
     config: { mass: 5, tension: 400, friction: 120 },
     delay: isOn ? 0 : 300
   });
-  const telescope2Spr = useSpring({
-    transform:
-      isOn
-        ? "translate(0%, 0)"
-        : "translate(150%, 0)",
-    config: { mass: 5, tension: 400, friction: 120 },
-    delay: isOn ? 0 : 300
-  });
-  const telescope3Spr = useSpring({
-    transform:
-      isOn
-        ? "translate(-50%, 0)"
-        : "translate(150%, 0)",
-    config: { mass: 5, tension: 400, friction: 120 },
-    delay: isOn ? 0 : 300
-  });
+  // const telescope1Spr = useSpring({
+  //   transform:
+  //     isOn
+  //       ? "translate(50%, 0)"
+  //       : "translate(150%, 0)",
+  //   config: { mass: 5, tension: 400, friction: 120 },
+  //   delay: isOn ? 0 : 300
+  // });
+  // const telescope2Spr = useSpring({
+  //   transform:
+  //     isOn
+  //       ? "translate(0%, 0)"
+  //       : "translate(150%, 0)",
+  //   config: { mass: 5, tension: 400, friction: 120 },
+  //   delay: isOn ? 0 : 300
+  // });
+  // const telescope3Spr = useSpring({
+  //   transform:
+  //     isOn
+  //       ? "translate(-50%, 0)"
+  //       : "translate(150%, 0)",
+  //   config: { mass: 5, tension: 400, friction: 120 },
+  //   delay: isOn ? 0 : 300
+  // });
   const telescopeBarSpr = useSpring({
     transform:
       isOn
@@ -46,16 +51,22 @@ function WorkTelescope({ isOn, triggerModal, modalState }) {
 
   return (
     <>
-      <div className="telescope-container">
+      {telescopeSpr.val && <div className="telescope-container">
           <animated.div className="telescope-bar" style={{...telescopeBarSpr, zIndex: isOn ? 0 : 1}}>
             <WorkPanelBox isOn={isOn} triggerModal={triggerModal} modalState={modalState}/>
             <div className="bar" style={{zIndex: isOn ? 0 : 1}}/>
             <div className="ball"/>
           </animated.div>
-          <animated.img className="telescope-3" style={telescope3Spr} src={telescope3} alt=""/>
-          <animated.img className="telescope-2" style={telescope2Spr} src={telescope2} alt=""/>
-          <animated.img className="telescope-1" style={telescope1Spr} src={telescope1} alt=""/>
-      </div>
+          <animated.img className="telescope-3" style={{
+            transform: telescopeSpr.val.interpolate(val => `translate(${val * 2 - 50}%, 0)`)
+          }} src={telescope3} alt=""/>
+          <animated.img className="telescope-2" style={{
+            transform: telescopeSpr.val.interpolate(val => `translate(${val * 1.5}%, 0)`)
+          }} src={telescope2} alt=""/>
+          <animated.img className="telescope-1" style={{
+            transform: telescopeSpr.val.interpolate(val => `translate(${val + 50}%, 0)`)
+          }} src={telescope1} alt=""/>
+      </div>}
     </>
   );
 }

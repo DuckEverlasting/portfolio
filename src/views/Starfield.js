@@ -46,6 +46,7 @@ export default function Starfield(props) {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
       // eslint-disable-next-line
       particles.current = [];
+      clearParticleImages();
       particleImages.current = [];
       ctx.globalAlpha = 0;
       if (!props.toggle) {
@@ -82,6 +83,7 @@ export default function Starfield(props) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
       particles.current = [];
+      clearParticleImages();
       particleImages.current = [];
       setTimeout(() => {
         ctx.globalAlpha = 0;
@@ -90,6 +92,8 @@ export default function Starfield(props) {
         }
       }, 500)
     }
+
+    return clearParticleImages;
   }, [settings]);
 
   function startAnimateParticles(canvas) {
@@ -121,6 +125,12 @@ export default function Starfield(props) {
         })
       ];
     }
+  }
+
+  function clearParticleImages() {
+    particleImages.current.forEach(el => {
+      el = null;
+    })
   }
 
   function animateParticles(canvas) {
