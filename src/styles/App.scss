@@ -1,8 +1,23 @@
 @import "Colors.scss";
 @import "Variables.scss";
+@import "RangeInput.scss";
+@import "Checkbox.scss";
 
 html {
   height: 100%;
+  scrollbar-width: auto;
+  scrollbar-color: $grey-blue $black;
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $black;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-blue;
+    border-radius: 5px;
+    border: 3px solid $black;
+  }
 }
 
 body {
@@ -425,7 +440,6 @@ body {
           user-select: none;
           pointer-events: auto;
 
-
           @media screen and (max-height: $break-mobile) and (orientation: landscape) {
             padding: 10px 200px 10px 10%;
             font-size: .8rem;
@@ -460,7 +474,7 @@ body {
               width: 440px;
             }
 
-            label {
+            .input-label {
               display: flex;
               align-items: center;
               justify-content: space-between;
@@ -643,6 +657,17 @@ body {
       background: $black;
       border-radius: 10px;
       overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 16px;
+      }
+      &::-webkit-scrollbar-track {
+        background: $black;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $grey-blue;
+        border-radius: 5px;
+        border: 3px solid $black;
+      }
 
       .modal-outer-box {
         display: flex;

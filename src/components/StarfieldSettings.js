@@ -27,7 +27,7 @@ function StarfieldSettings({
       </button>
       <form className="starfield-form">
         <div className="input-box">
-          <label title="Sets the total amount of particles. (Higher numbers may slow performance.)">
+          <label className="input-label" title="Sets the total amount of particles. (Higher numbers may slow performance.)">
             Total Particles
             <input
               type="range"
@@ -38,7 +38,7 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Sets the base particle color.">
+          <label className="input-label" title="Sets the base particle color.">
             <div style={{
               display: "flex",
               alignItems: "center"
@@ -61,27 +61,34 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Sets the range of particle colors. (Turn to max for rainbow.)">
+          <label className="input-label" title="Sets the range of particle colors. (Turn to max for rainbow.)">
             Color Variance
-            <input
-              type="range"
-              name="hueVariance"
-              max={255}
-              step={1}
-              value={newSettings.hueVariance}
-              onChange={handleChange}
-            />
+              <input
+                type="range"
+                name="hueVariance"
+                max={255}
+                step={1}
+                value={newSettings.hueVariance}
+                onChange={handleChange}
+              />
           </label>
-          <label title="Toggles particle glow. (Slows performance.)">
+          <label className="input-label" title="Toggles particle glow.">
             Outer Glow
-            <input
-              type="checkbox"
-              name="glow"
-              checked={newSettings.glow}
-              onChange={handleChange}
-            />
+            <label className="toggle">
+              <input
+                className="toggle-checkbox"
+                type="checkbox"
+                name="glow"
+                checked={newSettings.glow}
+                onChange={handleChange}
+              />
+              <div className="toggle-off">OFF</div>
+              <div className="toggle-bg"/>
+              <div className="toggle-on">ON</div>
+              <div className="toggle-btn" />
+            </label>
           </label>
-          <label title="Sets base particle size.">
+          <label className="input-label" title="Sets base particle size.">
             Size
             <input
               type="range"
@@ -93,7 +100,7 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Sets base particle speed.">
+          <label className="input-label" title="Sets base particle speed.">
             Speed
             <input
               type="range"
@@ -104,7 +111,7 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Sets how quickly particles will move away from the cursor.">
+          <label className="input-label" title="Sets how quickly particles will move away from the cursor.">
             Avoid Strength
             <input
               type="range"
@@ -115,7 +122,7 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Sets the radius of mouse effects.">
+          <label className="input-label" title="Sets the radius of cursor effects.">
             Avoid Radius
             <input
               type="range"
@@ -125,7 +132,7 @@ function StarfieldSettings({
               onChange={handleChange}
             />
           </label>
-          <label title="Sets the strength of mouse clicks / finger taps.">
+          <label className="input-label" title="Sets the strength of mouse clicks / finger taps.">
             Click Strength
             <input
               type="range"

@@ -11,29 +11,29 @@ function ContactUnfold({ isOn }) {
   const unfoldSpr1 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.5turn)",
     config: isOn
-      ? { mass: 1, tension: 40, friction: 12 }
-      : { mass: 1, tension: 38, friction: 16 },
+      ? { mass: 1, tension: 48, friction: 12, clamp: true }
+      : { mass: 1, tension: 38, friction: 16, clamp: true },
     delay: isOn ? 0 : 600
   });
   const unfoldSpr2 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.25turn)",
     config: isOn
-      ? { mass: 1, tension: 40, friction: 12 }
-      : { mass: 1, tension: 38, friction: 14 },
+      ? { mass: 1, tension: 48, friction: 12, clamp: true }
+      : { mass: 1, tension: 38, friction: 14, clamp: true },
     delay: isOn ? 125 : 400
   });
   const unfoldSpr3 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.25turn)",
     config: isOn
-      ? { mass: 1, tension: 40, friction: 14 }
-      : { mass: 1, tension: 38, friction: 12 },
+      ? { mass: 1, tension: 48, friction: 14, clamp: true }
+      : { mass: 1, tension: 38, friction: 12, clamp: true },
     delay: isOn ? 250 : 200
   });
   const unfoldSpr4 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.5turn)",
     config: isOn
-      ? { mass: 1, tension: 40, friction: 10 }
-      : { mass: 1, tension: 18, friction: 10 },
+      ? { mass: 1, tension: 58, friction: 10, clamp: true }
+      : { mass: 1, tension: 18, friction: 10, clamp: true },
     delay: isOn ? 375 : 0
   });
 

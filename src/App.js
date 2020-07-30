@@ -144,9 +144,9 @@ function App() {
           <div className="gradient" />
           <div className="fixed-container">
             <img className="gear" src={gear} alt="" style={{transform: `rotate(${scrollPosition * 5}deg)`}}/>
-            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")}/>}
-            <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} modalState={modalState} triggerModal={triggerModal}/>}
-            <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")}/>}
+            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")}/>
+            <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} modalState={modalState} triggerModal={triggerModal}/>
+            <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")}/>
           </div>
         </>
       )}
