@@ -13,6 +13,7 @@
     "react-reveal": "^1.2.2",
     "react-scripts": "3.2.0",
     "react-spring": "^8.0.27",
+    "smoothscroll-polyfill": "^0.4.4",
     "styled-components": "^4.4.1"
   },
   "scripts": {

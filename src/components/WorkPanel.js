@@ -20,14 +20,30 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
     vidRef.current.onloadeddata = () => setVideoIsLoaded(true);
   }, [vidRef, content.start, videoIsRendered])
 
-  const workPanelSpring = useSpring({
-    transform: isOn ? "rotateX(0)" : "rotateX(0.5turn)",
-    config: isOn
-      ? { mass: 1, tension: Math.random() * 30 + 40, friction: 2 }
-      : { mass: 1, tension: 480, friction: 38 },
-    delay: isOn ? Math.random() * 200 + 1000 : Math.random() * 50,
+  useEffect(() => {
+    isOn ? 
+      setWorkPanelSpring(() => ({
+        transform: "rotateX(0turn)",
+        config: { mass: 1, tension: Math.random() * 30 + 40, friction: 2 },
+        delay: Math.random() * 200 + 1000,
+        onRest: () => {if (!mobile) setVideoIsRendered(true)}
+      }))
+      :
+      setWorkPanelSpring(() => ({
+        transform: "rotateX(0.5turn)",
+        config: { mass: 1, tension: 480, friction: 38 },
+        delay: Math.random() * 50,
+        onRest: () => {if (!mobile) setVideoIsRendered(true)}
+      }))
+      // eslint-disable-next-line
+  }, [isOn])
+
+  const [workPanelSpring, setWorkPanelSpring] = useSpring(() => ({
+    transform: "rotateX(0.5turn)",
+    config: { mass: 1, tension: 480, friction: 38 },
+    delay: Math.random() * 50,
     onRest: () => {if (!mobile) setVideoIsRendered(true)}
-  });
+  }));
 
   const handleClick = ev => {
     ev.currentTarget.blur();

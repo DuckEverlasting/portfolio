@@ -139,7 +139,8 @@ function MobileApp() {
           </div>
           <WorkModal state={modalState} trigger={triggerModal} />
           <div className="fixed-container">
-            <img className="gear" src={gear} alt="" style={{transform: `rotate(${gearPosition * 5}deg)`, transition: "transform 1s"}}/>
+            <img className="gear top-left" src={gear} alt="" style={{transform: `rotate(${gearPosition * 5}deg)`, transition: "transform 1s"}}/>
+            <img className="gear bottom-right" src={gear} alt="" style={{transform: `rotate(${gearPosition * -5}deg)`, transition: "transform 1s"}}/>
             <About scrollPosition={scrollPosition} skip={skipSections.includes("about")}/>
             <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} triggerModal={triggerModal}/>
             <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")}/>

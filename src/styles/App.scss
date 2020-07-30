@@ -811,14 +811,43 @@ body {
 
   .gear {
     position: absolute;
+    user-select: none;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .gear.top-left {
     top: 0;
     width: 250px;
     margin-left: -125px;
     margin-top: -65px;
-    user-select: none;
-    pointer-events: none;
-    z-index: 4;
+    
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+      width: 200px;
+      margin-left: -100px;
+      margin-top: 15px;
+    }
 
+    @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+      width: 145px;
+      margin-left: -75px;
+      margin-top: 45px;
+    }
+
+    @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+      width: 145px;
+      margin-left: -70px;
+      margin-top: -15px;
+    }
+  }
+
+  .gear.bottom-right {
+    bottom: 0;
+    right: 0;
+    width: 320px;
+    margin-right: -215px;
+    margin-bottom: -125px;
+    
     @media screen and (max-width: $break-tablet) and (orientation: portrait) {
       width: 200px;
       margin-left: -100px;
@@ -849,6 +878,7 @@ body {
       margin-top: 0px;   
     }
   }
+
 
   .title {
     width: 180px;
