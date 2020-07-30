@@ -67,6 +67,7 @@ export default function Starfield(props) {
       window.cancelAnimationFrame(state.animFrame);
       window.removeEventListener("resize", handleResize);
     };
+    // eslint-disable-next-line
   }, [props.toggle, props.init]);
 
   useEffect(() => {
@@ -94,6 +95,7 @@ export default function Starfield(props) {
     }
 
     return clearParticleImages;
+    // eslint-disable-next-line
   }, [settings]);
 
   function startAnimateParticles(canvas) {
