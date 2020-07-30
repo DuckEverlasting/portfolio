@@ -24,7 +24,6 @@ function WorkTelescope({ isOn, triggerModal, modalState }) {
         : { mass: 1, tension: 150, friction: 50 },
     delay: isOn ? 300 : 300
   });
-  console.log(val);
 
   return (
     <>
