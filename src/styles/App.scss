@@ -847,35 +847,37 @@ body {
     width: 320px;
     margin-right: -215px;
     margin-bottom: -125px;
+    margin-right: -255px;
+    margin-bottom: -95px;
     
     @media screen and (max-width: $break-tablet) and (orientation: portrait) {
       width: 200px;
-      margin-left: -100px;
-      margin-top: 15px;
+      margin-right: -155px;
+      margin-bottom: -55px;
     }
 
     @media screen and (max-width: $break-mobile) and (orientation: portrait) {
       width: 145px;
-      margin-left: -75px;
-      margin-top: 45px;
+      margin-right: -115px;
+      margin-bottom: -40px;
     }
 
     @media screen and (max-height: $break-mobile) and (orientation: landscape) {
       width: 145px;
-      margin-left: -70px;
-      margin-top: -15px;
+      margin-right: -105px;
+      margin-bottom: -50px;
     }
 
     @media screen and (max-width: $break-brannan) and (orientation: portrait) {
       width: 125px;
-      margin-left: -65px;
-      margin-top: 50px;
+      margin-right: -100px;
+      margin-bottom: -40px;
     }
 
     @media screen and (max-height: $break-brannan) and (orientation: landscape) {
       width: 125px;
-      margin-left: -60px;
-      margin-top: 0px;   
+      margin-right: -90px;
+      margin-bottom: -45px; 
     }
   }
 
@@ -1459,6 +1461,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     pointer-events: none;
+    z-index: 5;
 
     .contact-sign {
       position: relative;
