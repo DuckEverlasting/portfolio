@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 
 import keyConsVid from "../assets/Videos/Key-Cons-sample.mp4";
 import gazorkazorkVid from "../assets/Videos/Gazorkazork-sample.mp4"
-import snapShotVid from "../assets/Videos/Photosmith-sample.mp4";
+import snapShotVid from "../assets/Videos/SnapShot-sample.mp4";
 import hexsweeperVid from "../assets/Videos/Hexsweeper-sample.mp4";
 import rejewelerVid from "../assets/Videos/Rejeweler-sample.mp4";
 import tetroVid from "../assets/Videos/Tetro-sample.mp4";
@@ -35,7 +35,7 @@ const modalData = {
   3: {
     title: "SnapShot",
     techStack: "React, Redux",
-    description: "Solo project. Online drawing tool built to test interactions between React, Redux, and the Canvas API.",
+    description: "Solo project. Online layer-based image editor and drawing tool. Originally built to test interactions between React, Redux, and the Canvas API.",
     video: snapShotVid,
     link: "https://snapshotie.netlify.com/"
   },
@@ -48,14 +48,14 @@ const modalData = {
   },
   5: {
     title: "Rejeweler",
-    techStack: "Canvas Api, Javascript",
+    techStack: "Javascript",
     description: "Solo project. Bejewled clone built to practice particle effects and advanced class interactions in JavaScript.",
     video: rejewelerVid,
     link: "https://rejeweler.netlify.com/"
   },
   6: {
     title: "Tetro",
-    techStack: "Canvas API, Javascript",
+    techStack: "Javascript",
     description: "Solo project. Tetris clone built in vanilla Javascript to learn more about the Canvas API.",
     video: tetroVid,
     link: "http://tetro.netlify.com/"
