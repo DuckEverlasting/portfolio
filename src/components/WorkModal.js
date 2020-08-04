@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 
 import keyConsVid from "../assets/Videos/Key-Cons-sample.mp4";
 import gazorkazorkVid from "../assets/Videos/Gazorkazork-sample.mp4"
-import photosmithVid from "../assets/Videos/Photosmith-sample.mp4";
+import snapShotVid from "../assets/Videos/Photosmith-sample.mp4";
 import hexsweeperVid from "../assets/Videos/Hexsweeper-sample.mp4";
 import rejewelerVid from "../assets/Videos/Rejeweler-sample.mp4";
 import tetroVid from "../assets/Videos/Tetro-sample.mp4";
@@ -33,11 +33,11 @@ const modalData = {
     link: "https://gazorkazork.netlify.com/"
   },
   3: {
-    title: "Photosmith",
+    title: "SnapShot",
     techStack: "React, Redux",
     description: "Solo project. Online drawing tool built to test interactions between React, Redux, and the Canvas API.",
-    video: photosmithVid,
-    link: "https://photosmith.netlify.com/"
+    video: snapShotVid,
+    link: "https://snapshotie.netlify.com/"
   },
   4: {
     title: "Hexsweeper",

@@ -5,7 +5,7 @@ import WorkPanel from "../components/WorkPanel.js";
 
 import keyConsStill from "../assets/Stills/Key-Cons-still.png";
 import gazorkazorkStill from "../assets/Stills/Gazorkazork-still.png";
-import photosmithStill from "../assets/Stills/Photosmith-still.png";
+import snapShotStill from "../assets/Stills/Photosmith-still.png";
 import hexsweeperStill from "../assets/Stills/Hexsweeper-still.png";
 import rejewelerStill from "../assets/Stills/Rejeweler-still.png";
 import tetroStill from "../assets/Stills/Tetro-still.png";
@@ -14,7 +14,7 @@ import encounterStill from "../assets/Stills/5E-Encounter-still.png";
 
 import keyConsVid from "../assets/Videos/Key-Cons-sample.mp4";
 import gazorkazorkVid from "../assets/Videos/Gazorkazork-sample.mp4"
-import photosmithVid from "../assets/Videos/Photosmith-sample.mp4";
+import snapShotVid from "../assets/Videos/Photosmith-sample.mp4";
 import hexsweeperVid from "../assets/Videos/Hexsweeper-sample.mp4";
 import rejewelerVid from "../assets/Videos/Rejeweler-sample.mp4";
 import tetroVid from "../assets/Videos/Tetro-sample.mp4";
@@ -62,10 +62,10 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
     },
     {
       id: 3,
-      name: "Photosmith",
+      name: "SnapShot",
       slug: "Raster graphics editor",
-      video: photosmithVid,
-      static: photosmithStill,
+      video: snapShotVid,
+      static: snapShotStill,
       style: {
         width: "120%",
         marginLeft: "-10%",
