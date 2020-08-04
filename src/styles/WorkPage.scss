@@ -1,0 +1,582 @@
+.work-page {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px 0 0;
+  pointer-events: none;
+
+  @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+    padding: 140px 0 0;
+  }
+
+  @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+    padding: 170px 0 0;
+  }
+
+  .work-sign-container {
+    position: absolute;
+    width: 100%;
+    top: 10%;
+    user-select: none;
+
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+      transform: scale(0.85);
+      top: 12%;
+    }
+
+    @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+      transform: scale(0.7);
+      top: 15%;
+    }
+
+    @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+      display: none;
+    }
+
+    .work-sign-box {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 180px;
+      margin: 0 auto;
+      padding: 17px 22px;
+
+      .work-sign {
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        transform: rotateY(0.5turn);
+        z-index: 1;
+        backface-visibility: hidden;
+        
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          display: none;
+        }
+
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          margin-top: 15px;
+        }
+
+        .work-sign-front {
+          position: absolute;
+          width: 100%;
+          height: 80px;
+          background: $black;
+          backface-visibility: hidden;
+          border-radius: 20px;
+          z-index: 2;
+
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            width: 80%;
+            margin: 0 10%;
+            height: 58px;
+            border-radius: 10px;
+          }
+
+          .title {
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              font-size: 2rem;
+              padding: 0px;
+              padding-top: 7px;
+            }
+          }
+        }
+
+        .work-sign-back {
+          position: absolute;
+          width: 100%;
+          height: 80px;
+          background: $dark-grey-blue;
+          border-radius: 20px;
+          transform: rotateX(0.5turn);
+          z-index: 1;
+
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            width: 80%;
+            margin: 0 10%;
+            height: 58px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .telescope-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    top: 25.5%;
+
+    @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+      top: 30%;
+    }
+
+    @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+      top: 27%;
+    }
+
+    .perspective-box {
+      position: absolute;
+      perspective: 1500px;
+      perspective-origin: top;
+      left: 50px;
+      transform: translateZ(500px);
+      margin: 5px auto 0;
+      top: 0%;
+
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        left: 30px;
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        left: 30px;
+      }
+
+      .adjustment-box {
+        position: relative;
+        transform-style: preserve-3d;
+
+        .panel-box {
+          position: relative;
+          display: flex;
+          flex-wrap: wrap;
+          width: 60vw;
+          height: 32vw;
+          margin: 0 auto;
+          border: 2vw solid $black;
+          border-radius: 1vw;
+          box-sizing: border-box;
+          justify-content: center;
+          align-items: center;
+          align-content: flex-start;
+          transform-origin: top;
+          transform-style: preserve-3d;
+
+          @media screen and (orientation: portrait) {
+            width: 32vh;
+            height: 60vh;
+            border: 2vh solid $black;
+            border-radius: 1vh;
+          }
+    
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            width: 30vh;
+            height: 56vh;
+          }
+
+          .work-panel-container {
+            position: relative;
+            height: 14vw;
+            width: 14vw;
+            background: transparent;
+            transform-style: preserve-3d;
+
+            @media screen and (orientation: portrait) {
+              width: 14vh;
+              height: 14vh;
+            }
+      
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              height: 13vh;
+              width: 13vh;
+            }
+
+            .work-panel {
+              position: relative;
+              height: 100%;
+              width: 100%;
+              background: $bright-magenta;
+              transform-style: preserve-3d;
+              z-index: 3;
+
+              .work-panel-front {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100.5%;
+                height: 100.5%;
+                top: 0%;
+                right: 0%;
+                margin-top: -0.25%;
+                margin-right: -0.25%;
+                background: $black;
+                box-sizing: border-box;
+                overflow: hidden;
+                z-index: 4;
+                backface-visibility: hidden;
+                transform-style: preserve-3d;
+
+                .work-panel-content {
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: space-between;
+                  width: 97%;
+                  height: 97%;
+                  background: $magenta;
+                  transform-style: preserve-3d;
+                  z-index: 5;
+                  pointer-events: all;
+                  cursor: pointer;
+                  overflow: hidden;
+                  outline: none;
+
+                  &:focus {
+                    border: 2px solid $cyan;
+
+                    &:active {
+                      border: none;
+                    }
+                  }
+
+                  .work-panel-image {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    transition: opacity 0.5s;
+                    z-index: 2;
+                  }
+
+                  .work-panel-text {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    margin: 0 0.5vw 0.5vw;
+                    flex-grow: 1;
+
+                    @media screen and (orientation: portrait) {
+                      margin: 0 0.5vh 0.5vh;
+                    }
+
+                    .work-panel-title {
+                      display: inline-block;
+                      position: relative;
+                      width: 100%;
+                      color: white;
+                      font-family: $main-font, sans-serif;
+                      font-size: 1.8vw;
+                      font-weight: bolder;
+                      margin-bottom: 0.3vw;
+                      margin-top: 0.5vw;
+                      z-index: 1;
+
+                      @media screen and (orientation: portrait) {
+                        font-size: 1.6vh;
+                      }
+                    }
+
+                    .work-panel-slug {
+                      position: relative;
+                      width: 100%;
+                      color: white;
+                      font-family: $main-font;
+                      font-size: 0.8vw;
+                      margin-top: 0.3vw;
+                      z-index: 1;
+
+                      @media screen and (orientation: portrait) {
+                        font-size: 0.8vh;
+                      }
+                    }
+                  }
+
+                  .work-panel-video-box {
+                    position: relative;
+                    width: 100%;
+                    height: 60%;
+                    overflow: hidden;
+                    z-index: 1;
+
+                    .work-panel-video {
+                      width: 110%;
+                      margin-left: -5%;
+
+                      @media screen and (orientation: portrait) {
+                        transform: translateX(calc((100% - 14vh) / 2));
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .telescope-1 {
+      position: absolute;
+      right: 0%;
+      height: 62px;
+      width: 7%;
+      min-width: 70px;
+      transform: translate(150%, 0);
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+
+      @media screen and (max-width: $break-mobile) {
+        right: -6%;
+      }
+
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        right: -3%;
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        right: -8.5%;
+      }
+    }
+
+    .telescope-2 {
+      position: absolute;
+      right: 1%;
+      height: 32px;
+      width: 7%;
+      min-width: 70px;
+      transform: translate(150%, 0);
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+
+      @media screen and (max-width: $break-mobile) {
+        right: -9.5%;
+      }
+
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        right: -4%;
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        right: -14%;
+      }
+    }
+
+    .telescope-3 {
+      position: absolute;
+      right: 2%;
+      height: 24px;
+      width: 7%;
+      min-width: 70px;
+      transform: translate(150%, 0);
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+
+      @media screen and (max-width: $break-mobile) {
+        right: -13%;
+      }
+
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        right: -5%;
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        right: -19%;
+      }
+    }
+
+    .telescope-bar {
+      position: relative;
+      height: 8px;
+      left: calc(20vw - 50px);
+      width: 200vw;
+      margin: 0 auto;
+      transform: translate(200%, 0);
+      user-select: none;
+      pointer-events: none;
+
+      @media screen and (orientation: portrait) {
+        left: calc(50vw - 16vh - 50px);
+      }
+
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        left: calc(20vw - 30px);
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        left: calc(50vw - 15vh - 30px);
+      }
+
+      .bar {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: $black;
+        border-radius: 20px;
+        z-index: 3;
+      }
+
+      .ball {
+        position: absolute;
+        left: 0;
+        margin-top: -6px;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: $black;
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          height: 18px;
+          width: 18px;
+        }
+  
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          height: 18px;
+          width: 18px;
+        }
+      }
+    }
+  }
+}
+
+.work-modal {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1000px;
+  min-width: 300px;
+  width: 80%;
+  height: auto;
+  max-height: 95%;
+  border: 10px solid $magenta;
+  background: $black;
+  border-radius: 10px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $black;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-blue;
+    border-radius: 5px;
+    border: 3px solid $black;
+  }
+
+  .modal-outer-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-top: 5%;
+
+    .modal-video {
+      flex-direction: column;
+      align-items: center;
+      width: 80vh;
+      min-width: 70%;
+      max-width: 90%;
+      height: auto;
+      background: black;
+    }
+    .modal-inner-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90%;
+
+      .modal-title {
+        text-align: center;
+        color: white;
+        font-size: 2.5rem;
+        margin: 4% 0 0.5%;
+
+        @media screen and (max-width: $break-720) {
+          font-size: 2.4rem;
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          font-size: 2.3rem;
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          font-size: 2.3rem;
+        }
+      }
+
+      .modal-tech-stack {
+        text-align: center;
+        color: $text-magenta;
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin: 0 0 4%;
+
+        @media screen and (max-width: $break-720) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          font-size: 1.2rem;
+        }
+      }
+
+      .modal-description {
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 1.2;
+
+        @media screen and (max-width: $break-720) {
+          font-size: 1.1rem;
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          font-size: 1rem;
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          font-size: 1rem;
+        }
+
+        a {
+          color: $cyan;
+        }
+      }
+    }
+  }
+
+  .modal-link {
+    background: $black;
+    color: white;
+    padding: 10px 20px;
+    width: 50px;
+    margin: 5% 0;
+    border: 2px solid $cyan;
+    border-radius: 5px;
+    font-family: $main-font;
+    font-size: 20px;
+    text-decoration: none;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+      background: $bright-magenta;
+      border: 2px solid rgb(175, 175, 175);
+      transition: background 0.3s, border 0.3s;
+    }
+
+    &:focus {
+      background: $near-black;
+    }
+
+    &:active {
+      background: $magenta;
+    }
+  }
+}

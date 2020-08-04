@@ -1,0 +1,450 @@
+.top-container {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: transform 1s;
+  z-index: 7;
+
+  &.up {
+    transform: translateY(-150%);
+  }
+
+  .border-screen {
+    position: absolute;
+    z-index: 8;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: opacity 1s, transform 1s;
+  }
+  .starfield-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+
+    .canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+      background: $magenta;
+      background: linear-gradient(
+        75deg,
+        rgba(90, 0, 72, 1) 0%,
+        rgba(67, 0, 19, 1) 47%,
+        rgba(67, 0, 19, 1) 53%,
+        rgba(50, 0, 73, 1) 100%
+      );
+      transition: background 3s;
+    }
+
+    .starfield-content-box {
+      display: flex;
+      width: 100%;
+      height: 70%;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15%;
+      margin-bottom: 15%;
+
+      .page-title {
+        width: 80%;
+        margin-bottom: 5%;
+        text-align: center;
+        font-size: 4rem;
+        font-family: $title-font;
+        color: white;
+        line-height: 1.3;
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        user-select: none;
+        pointer-events: none;
+
+        @media screen and (max-width: 1163px) {
+          font-size: 3rem;
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          font-size: 2rem;
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          font-size: 2rem;
+        }
+
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          font-size: 1.8rem;
+        }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          font-size: 1.8rem;
+        }
+      }
+
+      .button-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .animated-button {
+          background: $black;
+          padding: 15px 20px;
+          border: 2px solid rgb(175, 175, 175);
+          border-radius: 10px;
+          font-size: 1.6rem;
+          font-family: $main-font;
+          font-weight: bold;
+          color: white;
+          z-index: 7;
+          user-select: none;
+          transition: background 0.3s;
+          outline: none;
+          cursor: pointer;
+
+          @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+            font-size: 1.2rem;
+          }
+
+          @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+            font-size: 1.2rem;
+          }
+
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            font-size: 1rem;
+            padding: 13px 18px;
+          }
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            font-size: 1rem;
+            padding: 13px 18px;
+          }
+
+          &:focus {
+            background: $near-black;
+          }
+
+          &:hover {
+            background: $bright-magenta;
+            color: white;
+            cursor: pointer;
+
+            &:active {
+              background: $magenta;
+            }
+          }
+
+          &.settings {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-size: .9rem;
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              font-size: .8rem;
+            }
+  
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: .8rem;
+            }
+  
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              font-size: .7rem;
+              padding: 7px 11px;
+            }
+  
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              font-size: .7rem;
+              padding: 7px 11px;
+            }
+          }
+        }
+      }
+
+      .starfield-modal-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+        pointer-events: none;
+
+        .starfield-modal {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 35%;
+          min-width: 240px;
+          max-width: 450px;
+          height: auto;
+          max-height: 280px;
+          padding: 15px;
+          border-radius: 10px;
+          margin-top: 5%;
+          background: rgba(20, 20, 24, 0.6);
+          z-index: 1;
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            display: none;
+          }
+          
+          @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+            min-width: 220px;
+          }
+
+          .starfield-modal-text {
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.25;
+            padding-left: 10px;
+            padding-right: 25px;
+
+            @media screen and (max-width: $break-720) {
+              font-size: 1.1rem;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              font-size: 0.95rem;
+            }
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              font-size: 0.7rem;
+            }
+          }
+
+          .modal-off-button {
+            margin: 3px;
+            transform: scale(0.8);
+            pointer-events: auto;
+          }
+        }
+      }
+    }
+
+    .starfield-form-outer-box {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      right: 0%;
+      top: 10%;
+      top: calc(21% - 65px);
+      height: 90%;
+      min-height: 220px;
+      width: 420px;
+      width: calc(6% + 310px);
+      pointer-events: none;
+      z-index: 8;
+
+      @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+        top: calc(27% - 45px);
+        width: 680px;
+        width: calc(12% + 460px);
+      }
+
+      @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+        top: -5%;
+      }
+
+      @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+        top: calc(35% - 185px);
+        width: 360px;
+        width: calc(6% + 250px);
+      }
+
+      
+      @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        top: -6%;
+        height: 96%;
+        width: 610px;
+        width: calc(12% + 390px);
+      }
+
+      @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        top: calc(32% - 175px);
+        height: 96%;
+        width: 320px;
+        width: calc(6% + 240px);
+      }
+      
+      .starfield-form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 200px 20px 10%;
+        border-radius: 20px;
+        right: 0%;
+        font-family: $main-font;
+        font-size: 1rem;
+        color: white;
+        background: rgba(20, 20, 24, 1);
+        border: 2px solid rgb(175, 175, 175);
+        overflow: auto;
+        user-select: none;
+        pointer-events: auto;
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          padding: 10px 200px 10px 10%;
+          font-size: .8rem;
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          font-size: .8rem;
+        }
+
+        @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+          padding: 10px 200px 10px 8%;
+          font-size: .8rem;
+        }
+
+        .input-box {
+          display: flex;
+          flex-direction: column;
+          width: 260px;
+
+          @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+            width: 520px;
+            height: 90%;
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+
+          @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+            width: 200px;
+          }
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            width: 440px;
+          }
+
+          .input-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 15px 0;
+            width: 100%;
+
+            @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+              width: 40%;
+              margin: 10px 30px 10px 0;
+            }
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              width: 40%;
+              margin: 8px 20px 8px 0;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              margin: 8px 20px 8px 0;
+            }
+
+            @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+              margin: 4px 15px 4px 0;
+            }
+
+            @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+              margin: 4px 15px 4px 0;
+            }
+
+            input {
+              margin-left: 15px;
+              
+              @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+                width: 40%;
+              }
+
+              @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+                width: 40%;
+              }
+            }
+          }
+
+        }
+
+        .button-box {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 270px;
+
+          @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+            width: 210px;
+          }
+
+          @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+            width: 206px;
+          }
+          
+          .animated-button {
+            width: 80px;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 7px;
+            margin-left: 5px;
+            margin-top: 15px;
+
+            @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+              margin-top: 8px;
+              font-size: 14px;
+            }
+
+            @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+              margin-top: 8px;
+              font-size: 14px;
+            }
+          }
+        }
+        
+      }
+      .form-off-button {
+        position: sticky;
+        left: 0%;
+        top: 38%;
+        top: calc(21% + 234px);
+        background: none;
+        color: white;
+        border: 2px solid rgb(175, 175, 175);
+        border-left: none;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 20px 5px 20px 3px;
+        cursor: pointer;
+        user-select: none;
+        outline: none;
+        z-index: 10;
+        pointer-events: auto;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+    
+        &:focus {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media screen and (max-height: $break-tablet) and (orientation: landscape) {
+          top: calc(22% + 164px);
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          top: 120px;
+        }
+
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          top: calc(32% + 70px);
+        }
+
+        @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+          top: calc(32% + 40px);
+        }
+      }
+    }
+  }
+}

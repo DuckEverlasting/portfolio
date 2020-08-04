@@ -1,0 +1,117 @@
+.about-page {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0 0;
+  z-index: 3;
+  pointer-events: none;
+
+  .about-sign {
+    position: absolute;
+    top: 8%;
+    width: 100%;
+
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+      transform: scale(0.85);
+      top: 12%;
+    }
+
+    @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+      transform: scale(0.7);
+      top: 14%;
+    }
+
+    @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+      display: none;
+    }
+
+    .spring-box {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: -60px;
+
+      img {
+        width: 100px;
+      }
+    }
+  }
+  .text-box-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50%;
+    max-width: 1250px;
+    max-height: 270px;
+    margin-top: 14vh;
+
+    @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+      margin-top: 16vh;
+    }
+
+    @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+      margin-top: 18vh;
+    }
+
+    @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+      margin-top: 0vh;
+    }
+
+    .text-box {
+      position: relative;
+      display: flex;
+      width: 0%;
+      height: 0%;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      border: 0px solid $black;
+      background: $black;
+      overflow: hidden;
+      pointer-events: all;
+
+      .about-text {
+        position: absolute;
+        width: 64vw;
+        color: white;
+        font-size: 1.4rem;
+        line-height: 1.5;
+
+        @media screen and (max-width: $break-tablet) and (orientation: portrait) {
+          font-size: 1.2rem;
+        }
+  
+        @media screen and (max-width: $break-mobile) and (orientation: portrait) {
+          font-size: 1rem;
+        }
+
+        @media screen and (max-height: $break-mobile) and (orientation: landscape) {
+          font-size: 1rem;
+        }
+
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+          font-size: .8rem;
+        }
+
+        @media screen and (max-height: 420px) and (orientation: landscape) {
+          font-size: .8rem;
+        }
+
+        // @media screen and (max-height: $break-brannan) and (orientation: landscape) {
+        //   font-size: .8rem;
+        // }
+        
+        // @media screen and (max-width: $break-brannan) and (orientation: portrait) {
+        //   font-size: .8rem;
+        // }
+      }
+    }
+  }
+}
