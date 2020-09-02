@@ -7,11 +7,11 @@ import telescope1 from "../assets/telescope-1.png";
 import telescope2 from "../assets/telescope-2.png";
 import telescope3 from "../assets/telescope-3.png";
 
-function WorkTelescope({ isOn, triggerModal, modalState }) {
+function WorkTelescope({ isOn, triggerModal, modalState, isLoaded }) {
   const { val } = useSpring({
     val: isOn ? 0 : 100,
     config: { mass: 5, tension: 400, friction: 120 },
-    delay: isOn ? 0 : 300
+    delay: isLoaded ? (isOn ? 0 : 300) : 0
   });
   const telescopeBarSpr = useSpring({
     transform:
@@ -22,14 +22,14 @@ function WorkTelescope({ isOn, triggerModal, modalState }) {
       isOn
         ? { mass: 1, tension: 250, friction: 50 }
         : { mass: 1, tension: 150, friction: 50 },
-    delay: isOn ? 300 : 300
+    delay: isLoaded ? 300 : 0
   });
 
   return (
     <>
       <div className="telescope-container">
         <animated.div className="telescope-bar" style={{...telescopeBarSpr, zIndex: isOn ? 0 : 1}}>
-          <WorkPanelBox isOn={isOn} triggerModal={triggerModal} modalState={modalState}/>
+          <WorkPanelBox isOn={isOn} triggerModal={triggerModal} modalState={modalState} isLoaded={isLoaded}/>
           <div className="bar" style={{zIndex: isOn ? 0 : 1}}/>
           <div className="ball"/>
         </animated.div>

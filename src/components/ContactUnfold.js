@@ -7,34 +7,34 @@ import {
   faTwitter
 } from "@fortawesome/free-brands-svg-icons";
 
-function ContactUnfold({ isOn }) {
+function ContactUnfold({ isOn, isLoaded }) {
   const unfoldSpr1 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.5turn)",
     config: isOn
       ? { mass: 1, tension: 48, friction: 12, clamp: true }
       : { mass: 1, tension: 38, friction: 16, clamp: true },
-    delay: isOn ? 0 : 600
+    delay: isLoaded ? (isOn ? 0 : 600) : 0
   });
   const unfoldSpr2 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.25turn)",
     config: isOn
       ? { mass: 1, tension: 48, friction: 12, clamp: true }
       : { mass: 1, tension: 38, friction: 14, clamp: true },
-    delay: isOn ? 125 : 400
+    delay: isLoaded ? (isOn ? 125 : 400) : 0
   });
   const unfoldSpr3 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.25turn)",
     config: isOn
       ? { mass: 1, tension: 48, friction: 14, clamp: true }
       : { mass: 1, tension: 38, friction: 12, clamp: true },
-    delay: isOn ? 250 : 200
+    delay: isLoaded ? (isOn ? 250 : 200) : 0
   });
   const unfoldSpr4 = useSpring({
     transform: isOn ? "rotateX(0turn)" : "rotateX(-0.5turn)",
     config: isOn
       ? { mass: 1, tension: 58, friction: 10, clamp: true }
       : { mass: 1, tension: 18, friction: 10, clamp: true },
-    delay: isOn ? 375 : 0
+    delay: isLoaded ? (isOn ? 375 : 0) : 0
   });
 
   return (

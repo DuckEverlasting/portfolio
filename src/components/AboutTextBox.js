@@ -1,18 +1,18 @@
 import React from "react";
 import { useSpring, animated, config } from "react-spring";
 
-function AboutTextBox({ isOn }) {
+function AboutTextBox({ isOn, isLoaded }) {
   const textBoxHeightSpr = useSpring({
     height: isOn ? "100%" : "0%",
     borderWidth: isOn ? "3px" : "0px",
-    delay: isOn ? 200 : 240,
+    delay: isLoaded ? (isOn ? 200 : 240) : 0,
     config: isOn
       ? config.easy
       : config.stiff
   })
   const textBoxWidthSpr = useSpring({
     width: isOn ? "100%" : "0%",
-    delay: isOn ? 700 : 10,
+    delay: isLoaded ? (isOn ? 700 : 10) : 0,
     config: isOn
       ? config.default
       : {tension: 650, friction: 50}

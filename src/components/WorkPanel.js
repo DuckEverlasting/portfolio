@@ -7,7 +7,7 @@ function isMobileDevice() {
 
 const mobile = isMobileDevice();
 
-function WorkPanel({ isOn, content, triggerModal, modalState }) {
+function WorkPanel({ isOn, content, triggerModal, modalState, isLoaded }) {
   const [videoIsRendered, setVideoIsRendered] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
@@ -25,14 +25,14 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
       setWorkPanelSpring(() => ({
         transform: "rotateX(0turn)",
         config: { mass: 1, tension: Math.random() * 30 + 40, friction: 2 },
-        delay: Math.random() * 200 + 1000,
+        delay: isLoaded ? (Math.random() * 200 + 1000) : 0,
         onRest: () => {if (!mobile) setVideoIsRendered(true)}
       }))
       :
       setWorkPanelSpring(() => ({
         transform: "rotateX(0.5turn)",
         config: { mass: 1, tension: 480, friction: 38 },
-        delay: Math.random() * 50,
+        delay: isLoaded ? (Math.random() * 50) : 0,
         onRest: () => {if (!mobile) setVideoIsRendered(true)}
       }))
       // eslint-disable-next-line
@@ -41,7 +41,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const [workPanelSpring, setWorkPanelSpring] = useSpring(() => ({
     transform: "rotateX(0.5turn)",
     config: { mass: 1, tension: 480, friction: 38 },
-    delay: Math.random() * 50,
+    delay: isLoaded ? (Math.random() * 50) : 0,
     onRest: () => {if (!mobile) setVideoIsRendered(true)}
   }));
 
@@ -57,14 +57,14 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   }
 
   const handleVideoHover = async () => {
-    if (!mobile) {
-      await setVideoIsPlaying(true)
+    if (!mobile && vidRef.current) {
+      setVideoIsPlaying(true)
       vidRef.current.play();
     };
   }
 
   const handleVideoOff = () => {
-    if (!mobile) {
+    if (!mobile && vidRef.current) {
       setVideoIsPlaying(false);
       vidRef.current.pause();
       vidRef.current.currentTime = content.start || 0;

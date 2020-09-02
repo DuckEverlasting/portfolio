@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import MobileApp from './MobileApp';
@@ -12,7 +13,7 @@ function isMobileDevice() {
 };
 
 ReactDOM.render(
-  <>
+  <BrowserRouter>
     {isMobileDevice() ? <MobileApp /> : <App />}
-  </>, document.getElementById('root')
+  </BrowserRouter>, document.getElementById('root')
 );

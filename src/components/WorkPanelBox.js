@@ -21,13 +21,13 @@ import tetroVid from "../assets/Videos/Tetro-sample.mp4";
 import firstPersonVid from "../assets/Videos/First-Person-sample.mp4";
 import encounterVid from "../assets/Videos/5E-Encounter-sample.mp4";
 
-function WorkPanelBox({ isOn, triggerModal, modalState }) {
+function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
   useEffect(() => {
     isOn ? 
     setWorkPanelBoxSpring(() => ({
       transform: "rotateX(0)",
       config: { mass: 1, tension: 40, friction: 2 },
-      delay: 1000,
+      delay: isLoaded ? 1000 : 0,
     }))
     :
     setWorkPanelBoxSpring(() => ({
@@ -132,6 +132,7 @@ function WorkPanelBox({ isOn, triggerModal, modalState }) {
                 content={item}
                 triggerModal={triggerModal}
                 modalState={modalState}
+                isLoaded={isLoaded}
               />
             ))}
           </animated.div>
