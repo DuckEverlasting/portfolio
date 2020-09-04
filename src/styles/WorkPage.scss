@@ -294,7 +294,17 @@
                     overflow: hidden;
                     z-index: 1;
 
-                    .work-panel-video {
+                    .video-placeholder {
+                      position: absolute;
+                      width: 110%;
+                      margin-left: -5%;
+
+                      @media screen and (orientation: portrait) {
+                        transform: translateX(calc((100% - 14vh) / 2));
+                      }
+                    }
+
+                    .modal-video {
                       width: 110%;
                       margin-left: -5%;
 
@@ -438,6 +448,7 @@
 }
 
 .work-modal {
+
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -472,15 +483,28 @@
     width: 90%;
     margin-top: 5%;
 
-    .modal-video {
+    .modal-video-box {
+      position: relative;
       flex-direction: column;
       align-items: center;
       width: 80vh;
       min-width: 70%;
       max-width: 90%;
       height: auto;
-      background: black;
+      
+      .video-placeholder {
+        width: 100%;
+        height: auto;
+      }
+  
+      .modal-video {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
     }
+
     .modal-inner-box {
       display: flex;
       flex-direction: column;
@@ -555,7 +579,6 @@
     background: $black;
     color: white;
     padding: 10px 20px;
-    width: 50px;
     margin: 5% 0;
     border: 2px solid $cyan;
     border-radius: 5px;

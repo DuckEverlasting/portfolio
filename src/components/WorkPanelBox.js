@@ -12,14 +12,14 @@ import tetroStill from "../assets/Stills/Tetro-still.png";
 import firstPersonStill from "../assets/Stills/First-Person-still.png";
 import encounterStill from "../assets/Stills/5E-Encounter-still.png";
 
-import keyConsVid from "../assets/Videos/Key-Cons-sample.mp4";
-import gazorkazorkVid from "../assets/Videos/Gazorkazork-sample.mp4"
-import snapShotVid from "../assets/Videos/SnapShot-sample.mp4";
-import hexsweeperVid from "../assets/Videos/Hexsweeper-sample.mp4";
-import rejewelerVid from "../assets/Videos/Rejeweler-sample.mp4";
-import tetroVid from "../assets/Videos/Tetro-sample.mp4";
-import firstPersonVid from "../assets/Videos/First-Person-sample.mp4";
-import encounterVid from "../assets/Videos/5E-Encounter-sample.mp4";
+import keyConsPlaceholder from "../assets/Videos/Key-Cons-sample.png";
+import gazorkazorkPlaceholder from "../assets/Videos/Gazorkazork-sample.png"
+import snapShotPlaceholder from "../assets/Videos/SnapShot-sample.png";
+import hexsweeperPlaceholder from "../assets/Videos/Hexsweeper-sample.png";
+import rejewelerPlaceholder from "../assets/Videos/Rejeweler-sample.png";
+import tetroPlaceholder from "../assets/Videos/Tetro-sample.png";
+import firstPersonPlaceholder from "../assets/Videos/First-Person-sample.png";
+import encounterPlaceholder from "../assets/Videos/5E-Encounter-sample.png";
 
 function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
   useEffect(() => {
@@ -50,26 +50,29 @@ function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
       id: 1,
       name: "Key Conservation",
       slug: "Conservation outreach app",
-      video: keyConsVid,
+      video: "KeyConsVid",
+      placeholder: keyConsPlaceholder,
       static: keyConsStill,
     },
     {
       id: 2,
       name: "Gazorkazork",
       slug: "Online multiuser dungeon",
-      video: gazorkazorkVid,
+      video: "GazorkazorkVid",
+      placeholder: gazorkazorkPlaceholder,
       static: gazorkazorkStill,
     },
     {
       id: 3,
       name: "SnapShot",
       slug: "Raster graphics editor",
-      video: snapShotVid,
+      video: "SnapShotVid",
+      placeholder: snapShotPlaceholder,
       static: snapShotStill,
       style: {
-        width: "120%",
-        marginLeft: "-10%",
-        marginTop: "-6%"
+        width: "125%",
+        marginLeft: "-12%",
+        marginTop: "-7%"
       },
       start: 4,
     },
@@ -77,7 +80,8 @@ function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
       id: 4,
       name: "Hexsweeper",
       slug: "Customizable puzzle game",
-      video: hexsweeperVid,
+      video: "HexsweeperVid",
+      placeholder: hexsweeperPlaceholder,
       static: hexsweeperStill,
       style: {
         width: "170%",
@@ -89,7 +93,8 @@ function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
       id: 5,
       name: "Rejeweler",
       slug: "Tile matching game",
-      video: rejewelerVid,
+      video: "RejewelerVid",
+      placeholder: rejewelerPlaceholder,
       static: rejewelerStill,
       style: {},
     },
@@ -97,7 +102,8 @@ function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
       id: 6,
       name: "Tetro",
       slug: "Falling tile game",
-      video: tetroVid,
+      video: "TetroVid",
+      placeholder: tetroPlaceholder,
       static: tetroStill,
       style: {},
     },
@@ -105,7 +111,8 @@ function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
       id: 7,
       name: "First Person Prototype",
       slug: "POC game environment",
-      video: firstPersonVid,
+      video: "FirstPersonVid",
+      placeholder: firstPersonPlaceholder,
       static: firstPersonStill,
       style: {},
       start: 2,
@@ -114,7 +121,8 @@ function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
       id: 8,
       name: "5e Encounter Generator",
       slug: "Online D&D tool",
-      video: encounterVid,
+      video: "EncounterVid",
+      placeholder: encounterPlaceholder,
       static: encounterStill,
       style: {},
     }

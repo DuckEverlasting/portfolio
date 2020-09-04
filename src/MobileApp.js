@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import "./styles/App.scss";
 import Starfield from "./views/Starfield";
 import About from "./views/About";
@@ -11,21 +12,25 @@ import gear from "./assets/gear.png";
 import colors from "./styles/Colors.scss";
 
 function MobileApp() {
-  const [appIsLoaded, setAppIsLoaded] = useState(false)
-  const [wipeIsMounted, setWipeIsMounted] = useState(true)
-  const [topContainerIsUp, setTopContainerIsUp] = useState(false);
-  const [contentIsVisible, setContentIsVisible] = useState(false);
-  const [clearStarfield, setClearStarfield] = useState(false)
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [gearPosition, setGearPosition] = useState(0);
-  const [skipSections, setSkipSections] = useState([])
-  const [hold, setHold] = useState(false)
-  const [starModalIsVisible, setStarModalIsVisible] = useState(true)
-  const [starSettingsAreOpen, setStarSettingsAreOpen] = useState(false);
-  const [modalState, setModalState] = useState(0)
-  const triggerModal = useCallback(id => {
-    setModalState(id)
-  }, [])
+  const [appIsLoaded, setAppIsLoaded] = useState(false),
+    [wipeIsMounted, setWipeIsMounted] = useState(true),
+    [isDeepLinking, setIsDeepLinking] = useState(false),
+    [topContainerIsUp, setTopContainerIsUp] = useState(false),
+    [contentIsVisible, setContentIsVisible] = useState(false),
+    [clearStarfield, setClearStarfield] = useState(false),
+    [scrollPosition, setScrollPosition] = useState(0),
+    [gearPosition, setGearPosition] = useState(0),
+    [skipSections, setSkipSections] = useState([]),
+    [hold, setHold] = useState(false),
+    [starModalIsVisible, setStarModalIsVisible] = useState(true),
+    [starSettingsAreOpen, setStarSettingsAreOpen] = useState(false),
+    [modalState, setModalState] = useState(0),
+    triggerModal = useCallback(id => {
+      setModalState(id)
+    }, [])
+
+  const history = useHistory(),
+    location = useLocation();
 
   const appRef = useRef(null);
 
@@ -33,27 +38,84 @@ function MobileApp() {
     setTimeout(() => setAppIsLoaded(true), 500)
   }, []);
 
-  const fakeScroll = async target => {
+  
+  useEffect(() => {
+    if (!appIsLoaded) {return;}
+    if (scrollPosition < 20 && history.location.pathname !== "/") {
+      history.replace("/");
+    } else if (scrollPosition > 20 && scrollPosition < 50 && history.location.pathname !== "/about" && !skipSections.includes("about")) {
+      history.replace("/about");
+    } else if (scrollPosition > 50 && scrollPosition < 75 && history.location.pathname !== "/work" && !skipSections.includes("work")) {
+      history.replace("/work");
+    } else if (scrollPosition > 75 && history.location.pathname !== "/contact") {
+      history.replace("/contact");
+    }
+    // eslint-disable-next-line
+  }, [scrollPosition])
+  
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      if (["/about", "/work", "/contact"].includes(location.pathname)) {
+        setContentIsVisible(true);
+        setTopContainerIsUp(true);
+        setIsDeepLinking(true);
+      } else {
+        history.replace("/");
+      }
+    }
+    // eslint-disable-next-line
+  }, [])
+
+  
+  useEffect(() => {
+    if (!isDeepLinking) {return;}
+    setIsDeepLinking(false);
+    console.log("TOP", topContainerIsUp)
+    switch (location.pathname) {
+      case "/about":
+        scrollButtonHandler(null, 33, false, true);
+        break;
+      case "/work":
+        scrollButtonHandler(null, 66, false, true);
+        break;
+      case "/contact":
+        scrollButtonHandler(null, 100, false, true);
+        break;
+      default: 
+        history.replace("/");
+        break;
+    }
+    // eslint-disable-next-line
+  }, [isDeepLinking]);
+
+
+  const fakeScroll = async (target, instant) => {
     if (scrollPosition === target) return;
 
     const wait = ms => {
       return new Promise((res, rej) => setTimeout(res, ms))
     }
-    const halfTarget = target < scrollPosition ? scrollPosition - 15 : scrollPosition + 15
     setHold(true)
-    await setScrollPosition(halfTarget)
+    if (!instant) {
+      const halfTarget = target < scrollPosition ? scrollPosition - 15 : scrollPosition + 15
+      await setScrollPosition(halfTarget)
+    }
     setGearPosition(target)
-    await wait(500)
+    if (!instant) {
+      await wait(500)
+    }
     await setScrollPosition(target)
     setHold(false)
   }
 
-  const scrollButtonHandler = async (ev, target, reset=false) => {
-    ev.preventDefault();
+  useEffect(() => console.log(scrollPosition), [scrollPosition])
+
+  const scrollButtonHandler = async (ev, target, reset=false, instant=false) => {
+    if (ev && ev.preventDefault) {ev.preventDefault()};
     if (hold) {
       return
     }
-
+    
     // check for sections to skip
     let toSkip = []
     if (target === 0) {
@@ -72,7 +134,7 @@ function MobileApp() {
     }
     await setSkipSections(toSkip)
 
-    await fakeScroll(target);
+    await fakeScroll(target, instant);
 
     if (reset) {
       setTopContainerIsUp(false);
@@ -141,9 +203,9 @@ function MobileApp() {
           <div className="fixed-container">
             <img className="gear top-left" src={gear} alt="" style={{transform: `rotate(${gearPosition * 5}deg)`, transition: "transform 1s"}}/>
             <img className="gear bottom-right" src={gear} alt="" style={{transform: `rotate(${gearPosition * -5}deg)`, transition: "transform 1s"}}/>
-            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")}/>
-            <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} triggerModal={triggerModal}/>
-            <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")}/>
+            <About scrollPosition={scrollPosition} skip={skipSections.includes("about")} isLoaded={appIsLoaded}/>
+            <Work scrollPosition={scrollPosition} skip={skipSections.includes("work")} triggerModal={triggerModal} isLoaded={appIsLoaded}/>
+            <Contact scrollPosition={scrollPosition} skip={skipSections.includes("contact")} isLoaded={appIsLoaded}/>
           </div>
         </>
       )}

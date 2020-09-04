@@ -46,7 +46,7 @@ function App() {
     } else if (scrollPosition > 75 && history.location.pathname !== "/contact") {
       history.replace("/contact")
     }
-
+    // eslint-disable-next-line
   }, [scrollPosition])
 
   const appRef = useRef(null);
