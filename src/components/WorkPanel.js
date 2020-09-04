@@ -104,6 +104,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
                   <p className="work-panel-slug">{content.slug}</p>
                 </div>
                 <div className="work-panel-video-box">
+                  <img alt={content.name} src={content.placeholder} style={content.style} className="video-placeholder" />
                   <Suspense fallback={
                     <img alt={content.name} src={content.placeholder} style={content.style} className="video-placeholder" />
                   }>
