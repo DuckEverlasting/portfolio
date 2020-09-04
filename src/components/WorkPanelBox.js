@@ -12,14 +12,14 @@ import tetroStill from "../assets/Stills/Tetro-still.png";
 import firstPersonStill from "../assets/Stills/First-Person-still.png";
 import encounterStill from "../assets/Stills/5E-Encounter-still.png";
 
-import keyConsPlaceholder from "../assets/Videos/Key-Cons-sample.png";
-import gazorkazorkPlaceholder from "../assets/Videos/Gazorkazork-sample.png"
-import snapShotPlaceholder from "../assets/Videos/SnapShot-sample.png";
-import hexsweeperPlaceholder from "../assets/Videos/Hexsweeper-sample.png";
-import rejewelerPlaceholder from "../assets/Videos/Rejeweler-sample.png";
-import tetroPlaceholder from "../assets/Videos/Tetro-sample.png";
-import firstPersonPlaceholder from "../assets/Videos/First-Person-sample.png";
-import encounterPlaceholder from "../assets/Videos/5E-Encounter-sample.png";
+import keyConsPlaceholder from "../assets/Videos/Key-Cons-sample-small.png";
+import gazorkazorkPlaceholder from "../assets/Videos/Gazorkazork-sample-small.png"
+import snapShotPlaceholder from "../assets/Videos/SnapShot-sample-small.png";
+import hexsweeperPlaceholder from "../assets/Videos/Hexsweeper-sample-small.png";
+import rejewelerPlaceholder from "../assets/Videos/Rejeweler-sample-small.png";
+import tetroPlaceholder from "../assets/Videos/Tetro-sample-small.png";
+import firstPersonPlaceholder from "../assets/Videos/First-Person-sample-small.png";
+import encounterPlaceholder from "../assets/Videos/5E-Encounter-sample-small.png";
 
 function WorkPanelBox({ isOn, triggerModal, modalState, isLoaded }) {
   useEffect(() => {
