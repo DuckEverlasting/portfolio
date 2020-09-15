@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import "./styles/App.scss";
+import ClipLoader from "react-spinners/ClipLoader";
 import Starfield from "./views/Starfield";
 import About from "./views/About";
 import Work from "./views/Work";
@@ -157,6 +158,9 @@ function App() {
       ref={appRef}
       style={{ height: hasStarted ? "7000px" : "100%"}}
     >
+      {wipeIsMounted && <div className={`app-spinner ${appIsLoaded ? "app-loaded" : ""}`}>
+        <ClipLoader color="white" size="100"/>
+      </div>}
       {wipeIsMounted && <GradientWipe isVisible={!appIsLoaded} trigger={setWipeIsMounted} />}
       <div className="top-container">
         <Starfield

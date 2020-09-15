@@ -154,6 +154,29 @@ body {
     z-index: 10;
   }
 
+  
+  .app-spinner {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: all .1s;
+    transition-delay: .35s;
+
+    @media screen and (orientation: portrait) {
+      transition-delay: .55s;
+    }
+  }
+
+  .app-spinner.app-loaded {
+    opacity: 0;
+  }
+
   .modal-off-button {
     position: absolute;
     height: 1.5vw;

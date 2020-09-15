@@ -103,7 +103,9 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
                   <p className="work-panel-slug">{content.slug}</p>
                 </div>
                 <div className="work-panel-video-box">
-                  <img alt={content.name} src={content.placeholder} style={content.style} className="video-placeholder" />
+                  {!readyForVideo && !mobile && <div className="spinner-box">
+                    <ClipLoader color="white"/>
+                  </div>}
                   {readyForVideo && !mobile && 
                     <Suspense fallback={<div />}>
                       {videos[content.video]({style: content.style})}

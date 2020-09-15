@@ -2,15 +2,6 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSpring, animated } from "react-spring";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import keyConsPlaceholder from "../assets/Videos/Key-Cons-sample.png";
-import gazorkazorkPlaceholder from "../assets/Videos/Gazorkazork-sample.png"
-import snapShotPlaceholder from "../assets/Videos/SnapShot-sample.png";
-import hexsweeperPlaceholder from "../assets/Videos/Hexsweeper-sample.png";
-import rejewelerPlaceholder from "../assets/Videos/Rejeweler-sample.png";
-import tetroPlaceholder from "../assets/Videos/Tetro-sample.png";
-import firstPersonPlaceholder from "../assets/Videos/First-Person-sample.png";
-import encounterPlaceholder from "../assets/Videos/5E-Encounter-sample.png";
-
 const KeyConsVid = React.lazy(() => import("./videoComponents/KeyConsVid")),
   GazorkazorkVid = React.lazy(() => import("./videoComponents/GazorkazorkVid")),
   SnapShotVid = React.lazy(() => import("./videoComponents/SnapShotVid")),
@@ -33,7 +24,6 @@ const modalData = {
     techStack: "React Native, Redux, Node.js,\u00A0Auth0",
     description: <p>Social media app built to connect conservationists with potential supporters. Built by rotating teams of developers as part of Lambda Labs. I was a member of the original team for the project; <a href="https://youtu.be/vivicbwPDts" target="_blank" rel="noopener noreferrer">this video</a> is a presentation of the work my team did in the app's first two months.</p>,
     video: <KeyConsVid />,
-    placeholder: keyConsPlaceholder,
     link: "https://www.keyconservation.org/",
     cta: "LEARN MORE"
   },
@@ -42,7 +32,6 @@ const modalData = {
     techStack: "React, Django",
     description: <p>Online MUD (Multi-User Dungeon) prototype built by a small team in one week. My work on the project included a <a href="https://github.com/Gazorkazork/django_be/blob/master/util/room_layout.py" target="_blank" rel="noopener noreferrer">room generation algorithm</a> and a <a href="https://github.com/Gazorkazork/frontend/blob/master/src/utils/textParser.js" target="_blank" rel="noopener noreferrer">language parser</a>.</p>,
     video: <GazorkazorkVid />,
-    placeholder: gazorkazorkPlaceholder,
     link: "https://gazorkazork.netlify.com/",
     cta: "PLAY"
   },
@@ -51,7 +40,6 @@ const modalData = {
     techStack: "React, Redux",
     description: "Solo project. Online layer-based image editor and drawing tool. Originally built to test interactions between React, Redux, and the Canvas API.",
     video: <SnapShotVid />,
-    placeholder: snapShotPlaceholder,
     link: "https://snapshotie.netlify.com/",
     cta: "EXPLORE"
   },
@@ -60,7 +48,6 @@ const modalData = {
     techStack: "React",
     description: "Solo project. Minesweeper clone built to test limitations of React, to learn more about React's memoization features, and to become more familiar with working in a hexagonal grid.",
     video: <HexsweeperVid />,
-    placeholder: hexsweeperPlaceholder,
     link: "http://hexsweeper.netlify.com/",
     cta: "PLAY"
   },
@@ -69,7 +56,6 @@ const modalData = {
     techStack: "Javascript",
     description: "Solo project. Bejewled clone built to practice particle effects and advanced class interactions in JavaScript.",
     video: <RejewelerVid />,
-    placeholder: rejewelerPlaceholder,
     link: "https://rejeweler.netlify.com/",
     cta: "PLAY"
   },
@@ -78,7 +64,6 @@ const modalData = {
     techStack: "Javascript",
     description: "Solo project. Tetris clone built in vanilla Javascript to learn more about the Canvas API.",
     video: <TetroVid />,
-    placeholder: tetroPlaceholder,
     link: "http://tetro.netlify.com/",
     cta: "PLAY"
   },
@@ -87,7 +72,6 @@ const modalData = {
     techStack: "React",
     description: "Solo project. First person game environment styled completely in CSS. The result of an experiment with CSS's 3d-capabilities.",
     video: <FirstPersonVid />,
-    placeholder: firstPersonPlaceholder,
     link: "https://first-person-css.netlify.com/",
     cta: "EXPLORE"
   },
@@ -96,7 +80,6 @@ const modalData = {
     techStack: "React, Redux, Node.js",
     description: "Encounter generator for Dungeons & Dragons. Created for a 48-hour hackathon by a small team. For this project, I was the sole backend developer.",
     video: <EncounterVid />,
-    placeholder: encounterPlaceholder,
     link: "https://5e-encounters.netlify.com/",
     cta: "PLAY"
   }
@@ -167,7 +150,7 @@ function WorkModal({ state, trigger }) {
           X
         </button>
         <div className="modal-outer-box">
-          {modalContent.placeholder && <div className="modal-video-box" >
+          {modalContent.video && <div className="modal-video-box">
             <div className="spinner-box" loading={!readyForVideo}>
               <ClipLoader color="white" />
             </div>
