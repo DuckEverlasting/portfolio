@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSpring, animated } from "react-spring";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function isMobileDevice() {
   return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
@@ -96,23 +97,19 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
               alt={content.name}
               style={{opacity: isHovering ? 0 : 1}}
             />
-            {
-              readyForVideo && !mobile && 
-              <>
+
                 <div className="work-panel-text">
                   <h3 className="work-panel-title">{content.name}</h3>
                   <p className="work-panel-slug">{content.slug}</p>
                 </div>
                 <div className="work-panel-video-box">
                   <img alt={content.name} src={content.placeholder} style={content.style} className="video-placeholder" />
-                  <Suspense fallback={
-                    <img alt={content.name} src={content.placeholder} style={content.style} className="video-placeholder" />
-                  }>
-                    {videos[content.video]({style: content.style})}
-                  </Suspense>
+                  {readyForVideo && !mobile && 
+                    <Suspense fallback={<div />}>
+                      {videos[content.video]({style: content.style})}
+                    </Suspense>
+                  }
                 </div>
-              </>
-            }
           </div>
         </div>
       </animated.div>

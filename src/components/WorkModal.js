@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSpring, animated } from "react-spring";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import keyConsPlaceholder from "../assets/Videos/Key-Cons-sample.png";
 import gazorkazorkPlaceholder from "../assets/Videos/Gazorkazork-sample.png"
@@ -166,16 +167,14 @@ function WorkModal({ state, trigger }) {
           X
         </button>
         <div className="modal-outer-box">
-          {modalContent.placeholder && <Suspense fallback={
-            <div className="modal-video-box">
-              <img alt={modalContent.name} src={modalContent.placeholder} className="video-placeholder" />
+          {modalContent.placeholder && <div className="modal-video-box" >
+            <div className="spinner-box" loading={!readyForVideo}>
+              <ClipLoader color="white" />
             </div>
-          }>
-            <div className="modal-video-box">
-              {modalContent.placeholder && <img alt={modalContent.name} src={modalContent.placeholder} className="video-placeholder" />}
+            <Suspense fallback={<div />}>
               {readyForVideo && modalContent.video}
-            </div>
-          </Suspense>}
+            </Suspense>
+          </div>}
           <div className="modal-inner-box">
             <h2 className="modal-title">{modalContent.title}</h2>
             <p className="modal-tech-stack">{modalContent.techStack}</p>

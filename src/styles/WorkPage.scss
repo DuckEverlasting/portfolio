@@ -485,24 +485,41 @@
     margin-top: 5%;
 
     .modal-video-box {
+      display: flex;
       position: relative;
       flex-direction: column;
       align-items: center;
       width: 80vh;
       min-width: 70%;
       max-width: 90%;
-      height: auto;
+      min-height: 40vh;
+      background-color: rgba(0, 0, 0, 0) !important;
+      background-blend-mode: color;
+
+      @media screen and (orientation: portrait) {
+        min-height: 40vw;
+      }
+
+      .spinner-box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       
       .video-placeholder {
+        position: absolute;
+        left: 0;
         width: 100%;
         height: auto;
       }
   
       .modal-video {
-        position: absolute;
-        left: 0;
+        position: relative;
+        flex-shrink: 1;
         width: 100%;
-        height: auto;
       }
     }
 
@@ -510,6 +527,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      flex-shrink: 0;
       width: 90%;
 
       .modal-title {
