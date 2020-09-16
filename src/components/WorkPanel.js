@@ -31,6 +31,7 @@ const mobile = isMobileDevice();
 function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const [isHovering, setIsHovering] = useState(false);
   const [readyForVideo, setReadyForVideo] = useState(false);
+  const [videoIsLoaded, setVideoIsLoaded] = useState(false);
 
   useEffect(() => {
     isOn ? 
@@ -103,12 +104,12 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
                   <p className="work-panel-slug">{content.slug}</p>
                 </div>
                 <div className="work-panel-video-box">
-                  {!readyForVideo && !mobile && <div className="spinner-box">
+                  {!videoIsLoaded && isHovering && <div className="spinner-box">
                     <ClipLoader color="white"/>
                   </div>}
                   {readyForVideo && !mobile && 
                     <Suspense fallback={<div />}>
-                      {videos[content.video]({style: content.style})}
+                      {videos[content.video]({style: content.style, onLoad: () => setVideoIsLoaded(true)})}
                     </Suspense>
                   }
                 </div>
