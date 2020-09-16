@@ -204,6 +204,7 @@
             line-height: 1.25;
             padding-left: 10px;
             padding-right: 25px;
+            user-select: none;
 
             @media screen and (max-width: $break-720) {
               font-size: 1.1rem;
