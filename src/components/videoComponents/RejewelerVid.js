@@ -1,14 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import video from "../../assets/Videos/Rejeweler-sample.mp4";
 
-export default function RejewelerVid({className="modal-video", style={}, onLoad}) {
-  useEffect(() => {
-    if (onLoad) {
-      onLoad();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+export default function RejewelerVid({className="modal-video", style={}, onPlay}) {
   return <video
     className={className}
     style={style}
@@ -16,6 +9,7 @@ export default function RejewelerVid({className="modal-video", style={}, onLoad}
     autoPlay
     muted
     loop
+    onPlay={onPlay}
     src={video}
   /> 
 }

@@ -1,14 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import video from "../../assets/Videos/Gazorkazork-sample.mp4";
 
-export default function GazorkazorkVid({className="modal-video", style={}, onLoad}) {
-  useEffect(() => {
-    if (onLoad) {
-      onLoad();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+export default function GazorkazorkVid({className="modal-video", style={}, onPlay}) {
   return <video
     className={className}
     style={style}
@@ -16,6 +9,7 @@ export default function GazorkazorkVid({className="modal-video", style={}, onLoa
     autoPlay
     muted
     loop
+    onPlaying={onPlay}
     src={video}
   /> 
 }

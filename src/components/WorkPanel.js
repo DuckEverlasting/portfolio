@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSpring, animated } from "react-spring";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -32,6 +32,8 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const [isHovering, setIsHovering] = useState(false);
   const [readyForVideo, setReadyForVideo] = useState(false);
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
+  const hoverRef = useRef(isHovering);
+  hoverRef.current = isHovering;
 
   useEffect(() => {
     isOn ? 
@@ -74,10 +76,10 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   const handleVideoOff = () => {
     setIsHovering(false);
     setTimeout(() => {
-      if (!isHovering) {
+      if (!hoverRef.current) {
         setReadyForVideo(false)
       }
-    }, 200);
+    }, 1000);
   }
 
   return (
@@ -109,7 +111,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
                   </div>}
                   {readyForVideo && !mobile && 
                     <Suspense fallback={<div />}>
-                      {videos[content.video]({style: content.style, onLoad: () => setVideoIsLoaded(true)})}
+                      {videos[content.video]({style: content.style, onPlay: () => setVideoIsLoaded()})}
                     </Suspense>
                   }
                 </div>
