@@ -69,6 +69,7 @@ function WorkPanel({ isOn, content, triggerModal, modalState }) {
   }
 
   const handleVideoHover = async () => {
+    if (mobile) {return;}
     setIsHovering(true);
     setReadyForVideo(true);
   }
