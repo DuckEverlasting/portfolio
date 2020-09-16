@@ -166,7 +166,7 @@ function MobileApp() {
       style={{ height: "100%", width: "100%", position: "fixed"}}
     >
       {wipeIsMounted && <div className={`app-spinner ${appIsLoaded ? "app-loaded" : ""}`}>
-        <ClipLoader color="white" size="100"/>
+        <ClipLoader color="white" size="100px"/>
       </div>}
       {wipeIsMounted && <GradientWipe isVisible={!appIsLoaded} trigger={setWipeIsMounted} />}
       <div 

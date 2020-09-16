@@ -159,7 +159,7 @@ function App() {
       style={{ height: hasStarted ? "7000px" : "100%"}}
     >
       {wipeIsMounted && <div className={`app-spinner ${appIsLoaded ? "app-loaded" : ""}`}>
-        <ClipLoader color="white" size="100"/>
+        <ClipLoader color="white" size="100px"/>
       </div>}
       {wipeIsMounted && <GradientWipe isVisible={!appIsLoaded} trigger={setWipeIsMounted} />}
       <div className="top-container">
