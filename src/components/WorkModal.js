@@ -40,7 +40,7 @@ const modalData = {
     techStack: "React, Redux",
     description: "Solo project. Online layer-based image editor and drawing tool. Originally built to test interactions between React, Redux, and the Canvas API.",
     video: <SnapShotVid />,
-    link: "https://snapshotie.netlify.com/",
+    link: "https://snapshoteditor.app/",
     cta: "EXPLORE"
   },
   4: {
